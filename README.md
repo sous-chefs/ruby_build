@@ -1,6 +1,8 @@
-# <a name="description"></a> Description
+<a name="description"></a>
+# Description
 
-# <a name="requirements"></a> Requirements
+<a name="requirements"></a>
+# Requirements
 
 ## Chef
 
@@ -8,7 +10,8 @@
 
 ## Cookbooks
 
-# <a name="installation"></a> Installation
+<a name="installation"></a>
+# Installation
 
 Depending on the situation and use case there are several ways to install
 this cookbook. All the methods listed below assume a tagged version release
@@ -66,15 +69,20 @@ Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
     curl -Ls https://github.com/fnichol/chef-ruby-build/tarball/v0.1.0 | tar xfz - && \
       mv fnichol-chef-ruby-build-* ruby-build
 
-# <a name="usage"></a> Usage
+<a name="usage"></a>
+# Usage
 
-# <a name="recipes"></a> Recipes
+<a name="recipes"></a>
+# Recipes
 
-# <a name="attributes"></a> Attributes
+<a name="attributes"></a>
+# Attributes
 
-# <a name="lwrps"></a> Resources and Providers
+<a name="lwrps"></a>
+# Resources and Providers
 
-# <a name="development"></a> Development
+<a name="development"></a>
+# Development
 
 * Source hosted at [GitHub][repo]
 * Report issues/Questions/Feature requests on [GitHub Issues][issues]
@@ -82,7 +90,8 @@ Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
 Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make.
 
-# <a name="license"></a> License and Author
+<a name="license"></a>
+# License and Author
 
 Author:: Fletcher Nichol (<fnichol@nichol.ca>)
 
