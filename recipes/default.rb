@@ -57,4 +57,3 @@ git src_path do
 
   notifies :run, "execute[Install ruby-build]", :immediately
 end
-
