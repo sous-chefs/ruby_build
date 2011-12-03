@@ -16,3 +16,41 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+class Chef::Recipe
+  # mix in recipe helpers
+  include Chef::RubyBuild::RecipeHelpers
+end
+
+git_url = node['ruby-build']['git_url']
+git_ref = node['ruby-build']['git_ref']
+upgrade_strategy  = build_upgrade_strategy(node['ruby-build']['upgrade'])
+
+cache_path  = Chef::Config['file_cache_path']
+src_path    = "#{cache_path}/ruby-build"
+
+unless mac_with_no_homebrew
+  Array(node['ruby-build']['install_pkgs']).each do |pkg|
+    package pkg
+  end
+end
+
+git src_path do
+  repository  git_url
+  reference   git_ref
+
+  if upgrade_strategy == "none"
+    action    :checkout
+  else
+    action    :sync
+  end
+end
+
+execute "Install ruby-build" do
+  cwd       src_path
+  command   %{./install.sh}
+
+  not_if do
+    ::File.exists?("/usr/local/bin/ruby-build") && upgrade_strategy == "none"
+  end
+end
