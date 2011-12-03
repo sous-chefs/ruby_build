@@ -109,9 +109,9 @@ The default is `"git://github.com/sstephenson/ruby-build.git"`.
 A specific Git branch/tag/reference to use when installing ruby-build. For
 example, to pin ruby-build to a specific release:
 
-    node['ruby_build']['git_ref'] = "v20111030"
+    node['ruby-build']['git_ref'] = "v20111030"
 
-The default is `nil` which corresponds to the master branch.
+The default is `"master"`.
 
 ## <a name="attributes-default-ruby-base-path"></a> default\_ruby_base\_path
 
@@ -121,7 +121,7 @@ following resource:
     ruby_build_ruby "1.9.3-p0"
 
 will be installed into
-`"#{node['ruby_build']['default_ruby_base_path']}/1.9.3-p0"` unless a
+`"#{node['ruby-build']['default_ruby_base_path']}/1.9.3-p0"` unless a
 `prefix_path` attribute is explicitly set.
 
 The default is `"/usr/local/ruby"`.
