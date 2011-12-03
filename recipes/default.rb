@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ruby-build
+# Cookbook Name:: ruby_build
 # Recipe:: default
 #
 # Copyright 2011, Fletcher Nichol
@@ -22,15 +22,15 @@ class Chef::Recipe
   include Chef::RubyBuild::RecipeHelpers
 end
 
-git_url = node['ruby-build']['git_url']
-git_ref = node['ruby-build']['git_ref']
-upgrade_strategy  = build_upgrade_strategy(node['ruby-build']['upgrade'])
+git_url = node['ruby_build']['git_url']
+git_ref = node['ruby_build']['git_ref']
+upgrade_strategy  = build_upgrade_strategy(node['ruby_build']['upgrade'])
 
 cache_path  = Chef::Config['file_cache_path']
 src_path    = "#{cache_path}/ruby-build"
 
 unless mac_with_no_homebrew
-  Array(node['ruby-build']['install_pkgs']).each do |pkg|
+  Array(node['ruby_build']['install_pkgs']).each do |pkg|
     package pkg
   end
 end

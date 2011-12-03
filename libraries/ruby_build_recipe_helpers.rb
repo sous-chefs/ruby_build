@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ruby-build
+# Cookbook Name:: ruby_build
 # Library:: Chef::RubyBuild::RecipeHelpers
 #
 # Author:: Fletcher Nichol <fnichol@nichol.ca>

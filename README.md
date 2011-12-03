@@ -36,7 +36,7 @@ Chef repository structure like the [Opscode repo][chef_repo] is also assumed.
 
 To install this cookbook from the Opscode platform, use the *knife* command:
 
-    knife cookbook site install ruby-build
+    knife cookbook site install ruby_build
 
 ## <a name="installation-librarian"></a> Using Librarian
 
@@ -48,8 +48,8 @@ Include a reference to the cookbook in a [Cheffile][cheffile] and run
     cd chef-repo
     librarian-chef init
     cat >> Cheffile <<END_OF_CHEFFILE
-    cookbook 'ruby-build',
-      :git => 'git://github.com/fnichol/chef-ruby-build.git', :ref => 'v0.1.0'
+    cookbook 'ruby_build',
+      :git => 'git://github.com/fnichol/chef-ruby_build.git', :ref => 'v0.1.0'
     END_OF_CHEFFILE
     librarian-chef install
 
@@ -61,7 +61,7 @@ plugin:
 
     gem install knife-github-cookbooks
     cd chef-repo
-    knife cookbook github install fnichol/chef-ruby-build/v0.1.0
+    knife cookbook github install fnichol/chef-ruby_build/v0.1.0
 
 ## <a name="installation-gitsubmodule"></a> As a Git Submodule
 
@@ -69,7 +69,7 @@ A common practice (which is getting dated) is to add cookbooks as Git
 submodules. This is accomplishes like so:
 
     cd chef-repo
-    git submodule add git://github.com/fnichol/chef-ruby-build.git cookbooks/ruby-build
+    git submodule add git://github.com/fnichol/chef-ruby_build.git cookbooks/ruby_build
     git submodule init && git submodule update
 
 **Note:** the head of development will be linked here, not a tagged release.
@@ -80,12 +80,12 @@ If the cookbook needs to downloaded temporarily just to be uploaded to a Chef
 Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
 
     cd chef-repo/cookbooks
-    curl -Ls https://github.com/fnichol/chef-ruby-build/tarball/v0.1.0 | tar xfz - && \
-      mv fnichol-chef-ruby-build-* ruby-build
+    curl -Ls https://github.com/fnichol/chef-ruby_build/tarball/v0.1.0 | tar xfz - && \
+      mv fnichol-chef-ruby_build-* ruby_build
 
 # <a name="usage"></a> Usage
 
-Simply include `recipe[ruby-build]` in your run\_list to have ruby-build
+Simply include `recipe[ruby_build]` in your run\_list to have ruby-build
 installed. You will also have access to the `ruby_build_ruby` resource. See
 the [Resources and Providers](#lwrps) section for more details.
 
@@ -109,7 +109,7 @@ The default is `"git://github.com/sstephenson/ruby-build.git"`.
 A specific Git branch/tag/reference to use when installing ruby-build. For
 example, to pin ruby-build to a specific release:
 
-    node['ruby-build']['git_ref'] = "v20111030"
+    node['ruby_build']['git_ref'] = "v20111030"
 
 The default is `"master"`.
 
@@ -121,7 +121,7 @@ following resource:
     ruby_build_ruby "1.9.3-p0"
 
 will be installed into
-`"#{node['ruby-build']['default_ruby_base_path']}/1.9.3-p0"` unless a
+`"#{node['ruby_build']['default_ruby_base_path']}/1.9.3-p0"` unless a
 `prefix_path` attribute is explicitly set.
 
 The default is `"/usr/local/ruby"`.

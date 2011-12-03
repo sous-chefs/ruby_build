@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ruby-build
+# Cookbook Name:: ruby_build
 # Attributes:: default
 #
 # Author:: Fletcher Nichol <fnichol@nichol.ca>
@@ -20,20 +20,20 @@
 #
 
 # git repository containing the ruby-build framework
-default['ruby-build']['git_url'] = "git://github.com/sstephenson/ruby-build.git"
-default['ruby-build']['git_ref'] = "master"
+default['ruby_build']['git_url'] = "git://github.com/sstephenson/ruby-build.git"
+default['ruby_build']['git_ref'] = "master"
 
 # default base path for a system-wide installed Ruby
-default['ruby-build']['default_ruby_base_path'] = "/usr/local/ruby"
+default['ruby_build']['default_ruby_base_path'] = "/usr/local/ruby"
 
 # ruby-build upgrade action
-default['ruby-build']['upgrade'] = "none"
+default['ruby_build']['upgrade'] = "none"
 
 case platform
 when "redhat","centos","fedora", "amazon"
-  node.set['ruby-build']['install_pkgs']   = %w{tar bash curl git}
+  node.set['ruby_build']['install_pkgs']   = %w{tar bash curl git}
 when "debian","ubuntu","suse"
-  node.set['ruby-build']['install_pkgs']   = %w{tar bash curl git-core}
+  node.set['ruby_build']['install_pkgs']   = %w{tar bash curl git-core}
 when "mac_os_x"
-  node.set['ruby-build']['install_pkgs']   = %w{git}
+  node.set['ruby_build']['install_pkgs']   = %w{git}
 end
