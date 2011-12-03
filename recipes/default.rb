@@ -35,6 +35,16 @@ unless mac_with_no_homebrew
   end
 end
 
+execute "Install ruby-build" do
+  cwd       src_path
+  command   %{./install.sh}
+
+  action    :nothing
+  not_if do
+    ::File.exists?("/usr/local/bin/ruby-build") && upgrade_strategy == "none"
+  end
+end
+
 git src_path do
   repository  git_url
   reference   git_ref
@@ -44,13 +54,7 @@ git src_path do
   else
     action    :sync
   end
+
+  notifies :run, "execute[Install ruby-build]", :immediately
 end
 
-execute "Install ruby-build" do
-  cwd       src_path
-  command   %{./install.sh}
-
-  not_if do
-    ::File.exists?("/usr/local/bin/ruby-build") && upgrade_strategy == "none"
-  end
-end
