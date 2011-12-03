@@ -115,7 +115,7 @@ The default is `nil` which corresponds to the master branch.
 
 ## <a name="attributes-default-ruby-base-path"></a> default\_ruby_base\_path
 
-The default path prefix for a system-wide installed Ruby. For example, the
+The default base path for a system-wide installed Ruby. For example, the
 following resource:
 
     ruby_build_ruby "1.9.3-p0"
