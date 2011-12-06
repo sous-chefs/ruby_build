@@ -30,10 +30,31 @@ default['ruby_build']['default_ruby_base_path'] = "/usr/local/ruby"
 default['ruby_build']['upgrade'] = "none"
 
 case platform
-when "redhat","centos","fedora", "amazon"
-  node.set['ruby_build']['install_pkgs']   = %w{tar bash curl git}
-when "debian","ubuntu","suse"
-  node.set['ruby_build']['install_pkgs']   = %w{tar bash curl git-core}
+when "redhat", "centos", "fedora", "amazon"
+  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl git }
+  node.set['ruby_build']['install_pkgs_cruby'] =
+    %w{ gcc-c++ patch readline readline-devel zlib zlib-devel
+        libyaml-devel libffi-devel openssl-devel git subversion autoconf }
+  node.set['ruby_build']['install_pkgs_jruby'] = []
+
+when "debian", "ubuntu"
+  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl git-core }
+  node.set['ruby_build']['install_pkgs_cruby'] =
+    %w{ build-essential bison openssl libreadline6 libreadline6-dev
+        zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0
+        libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf
+        libc6-dev ssl-cert subversion }
+  node.set['ruby_build']['install_pkgs_jruby'] = %w{ g++ }
+
+when "suse"
+  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl git-core }
+  node.set['ruby_build']['install_pkgs_cruby'] =
+    %w{ gcc-c++ patch zlib zlib-devel libffi-devel
+        sqlite3-devel libxml2-devel libxslt-devel git subversion autoconf }
+  node.set['ruby_build']['install_pkgs_jruby'] = []
+
 when "mac_os_x"
-  node.set['ruby_build']['install_pkgs']   = %w{git}
+  node.set['ruby_build']['install_pkgs'] = %w{ git }
+  node.set['ruby_build']['install_pkgs_cruby'] = []
+  node.set['ruby_build']['install_pkgs_jruby'] = []
 end
