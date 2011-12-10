@@ -148,7 +148,6 @@ Action    |Description                   |Default
 ----------|------------------------------|-------
 install   |Build and install a Ruby from a definition file. See the ruby-build [readme][rb_readme] for more details. |Yes
 reinstall |Force a recompiliation of the Ruby from source. The :install action will skip a build if the target install directory already exists. |
-remove    |Remove the Ruby. More details to follow... |
 
 ### <a name="lwrps-rbr-attributes"></a> Attributes
 
@@ -189,14 +188,6 @@ user         |A user which will own the installed Ruby. The default value of `ni
 
 **Note:** the Ruby will be built whether or not the Ruby exists in the
 `prefix_path` directory.
-
-#### Remove Ruby
-
-    ruby_build_ruby "1.8.6-p420" do
-      prefix_path "/usr/local/ruby/ruby/ruby-1.9.3-p0"
-
-      action      :remove
-    end
 
 # <a name="development"></a> Development
 
