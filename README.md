@@ -228,5 +228,5 @@ limitations under the License.
 [rb-site]:        https://github.com/sstephenson/ruby-build
 [rb-definitions]: https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build
 
-[repo]:         https://github.com/fnichol/chef-ruby-build
-[issues]:       https://github.com/fnichol/chef-ruby-build/issues
+[repo]:         https://github.com/fnichol/chef-ruby_build
+[issues]:       https://github.com/fnichol/chef-ruby_build/issues
