@@ -19,22 +19,36 @@
 # limitations under the License.
 #
 
-action :install do
-  rubie       = new_resource.definition
-  prefix_path = new_resource.prefix_path ||
-    "#{node['ruby_build']['default_ruby_base_path']}/#{rubie}"
+def load_current_resource
+  @rubie        = new_resource.definition
+  @prefix_path  = new_resource.prefix_path ||
+    "#{node['ruby_build']['default_ruby_base_path']}/#{@rubie}"
+end
 
+action :install do
+  perform_install
+end
+
+action :reinstall do
+  perform_install
+end
+
+private
+
+def perform_install
   if ruby_installed?
     Chef::Log.debug(
-      "ruby_build_ruby[#{rubie}] is already installed, so skipping")
+      "ruby_build_ruby[#{@rubie}] is already installed, so skipping")
   else
     install_start = Time.now
 
     install_ruby_dependencies
 
     Chef::Log.info(
-      "Building ruby_build_ruby[#{rubie}], this could take a while...")
+      "Building ruby_build_ruby[#{@rubie}], this could take a while...")
 
+    rubie       = @rubie        # bypass block scoping issue
+    prefix_path = @prefix_path  # bypass block scoping issue
     execute "ruby-build[#{rubie}]" do
       command   %{/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}"}
       user      new_resource.user if new_resource.user
@@ -42,18 +56,17 @@ action :install do
       action    :nothing
     end.run_action(:run)
 
-    Chef::Log.debug("ruby_build_ruby[#{rubie}] build time was " +
+    Chef::Log.debug("ruby_build_ruby[#{@rubie}] build time was " +
       "#{(Time.now - install_start)/60.0} minutes")
   end
 end
 
-action :reinstall do
-end
-
-private
-
 def ruby_installed?
-  false
+  if Array(new_resource.action).include?(:reinstall)
+    false
+  else
+    ::File.exists?("#{@prefix_path}/bin/ruby")
+  end
 end
 
 def install_ruby_dependencies
