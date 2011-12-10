@@ -51,7 +51,8 @@ def perform_install
     prefix_path = @prefix_path  # bypass block scoping issue
     execute "ruby-build[#{rubie}]" do
       command   %{/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}"}
-      user      new_resource.user if new_resource.user
+      user      new_resource.user   if new_resource.user
+      group     new_resource.group  if new_resource.group
 
       action    :nothing
     end.run_action(:run)

@@ -156,6 +156,7 @@ Attribute   |Description |Default value
 definition   |**Name attribute:** the name of a [built-in definition][rb_definitions] or the path to a ruby-build definition file. |`nil`
 prefix\_path |The path to which the Ruby will be installed. |`nil`
 user         |A user which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the user must already exist. |`nil`
+group        |A group which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the group must already exist. |`nil`
 
 ### <a name="lwrps-rbr-examples"></a> Examples
 
@@ -176,6 +177,7 @@ user         |A user which will own the installed Ruby. The default value of `ni
     ruby_build_ruby "maglev-1.0.0" do
       prefix_path "/home/deploy/.rubies/maglev-1.0.0"
       user        "deploy"
+      group       "deploy"
     end
 
 #### Reinstall Ruby
