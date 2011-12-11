@@ -224,9 +224,9 @@ limitations under the License.
 [kgc]:            https://github.com/websterclay/knife-github-cookbooks#readme
 [librarian]:      https://github.com/applicationsonline/librarian#readme
 [lwrp]:           http://wiki.opscode.com/display/chef/Lightweight+Resources+and+Providers+%28LWRP%29
-[rb-readme]:      https://github.com/sstephenson/ruby-build#readme
-[rb-site]:        https://github.com/sstephenson/ruby-build
-[rb-definitions]: https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build
+[rb_readme]:      https://github.com/sstephenson/ruby-build#readme
+[rb_site]:        https://github.com/sstephenson/ruby-build
+[rb_definitions]: https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build
 
 [repo]:         https://github.com/fnichol/chef-ruby_build
 [issues]:       https://github.com/fnichol/chef-ruby_build/issues
