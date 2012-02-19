@@ -45,6 +45,10 @@ execute "Install ruby-build" do
   end
 end
 
+directory ::File.dirname(src_path) do
+  recursive true
+end
+
 git src_path do
   repository  git_url
   reference   git_ref
