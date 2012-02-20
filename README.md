@@ -1,4 +1,4 @@
-# <a name="title"></a> chef-ruby\_build
+# <a name="title"></a> chef-ruby_build
 
 ## <a name="description"></a> Description
 
@@ -100,13 +100,13 @@ Resources and Providers ([LWRPs][lwrp]).
 
 ## <a name="attributes"></a> Attributes
 
-### <a name="attributes-git-url"></a> git\_url
+### <a name="attributes-git-url"></a> git_url
 
 The Git URL which is used to install ruby-build.
 
 The default is `"git://github.com/sstephenson/ruby-build.git"`.
 
-### <a name="attributes-git-ref"></a> git\_ref
+### <a name="attributes-git-ref"></a> git_ref
 
 A specific Git branch/tag/reference to use when installing ruby-build. For
 example, to pin ruby-build to a specific release:
@@ -115,7 +115,7 @@ example, to pin ruby-build to a specific release:
 
 The default is `"master"`.
 
-### <a name="attributes-default-ruby-base-path"></a> default\_ruby_base\_path
+### <a name="attributes-default-ruby-base-path"></a> default_ruby_base\_path
 
 The default base path for a system-wide installed Ruby. For example, the
 following resource:
@@ -142,7 +142,7 @@ The default is `"none"`.
 
 ## <a name="lwrps"></a> Resources and Providers
 
-### <a name="lwrps-rbr"></a> ruby\_build\_ruby
+### <a name="lwrps-rbr"></a> ruby_build_ruby
 
 #### <a name="lwrps-rbr-actions"></a> Actions
 
