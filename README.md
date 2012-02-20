@@ -3,6 +3,12 @@
 Manages the [ruby-build][rb_site] framework and its installed Rubies.
 A lightweight resources and providers ([LWRP][lwrp]) is also defined.
 
+# <a name="usage"></a> Usage
+
+Simply include `recipe[ruby_build]` in your run\_list to have ruby-build
+installed. You will also have access to the `ruby_build_ruby` resource. See
+the [Resources and Providers](#lwrps) section for more details.
+
 # <a name="requirements"></a> Requirements
 
 ## <a name="requirements-chef"></a> Chef
@@ -82,12 +88,6 @@ Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
     cd chef-repo/cookbooks
     curl -Ls https://github.com/fnichol/chef-ruby_build/tarball/v0.6.0 | tar xfz - && \
       mv fnichol-chef-ruby_build-* ruby_build
-
-# <a name="usage"></a> Usage
-
-Simply include `recipe[ruby_build]` in your run\_list to have ruby-build
-installed. You will also have access to the `ruby_build_ruby` resource. See
-the [Resources and Providers](#lwrps) section for more details.
 
 # <a name="recipes"></a> Recipes
 
