@@ -1,30 +1,24 @@
-<a name="title"></a>
-# chef-ruby\_build
+# <a name="title"></a> chef-ruby\_build
 
-<a name="description"></a>
-## Description
+## <a name="description"></a> Description
 
 Manages the [ruby-build][rb_site] framework and its installed Rubies.
 A lightweight resources and providers ([LWRP][lwrp]) is also defined.
 
-<a name="usage"></a>
-## Usage
+## <a name="usage"></a> Usage
 
 Simply include `recipe[ruby_build]` in your run\_list to have ruby-build
 installed. You will also have access to the `ruby_build_ruby` resource. See
 the [Resources and Providers](#lwrps) section for more details.
 
-<a name="requirements"></a>
-## Requirements
+## <a name="requirements"></a> Requirements
 
-<a name="requirements-chef"></a>
-### Chef
+### <a name="requirements-chef"></a> Chef
 
 Tested on 0.10.8 but newer and older version should work just
 fine. File an [issue][issues] if this isn't the case.
 
-<a name="requirements-platform"></a>
-### Platform
+### <a name="requirements-platform"></a> Platform
 
 The following platforms have been tested with this cookbook, meaning that
 the recipes and LWRPs run on these platforms without error:
@@ -33,30 +27,26 @@ the recipes and LWRPs run on these platforms without error:
 
 Please [report][issues] any additional platforms so they can be added.
 
-<a name="requirements-cookbooks"></a>
-### Cookbooks
+### <a name="requirements-cookbooks"></a> Cookbooks
 
 There are **no** external cookbook dependencies. However, if you are
 installing [JRuby][jruby] then a Java runtime will need to be installed.
 The Opscode [java cookbook][java_cb] can be used on supported platforms.
 
-<a name="installation"></a>
-## Installation
+## <a name="installation"></a> Installation
 
 Depending on the situation and use case there are several ways to install
 this cookbook. All the methods listed below assume a tagged version release
 is the target, but omit the tags to get the head of development. A valid
 Chef repository structure like the [Opscode repo][chef_repo] is also assumed.
 
-<a name="installation-platform"></a>
-### From the Opscode Community Platform
+### <a name="installation-platform"></a> From the Opscode Community Platform
 
 To install this cookbook from the Opscode platform, use the *knife* command:
 
     knife cookbook site install ruby_build
 
-<a name="installation-librarian"></a>
-### Using Librarian
+### <a name="installation-librarian"></a> Using Librarian
 
 The [Librarian][librarian] gem aims to be Bundler for your Chef cookbooks.
 Include a reference to the cookbook in a [Cheffile][cheffile] and run
@@ -71,8 +61,7 @@ Include a reference to the cookbook in a [Cheffile][cheffile] and run
     END_OF_CHEFFILE
     librarian-chef install
 
-<a name="installation-kgc"></a>
-### Using knife-github-cookbooks
+### <a name="installation-kgc"></a> Using knife-github-cookbooks
 
 The [knife-github-cookbooks][kgc] gem is a plugin for *knife* that supports
 installing cookbooks directly from a GitHub repository. To install with the
@@ -82,8 +71,7 @@ plugin:
     cd chef-repo
     knife cookbook github install fnichol/chef-ruby_build/v0.6.0
 
-<a name="installation-gitsubmodule"></a>
-### As a Git Submodule
+### <a name="installation-gitsubmodule"></a> As a Git Submodule
 
 A common practice (which is getting dated) is to add cookbooks as Git
 submodules. This is accomplishes like so:
@@ -94,8 +82,7 @@ submodules. This is accomplishes like so:
 
 **Note:** the head of development will be linked here, not a tagged release.
 
-<a name="installation-tarball"></a>
-### As a Tarball
+### <a name="installation-tarball"></a> As a Tarball
 
 If the cookbook needs to downloaded temporarily just to be uploaded to a Chef
 Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
@@ -104,27 +91,22 @@ Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
     curl -Ls https://github.com/fnichol/chef-ruby_build/tarball/v0.6.0 | tar xfz - && \
       mv fnichol-chef-ruby_build-* ruby_build
 
-<a name="recipes"></a>
-## Recipes
+## <a name="recipes"></a> Recipes
 
-<a name="recipes-default"></a>
-### default
+### <a name="recipes-default"></a> default
 
 Installs the ruby-build codebase and initializes Chef to use the Lightweight
 Resources and Providers ([LWRPs][lwrp]).
 
-<a name="attributes"></a>
-## Attributes
+## <a name="attributes"></a> Attributes
 
-<a name="attributes-git-url"></a>
-### git\_url
+### <a name="attributes-git-url"></a> git\_url
 
 The Git URL which is used to install ruby-build.
 
 The default is `"git://github.com/sstephenson/ruby-build.git"`.
 
-<a name="attributes-git-ref"></a>
-### git\_ref
+### <a name="attributes-git-ref"></a> git\_ref
 
 A specific Git branch/tag/reference to use when installing ruby-build. For
 example, to pin ruby-build to a specific release:
@@ -133,8 +115,7 @@ example, to pin ruby-build to a specific release:
 
 The default is `"master"`.
 
-<a name="attributes-default-ruby-base-path"></a>
-### default\_ruby_base\_path
+### <a name="attributes-default-ruby-base-path"></a> default\_ruby_base\_path
 
 The default base path for a system-wide installed Ruby. For example, the
 following resource:
@@ -147,8 +128,7 @@ will be installed into
 
 The default is `"/usr/local/ruby"`.
 
-<a name="attributes-upgrade"></a>
-### upgrade
+### <a name="attributes-upgrade"></a> upgrade
 
 Determines how to handle installing updates to the ruby-build framework.
 There are currently 2 valid values:
@@ -160,14 +140,11 @@ There are currently 2 valid values:
 
 The default is `"none"`.
 
-<a name="lwrps"></a>
-## Resources and Providers
+## <a name="lwrps"></a> Resources and Providers
 
-<a name="lwrps-rbr"></a>
-### ruby\_build\_ruby
+### <a name="lwrps-rbr"></a> ruby\_build\_ruby
 
-<a name="lwrps-rbr-actions"></a>
-#### Actions
+#### <a name="lwrps-rbr-actions"></a> Actions
 
 <table>
   <thead>
@@ -199,8 +176,7 @@ The default is `"none"`.
 
 1. [ruby-build readme][rb_readme]
 
-<a name="lwrps-rbr-attributes"></a>
-#### Attributes
+#### <a name="lwrps-rbr-attributes"></a> Attributes
 
 <table>
   <thead>
@@ -247,8 +223,7 @@ The default is `"none"`.
 
 1. [built-in definition][rb_definitions]
 
-<a name="lwrps-rbr-examples"></a>
-#### Examples
+#### <a name="lwrps-rbr-examples"></a> Examples
 
 ##### Install Ruby
 
@@ -281,8 +256,7 @@ The default is `"none"`.
 **Note:** the Ruby will be built whether or not the Ruby exists in the
 `prefix_path` directory.
 
-<a name="development"></a>
-## Development
+## <a name="development"></a> Development
 
 * Source hosted at [GitHub][repo]
 * Report issues/Questions/Feature requests on [GitHub Issues][issues]
@@ -290,8 +264,7 @@ The default is `"none"`.
 Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make.
 
-<a name="license"></a>
-## License and Author
+## <a name="license"></a> License and Author
 
 Author:: Fletcher Nichol (<fnichol@nichol.ca>)
 
