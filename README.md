@@ -146,19 +146,82 @@ The default is `"none"`.
 
 #### <a name="lwrps-rbr-actions"></a> Actions
 
-Action    |Description                   |Default
-----------|------------------------------|-------
-install   |Build and install a Ruby from a definition file. See the ruby-build [readme][rb_readme] for more details. |Yes
-reinstall |Force a recompiliation of the Ruby from source. The :install action will skip a build if the target install directory already exists. |
+<table>
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>install</td>
+      <td>
+        Build and install a Ruby from a definition file. See the ruby-build
+        readme<sup>1</sup> for more details.
+      </td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>reinstall</td>
+      <td>
+        Force a recompiliation of the Ruby from source. The :install action
+        will skip a build if the target install directory already exists.
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+1. [ruby-build readme][rb_readme]
 
 #### <a name="lwrps-rbr-attributes"></a> Attributes
 
-Attribute   |Description |Default value
--------------|------------|-------------
-definition   |**Name attribute:** the name of a [built-in definition][rb_definitions] or the path to a ruby-build definition file. |`nil`
-prefix\_path |The path to which the Ruby will be installed. |`nil`
-user         |A user which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the user must already exist. |`nil`
-group        |A group which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the group must already exist. |`nil`
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Description</th>
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>definition</td>
+      <td>
+        <b>Name attribute:</b> the name of a built-in definition<sup>1</sup>
+        or the path to a ruby-build definition file.
+      </td>
+      <td><code>nil</code></td>
+    </tr>
+    <tr>
+      <td>prefix_path</td>
+      <td>The path to which the Ruby will be installed.</td>
+      <td><code>nil</code></td>
+    </tr>
+    <tr>
+      <td>user</td>
+      <td>
+        A user which will own the installed Ruby. The default value of
+        <code>nil</code> denotes a system-wide Ruby (root-owned) is being
+        targeted. <b>Note:</b> if specified, the user must already exist.
+      </td>
+      <td><code>nil</code></td>
+    </tr>
+    <tr>
+      <td>group</td>
+      <td>
+        A group which will own the installed Ruby. The default value of
+        <code>nil</code> denotes a system-wide Ruby (root-owned) is being
+        targeted. <b>Note:</b> if specified, the group must already exist.
+      </td>
+      <td><code>nil</code></td>
+    </tr>
+  </tbody>
+</table>
+
+1. [built-in definition][rb_definitions]
 
 #### <a name="lwrps-rbr-examples"></a> Examples
 
