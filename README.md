@@ -115,7 +115,7 @@ example, to pin ruby-build to a specific release:
 
 The default is `"master"`.
 
-### <a name="attributes-default-ruby-base-path"></a> default_ruby_base\_path
+### <a name="attributes-default-ruby-base-path"></a> default_ruby_base_path
 
 The default base path for a system-wide installed Ruby. For example, the
 following resource:
