@@ -159,7 +159,7 @@ The default is `"none"`.
       <td>install</td>
       <td>
         Build and install a Ruby from a definition file. See the ruby-build
-        readme<sup>1</sup> for more details.
+        readme<sup>(1)</sup> for more details.
       </td>
       <td>Yes</td>
     </tr>
@@ -190,7 +190,7 @@ The default is `"none"`.
     <tr>
       <td>definition</td>
       <td>
-        <b>Name attribute:</b> the name of a built-in definition<sup>1</sup>
+        <b>Name attribute:</b> the name of a built-in definition<sup>(1)</sup>
         or the path to a ruby-build definition file.
       </td>
       <td><code>nil</code></td>
