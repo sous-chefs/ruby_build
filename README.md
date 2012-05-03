@@ -79,17 +79,6 @@ plugin:
     cd chef-repo
     knife cookbook github install fnichol/chef-ruby_build/v0.6.0
 
-### <a name="installation-gitsubmodule"></a> As a Git Submodule
-
-A common practice (which is getting dated) is to add cookbooks as Git
-submodules. This is accomplishes like so:
-
-    cd chef-repo
-    git submodule add git://github.com/fnichol/chef-ruby_build.git cookbooks/ruby_build
-    git submodule init && git submodule update
-
-**Note:** the head of development will be linked here, not a tagged release.
-
 ### <a name="installation-tarball"></a> As a Tarball
 
 If the cookbook needs to downloaded temporarily just to be uploaded to a Chef
@@ -98,6 +87,17 @@ Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
     cd chef-repo/cookbooks
     curl -Ls https://github.com/fnichol/chef-ruby_build/tarball/v0.6.0 | tar xfz - && \
       mv fnichol-chef-ruby_build-* ruby_build
+
+### <a name="installation-gitsubmodule"></a> As a Git Submodule
+
+A dated practice (which is discouraged) is to add cookbooks as Git
+submodules. This is accomplishes like so:
+
+    cd chef-repo
+    git submodule add git://github.com/fnichol/chef-ruby_build.git cookbooks/ruby_build
+    git submodule init && git submodule update
+
+**Note:** the head of development will be linked here, not a tagged release.
 
 ## <a name="recipes"></a> Recipes
 
