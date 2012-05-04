@@ -1,5 +1,8 @@
 ## 0.6.1 (unreleased)
 
+
+## 0.6.2 (May 3, 2012)
+
 ### Bug fixes
 
 * ruby_build_ruby LWRP now notifies when updated (FC017). ([@fnichol][])
