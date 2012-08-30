@@ -23,6 +23,11 @@
 default['ruby_build']['git_url'] = "git://github.com/sstephenson/ruby-build.git"
 default['ruby_build']['git_ref'] = "master"
 
+if platform == "ubuntu"
+  default['ruby_build']['git_user'] = 'ubuntu'
+  default['ruby_build']['git_group'] = 'ubuntu'
+end
+
 # default base path for a system-wide installed Ruby
 default['ruby_build']['default_ruby_base_path'] = "/usr/local/ruby"
 
@@ -58,3 +63,4 @@ when "mac_os_x"
   node.set['ruby_build']['install_pkgs_cruby'] = []
   node.set['ruby_build']['install_pkgs_jruby'] = []
 end
+
