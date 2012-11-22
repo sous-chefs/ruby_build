@@ -23,7 +23,8 @@ fine. File an [issue][issues] if this isn't the case.
 The following platforms have been tested with this cookbook, meaning that
 the recipes and LWRPs run on these platforms without error:
 
-* ubuntu (10.04/10.10/11.04/11.10)
+* ubuntu (10.04/10.10/11.04/11.10/12.04)
+* mac\_os\_x (10.7/10.8)
 
 Please [report][issues] any additional platforms so they can be added.
 
@@ -46,14 +47,40 @@ To install this cookbook from the Opscode platform, use the *knife* command:
 
     knife cookbook site install ruby_build
 
+### <a name="installation-berkshelf"></a> Using Berkshelf
+
+[Berkshelf][berkshelf] is a cookbook dependency manager and development
+workflow assistant. To install Berkshelf:
+
+    cd chef-repo
+    gem install berkshelf
+    berks init
+
+To use the Community Site version:
+
+    echo "cookbook 'ruby_build'" >> Berksfile
+    berks install
+
+Or to reference the Git version:
+
+    repo="fnichol/chef-ruby_build"
+    latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
+    | ruby -rjson -e '
+      j = JSON.parse(STDIN.read);
+      puts j.map { |t| t["ref"].split("/").last }.sort.last
+    ')
+    cat >> Berksfile <<END_OF_BERKSFILE
+    cookbook 'ruby_build',
+      :git => 'git://github.com/$repo.git', :branch => '$latest_release'
+    END_OF_BERKSFILE
+
 ### <a name="installation-librarian"></a> Using Librarian-Chef
 
 [Librarian-Chef][librarian] is a bundler for your Chef cookbooks.
-Include a reference to the cookbook in a [Cheffile][cheffile] and run
-`librarian-chef install`. To install Librarian-Chef:
+To install Librarian-Chef:
 
-    gem install librarian
     cd chef-repo
+    gem install librarian
     librarian-chef init
 
 To use the Opscode platform version:
@@ -63,41 +90,17 @@ To use the Opscode platform version:
 
 Or to reference the Git version:
 
+    repo="fnichol/chef-ruby_build"
+    latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
+    | ruby -rjson -e '
+      j = JSON.parse(STDIN.read);
+      puts j.map { |t| t["ref"].split("/").last }.sort.last
+    ')
     cat >> Cheffile <<END_OF_CHEFFILE
     cookbook 'ruby_build',
-      :git => 'git://github.com/fnichol/chef-ruby_build.git', :ref => 'v0.6.2'
+      :git => 'git://github.com/$repo.git', :ref => '$latest_release'
     END_OF_CHEFFILE
     librarian-chef install
-
-### <a name="installation-kgc"></a> Using knife-github-cookbooks
-
-The [knife-github-cookbooks][kgc] gem is a plugin for *knife* that supports
-installing cookbooks directly from a GitHub repository. To install with the
-plugin:
-
-    gem install knife-github-cookbooks
-    cd chef-repo
-    knife cookbook github install fnichol/chef-ruby_build/v0.6.2
-
-### <a name="installation-tarball"></a> As a Tarball
-
-If the cookbook needs to downloaded temporarily just to be uploaded to a Chef
-Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
-
-    cd chef-repo/cookbooks
-    curl -Ls https://github.com/fnichol/chef-ruby_build/tarball/v0.6.2 | tar xfz - && \
-      mv fnichol-chef-ruby_build-* ruby_build
-
-### <a name="installation-gitsubmodule"></a> As a Git Submodule
-
-A dated practice (which is discouraged) is to add cookbooks as Git
-submodules. This is accomplishes like so:
-
-    cd chef-repo
-    git submodule add git://github.com/fnichol/chef-ruby_build.git cookbooks/ruby_build
-    git submodule init && git submodule update
-
-**Note:** the head of development will be linked here, not a tagged release.
 
 ## <a name="recipes"></a> Recipes
 
@@ -290,6 +293,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+[berkshelf]:      http://berkshelf.com/
 [chef_repo]:      https://github.com/opscode/chef-repo
 [cheffile]:       https://github.com/applicationsonline/librarian/blob/master/lib/librarian/chef/templates/Cheffile
 [java_cb]:        http://community.opscode.com/cookbooks/java
@@ -301,5 +305,6 @@ limitations under the License.
 [rb_site]:        https://github.com/sstephenson/ruby-build
 [rb_definitions]: https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build
 
+[fnichol]:      https://github.com/fnichol
 [repo]:         https://github.com/fnichol/chef-ruby_build
 [issues]:       https://github.com/fnichol/chef-ruby_build/issues
