@@ -1,4 +1,18 @@
-## 0.6.1 (unreleased)
+## 0.7.1 (unreleased)
+
+
+## 0.7.0 (November 21, 2012)
+
+### New features
+
+* Add environment attr to ruby_build_ruby. This allows for adding custom
+  compilation flags, as well as newer ruby-build environment variables, such
+  as RUBY_BUILD_MIRROR_URL. ([@fnichol][])
+
+### Improvements
+
+* Update foodcritic configuration and update .travis.yml. ([@fnichol][])
+* Update Installation section of README (welcome Berkshelf). ([@fnichol][])
 
 
 ## 0.6.2 (May 3, 2012)
