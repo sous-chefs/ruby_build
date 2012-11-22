@@ -25,6 +25,14 @@ the recipes and LWRPs run on these platforms without error:
 
 * ubuntu (10.04/10.10/11.04/11.10/12.04)
 * mac\_os\_x (10.7/10.8)
+* debian
+* freebsd
+* redhat
+* centos
+* fedora
+* amazon
+* scientific
+* suse
 
 Please [report][issues] any additional platforms so they can be added.
 
