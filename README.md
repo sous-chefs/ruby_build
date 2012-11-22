@@ -229,10 +229,19 @@ The default is `"none"`.
       </td>
       <td><code>nil</code></td>
     </tr>
+    <tr>
+      <td>environment</td>
+      <td>
+        A Hash of additional environment variables<sup>(2)</sup>, such as
+        <code>CONFIGURE_OPTS</code> or <code>RUBY_BUILD_MIRROR_URL</code>.
+      </td>
+      <td><code>nil</code></td>
+    </tr>
   </tbody>
 </table>
 
 1. [built-in definition][rb_definitions]
+2. [special environment variables][rb_environment]
 
 #### <a name="lwrps-rbr-examples"></a> Examples
 
@@ -240,6 +249,9 @@ The default is `"none"`.
 
     ruby_build_ruby "1.9.3-p0" do
       prefix_path "/usr/local/ruby/ruby-1.9.3-p0"
+      environment({
+        'RUBY_BUILD_MIRROR_URL' => 'http://local.example.com'
+      })
 
       action      :install
     end
@@ -303,6 +315,7 @@ limitations under the License.
 [lwrp]:           http://wiki.opscode.com/display/chef/Lightweight+Resources+and+Providers+%28LWRP%29
 [rb_readme]:      https://github.com/sstephenson/ruby-build#readme
 [rb_site]:        https://github.com/sstephenson/ruby-build
+[rb_environment]: https://github.com/sstephenson/ruby-build#special-environment-variables
 [rb_definitions]: https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build
 
 [fnichol]:      https://github.com/fnichol
