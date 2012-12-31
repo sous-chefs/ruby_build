@@ -1,4 +1,17 @@
-## 0.7.1 (unreleased)
+## 0.7.3 (unreleased)
+
+
+## 0.7.2 (December 31, 2012)
+
+### Bug fixes
+
+* Add missing package dependencies for C Ruby versions on RHEL family.
+  ([@fnichol][])
+
+### Improvements
+
+* Print Ruby build time to :info logger (formerly :debug). ([@fnichol][])
+* Add integration tests for commonly installed Ruby versions. ([@fnichol][])
 
 
 ## 0.7.0 (November 21, 2012)
