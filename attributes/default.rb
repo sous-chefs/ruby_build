@@ -20,7 +20,7 @@
 #
 
 # git repository containing the ruby-build framework
-default['ruby_build']['git_url'] = "git://github.com/sstephenson/ruby-build.git"
+default['ruby_build']['git_url'] = "https://github.com/sstephenson/ruby-build.git"
 default['ruby_build']['git_ref'] = "master"
 
 # default base path for a system-wide installed Ruby
