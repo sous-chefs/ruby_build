@@ -5,7 +5,6 @@ metadata
 group :integration do
   cookbook 'alltherubies', :path => './test/cookbooks/alltherubies'
   cookbook 'apt'
-  cookbook 'yum'
   cookbook 'user'
   cookbook 'java'
 end
