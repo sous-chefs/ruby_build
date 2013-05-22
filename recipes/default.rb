@@ -59,5 +59,5 @@ git src_path do
     action    :sync
   end
 
-  notifies :run, "execute[Install ruby-build]", :immediately
+  notifies :run, resources(:execute => "Install ruby-build"), :immediately
 end
