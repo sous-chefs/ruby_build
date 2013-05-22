@@ -49,7 +49,7 @@ directory ::File.dirname(src_path) do
   recursive true
 end
 
-git src_path do
+git src_path do #~FC043 exception to support AWS OpsWorks using an older Chef
   repository  git_url
   reference   git_ref
 
