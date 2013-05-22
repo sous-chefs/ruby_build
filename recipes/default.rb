@@ -26,7 +26,7 @@ git_url = node['ruby_build']['git_url']
 git_ref = node['ruby_build']['git_ref']
 upgrade_strategy  = build_upgrade_strategy(node['ruby_build']['upgrade'])
 
-cache_path  = Chef::Config['file_cache_path']
+cache_path  = Chef::Config['file_backup_path']
 src_path    = "#{cache_path}/ruby-build"
 
 unless mac_with_no_homebrew
