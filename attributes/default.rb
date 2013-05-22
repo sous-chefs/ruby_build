@@ -34,7 +34,7 @@ when "redhat", "centos", "fedora", "amazon", "scientific"
   node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl git }
   node.set['ruby_build']['install_pkgs_cruby'] =
     %w{ gcc-c++ patch readline readline-devel zlib zlib-devel
-        libyaml-devel libffi-devel openssl-devel
+        libffi-devel openssl-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
         git subversion autoconf }
