@@ -33,6 +33,12 @@ unless mac_with_no_homebrew
   Array(node['ruby_build']['install_pkgs']).each do |pkg|
     package pkg
   end
+
+  Array(node['ruby_build']['install_git_pkgs']).each do |pkg|
+    package pkg do
+      not_if "git --version >/dev/null"
+    end
+  end
 end
 
 execute "Install ruby-build" do
