@@ -1,4 +1,4 @@
-# <a name="title"></a> chef-ruby_build
+# <a name="title"></a> ruby-build Chef Cookbook
 
 [![Build Status](https://secure.travis-ci.org/fnichol/chef-ruby_build.png?branch=master)](http://travis-ci.org/fnichol/chef-ruby_build)
 
