@@ -24,6 +24,8 @@ end
 
 git_url = node['ruby_build']['git_url']
 git_ref = node['ruby_build']['git_ref']
+git_user = node['ruby_build']['git_user']
+git_group = node['ruby_build']['git_group']
 upgrade_strategy  = build_upgrade_strategy(node['ruby_build']['upgrade'])
 
 cache_path  = Chef::Config['file_cache_path']
@@ -58,6 +60,9 @@ end
 git src_path do #~FC043 exception to support AWS OpsWorks using an older Chef
   repository  git_url
   reference   git_ref
+
+  user  git_user
+  group git_group
 
   if upgrade_strategy == "none"
     action    :checkout
