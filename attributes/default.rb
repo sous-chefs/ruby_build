@@ -64,4 +64,10 @@ when "mac_os_x"
   node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
   node.set['ruby_build']['install_pkgs_cruby'] = []
   node.set['ruby_build']['install_pkgs_jruby'] = []
+
+when "gentoo"
+  node.set['ruby_build']['install_pkgs'] = []
+  node.set['ruby_build']['install_git_pkgs'] = %w{ git }
+  node.set['ruby_build']['install_pkgs_cruby'] = []
+  node.set['ruby_build']['install_pkgs_jruby'] = []
 end

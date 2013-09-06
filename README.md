@@ -35,6 +35,7 @@ the recipes and LWRPs run on these platforms without error:
 * amazon
 * scientific
 * suse
+* gentoo
 
 Please [report][issues] any additional platforms so they can be added.
 
