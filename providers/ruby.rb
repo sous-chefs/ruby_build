@@ -49,8 +49,9 @@ def perform_install
 
     rubie       = @rubie        # bypass block scoping issue
     prefix_path = @prefix_path  # bypass block scoping issue
+    keep_headers = '-k'         # this will force ruby-build to keep ruby headers
     execute "ruby-build[#{rubie}]" do
-      command   %{/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}"}
+      command   %{/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}" "#{keep_headers}"}
       user        new_resource.user         if new_resource.user
       group       new_resource.group        if new_resource.group
       environment new_resource.environment  if new_resource.environment
