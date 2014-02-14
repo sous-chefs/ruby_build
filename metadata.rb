@@ -16,3 +16,5 @@ supports "amazon"
 supports "scientific"
 supports "suse"
 supports "mac_os_x"
+
+depends 'yum-epel'
