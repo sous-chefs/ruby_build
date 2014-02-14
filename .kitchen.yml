@@ -1,7 +1,8 @@
 ---
-driver_plugin: vagrant
-driver_config:
-  require_chef_omnibus: true
+driver:
+  name: vagrant
+  customize:
+    memory: 1024
 
 platforms:
 - name: ubuntu-12.04
