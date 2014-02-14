@@ -18,7 +18,7 @@
 #
 
 cores         = node['cpu']['total'].to_i
-system_rubies = %w{ 1.9.2-p320 1.9.3-p362 2.0.0-preview2
+system_rubies = %w{ 1.9.2-p320 1.9.3-p362 2.0.0-preview2 2.1.0
                     jruby-1.7.1 rbx-2.0.0-rc1 }
 
 include_recipe "java"
