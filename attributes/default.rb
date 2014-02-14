@@ -39,6 +39,8 @@ when "redhat", "centos", "fedora", "amazon", "scientific"
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
         subversion autoconf }
+  node.set['ruby_build']['install_pkgs_rbx'] =
+    %w{ ncurses-devel } + node['ruby_build']['install_pkgs_cruby']
   node.set['ruby_build']['install_pkgs_jruby'] = []
 
 when "debian", "ubuntu"
@@ -49,6 +51,8 @@ when "debian", "ubuntu"
         zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0
         libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf
         libc6-dev ssl-cert subversion }
+  node.set['ruby_build']['install_pkgs_rbx'] =
+    %w{ libncurses5-dev } + node['ruby_build']['install_pkgs_cruby']
   node.set['ruby_build']['install_pkgs_jruby'] = %w{ make g++ }
 
 when "suse"
@@ -57,6 +61,8 @@ when "suse"
   node.set['ruby_build']['install_pkgs_cruby'] =
     %w{ gcc-c++ patch zlib zlib-devel libffi-devel
         sqlite3-devel libxml2-devel libxslt-devel subversion autoconf }
+  node.set['ruby_build']['install_pkgs_rbx'] =
+    %w{ ncurses-devel } + node['ruby_build']['install_pkgs_cruby']
   node.set['ruby_build']['install_pkgs_jruby'] = []
 
 when "mac_os_x"
