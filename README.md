@@ -240,6 +240,11 @@ The default is `"none"`.
       <td><code>nil</code></td>
     </tr>
     <tr>
+      <td>patch</td>
+      <td>An patch file which is applied to ruby source <code>ex: /tmp/ubuntu1404.patch</code></td>
+      <td><code>nil</code></td>
+    </tr>
+    <tr>
       <td>environment</td>
       <td>
         A Hash of additional environment variables<sup>(2)</sup>, such as

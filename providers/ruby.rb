@@ -21,6 +21,7 @@
 
 def load_current_resource
   @rubie        = new_resource.definition
+  @patch        = new_resource.patch
   @prefix_path  = new_resource.prefix_path ||
     "#{node['ruby_build']['default_ruby_base_path']}/#{@rubie}"
 end
@@ -49,8 +50,14 @@ def perform_install
 
     rubie       = @rubie        # bypass block scoping issue
     prefix_path = @prefix_path  # bypass block scoping issue
+    patch       = @patch if ::File.exists?(@patch)
+
     execute "ruby-build[#{rubie}]" do
-      command   %{/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}"}
+      if patch
+        command  %{cat #{patch} | /usr/local/bin/ruby-build -p "#{rubie}" "#{prefix_path}"}
+      else
+        command  %{/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}"}
+      end
       user        new_resource.user         if new_resource.user
       group       new_resource.group        if new_resource.group
       environment new_resource.environment  if new_resource.environment
