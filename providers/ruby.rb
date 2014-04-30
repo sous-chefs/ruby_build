@@ -49,8 +49,19 @@ def perform_install
 
     rubie       = @rubie        # bypass block scoping issue
     prefix_path = @prefix_path  # bypass block scoping issue
+
+    cmd = %{/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}"}
+
+    if new_resource.patch
+      patch_path = "#{Chef::Config[:file_cache_path]}/#{new_resource.patch}"
+      cookbook_file patch_path do
+        source new_resource.patch
+      end.run_action(:create_if_missing)
+      cmd = %{/usr/local/bin/ruby-build --patch "#{rubie}" "#{prefix_path}" < "#{patch_path}"}
+    end
+
     execute "ruby-build[#{rubie}]" do
-      command   %{/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}"}
+      command     cmd
       user        new_resource.user         if new_resource.user
       group       new_resource.group        if new_resource.group
       environment new_resource.environment  if new_resource.environment
