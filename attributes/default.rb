@@ -30,7 +30,7 @@ default['ruby_build']['default_ruby_base_path'] = "/usr/local/ruby"
 default['ruby_build']['upgrade'] = "none"
 
 case platform
-when "redhat", "centos", "fedora", "amazon", "scientific"
+when "redhat", "centos", "fedora", "amazon", "scientific", "oracle"
   node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl }
   node.set['ruby_build']['install_git_pkgs'] = %w{ git }
   node.set['ruby_build']['install_pkgs_cruby'] =
