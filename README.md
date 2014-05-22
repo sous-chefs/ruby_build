@@ -34,6 +34,7 @@ the recipes and LWRPs run on these platforms without error:
 * fedora
 * amazon
 * scientific
+* oracle
 * suse
 
 Please [report][issues] any additional platforms so they can be added.
