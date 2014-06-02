@@ -31,37 +31,37 @@ default['ruby_build']['upgrade'] = "none"
 
 case platform
 when "redhat", "centos", "fedora", "amazon", "scientific"
-  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl }
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git }
-  node.set['ruby_build']['install_pkgs_cruby'] =
+  default['ruby_build']['install_pkgs'] = %w{ tar bash curl }
+  default['ruby_build']['install_git_pkgs'] = %w{ git }
+  default['ruby_build']['install_pkgs_cruby'] =
     %w{ gcc-c++ patch readline readline-devel zlib zlib-devel
         libffi-devel openssl-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
         subversion autoconf }
-  node.set['ruby_build']['install_pkgs_jruby'] = []
+  default['ruby_build']['install_pkgs_jruby'] = []
 
 when "debian", "ubuntu"
-  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl }
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
-  node.set['ruby_build']['install_pkgs_cruby'] =
+  default['ruby_build']['install_pkgs'] = %w{ tar bash curl }
+  default['ruby_build']['install_git_pkgs'] = %w{ git-core }
+  default['ruby_build']['install_pkgs_cruby'] =
     %w{ build-essential bison openssl libreadline6 libreadline6-dev
         zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0
         libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf
         libc6-dev ssl-cert subversion }
-  node.set['ruby_build']['install_pkgs_jruby'] = %w{ make g++ }
+  default['ruby_build']['install_pkgs_jruby'] = %w{ make g++ }
 
 when "suse"
-  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl }
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
-  node.set['ruby_build']['install_pkgs_cruby'] =
+  default['ruby_build']['install_pkgs'] = %w{ tar bash curl }
+  default['ruby_build']['install_git_pkgs'] = %w{ git-core }
+  default['ruby_build']['install_pkgs_cruby'] =
     %w{ gcc-c++ patch zlib zlib-devel libffi-devel
         sqlite3-devel libxml2-devel libxslt-devel subversion autoconf }
-  node.set['ruby_build']['install_pkgs_jruby'] = []
+  default['ruby_build']['install_pkgs_jruby'] = []
 
 when "mac_os_x"
-  node.set['ruby_build']['install_pkgs'] = []
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
-  node.set['ruby_build']['install_pkgs_cruby'] = []
-  node.set['ruby_build']['install_pkgs_jruby'] = []
+  default['ruby_build']['install_pkgs'] = []
+  default['ruby_build']['install_git_pkgs'] = %w{ git-core }
+  default['ruby_build']['install_pkgs_cruby'] = []
+  default['ruby_build']['install_pkgs_jruby'] = []
 end
