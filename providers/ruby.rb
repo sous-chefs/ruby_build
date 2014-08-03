@@ -50,7 +50,7 @@ def perform_install
 
     rubie       = @rubie        # bypass block scoping issue
     prefix_path = @prefix_path  # bypass block scoping issue
-    patch       = @patch if ::File.exists?(@patch)
+    patch       = @patch if @patch && ::File.exists?(@patch)
 
     execute "ruby-build[#{rubie}]" do
       if patch
