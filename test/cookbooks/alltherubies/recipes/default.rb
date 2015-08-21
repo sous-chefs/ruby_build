@@ -27,8 +27,8 @@ if %{ubuntu debian}.include?(node['platform'])
   package "default-jre-headless"
 end
 
-log "Forcing update of java alternatives" do
-  notifies :create, "ruby_block[update-java-alternatives]", :immediately
+java_alternatives "force setting java alternatives" do
+  action :set
 end
 
 system_rubies.each do |rubie|

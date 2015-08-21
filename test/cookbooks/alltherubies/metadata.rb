@@ -6,5 +6,5 @@ description       "Installs all-the-rubies via ruby_build cookbook"
 long_description  "Everything must be installed"
 version           "0.1.0"
 
-depends "java"
-depends "user"
+depends "java", "~> 1.31"
+depends "user", "~> 0.4"
