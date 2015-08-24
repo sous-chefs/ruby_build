@@ -52,7 +52,9 @@ when "debian", "ubuntu"
         libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf
         libc6-dev ssl-cert subversion }
   node.set['ruby_build']['install_pkgs_rbx'] =
-    %w{ libncurses5-dev } + node['ruby_build']['install_pkgs_cruby']
+    %w{ libncurses5-dev llvm-3.4 llvm-3.4-dev libeditline-dev libedit-dev
+      } + node['ruby_build']['install_pkgs_cruby']
+
   node.set['ruby_build']['install_pkgs_jruby'] = %w{ make g++ }
 
 when "suse"

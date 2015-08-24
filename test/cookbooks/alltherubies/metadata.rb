@@ -8,3 +8,4 @@ version           "0.1.0"
 
 depends "java", "~> 1.31"
 depends "user", "~> 0.4"
+depends "apt", "~> 2.7"

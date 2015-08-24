@@ -18,8 +18,7 @@
 #
 
 cores         = node['cpu']['total'].to_i
-system_rubies = %w{ rbx-2.1.1 } #%w{ 1.9.2-p320 1.9.3-p362 2.0.0-p0 2.1.0
-                #    jruby-1.7.1 rbx-2.1.1 }
+system_rubies = %w{ 1.9.2-p320 1.9.3-p362 2.0.0-p0 2.1.0 jruby-1.7.1 }
 
 include_recipe "java"
 
@@ -31,10 +30,23 @@ java_alternatives "force setting java alternatives" do
   action :set
 end
 
+# For precise (12.04), need a repo to get a high enough version of llvm to
+# build rbx
+apt_repository 'llvm' do
+  uri 'http://llvm.org/apt/precise'
+  distribution 'llvm-toolchain-precise-3.5'
+  components ['main']
+end
+
 system_rubies.each do |rubie|
   ruby_build_ruby rubie do
     environment({ 'MAKE_OPTS' => "-j #{cores + 1}" })
   end
+end
+
+ruby_build_ruby "rbx-2.5.8" do
+  environment({ 'MAKE_OPTS' => "-j #{cores + 1}",
+                'RUBY_CONFIGURE_OPTS' => "--llvm-config=/usr/lib/llvm-3.4/bin/llvm-config" })
 end
 
 # Woah, REE, crazy bananas! For more details see:
