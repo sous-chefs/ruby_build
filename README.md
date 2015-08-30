@@ -25,16 +25,19 @@ fine. File an [issue][issues] if this isn't the case.
 The following platforms have been tested with this cookbook, meaning that
 the recipes and LWRPs run on these platforms without error:
 
-* ubuntu (10.04/10.10/11.04/11.10/12.04)
-* mac\_os\_x (10.7/10.8)
+* ubuntu (14.04, 12.04)
+* mac\_os\_x (10.7, 10.8)
 * debian
 * freebsd
 * redhat
-* centos
+* centos (6.6)
 * fedora
 * amazon
 * scientific
 * suse
+
+There might be more that work successfully as well, but the test-kitchen
+tests are currently running on the ubuntu and centos versions mentioned.
 
 Please [report][issues] any additional platforms so they can be added.
 
@@ -293,6 +296,17 @@ The default is `"none"`.
 
 **Note:** the Ruby will be built whether or not the Ruby exists in the
 `prefix_path` directory.
+
+## Known Issues
+
+Public work on this cookbook has resumed after a hiatus. Accordingly, some
+combinations of versions have issues that you have to work around.
+
+1. Ubuntu 12.04 and rubinius
+  * Need an apt repo for LLVM as the build tools rely on LLVM version between 3.0 and 3.5
+  * See the `alltherubies` test cookbook for an example
+2. Ubuntu 14.04 and ruby 2.0.0 patch versions <457
+  * The readline and openssl extensions have an [issue](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741825) patched in 457
 
 ## <a name="development"></a> Development
 

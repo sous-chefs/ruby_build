@@ -5,22 +5,22 @@ driver:
     memory: 1024
 
 platforms:
+- name: ubuntu-14.04
+  driver_config:
+    box: opscode-ubuntu-14.04
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+  run_list:
+  - recipe[apt]
 - name: ubuntu-12.04
   driver_config:
     box: opscode-ubuntu-12.04
     box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
   run_list:
   - recipe[apt]
-- name: ubuntu-10.04
+- name: centos-6.6
   driver_config:
-    box: opscode-ubuntu-10.04
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-10.04_provisionerless.box
-  run_list:
-  - recipe[apt]
-- name: centos-6.4
-  driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+    box: opscode-centos-6.6
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.6_provisionerless.box
 
 suites:
 - name: alltherubies
