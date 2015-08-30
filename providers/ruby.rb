@@ -27,12 +27,12 @@ end
 
 action :install do
   installed = perform_install
-  new_resource.updated_by_last_action(installed?)
+  new_resource.updated_by_last_action(installed)
 end
 
 action :reinstall do
   installed = perform_install
-  new_resource.updated_by_last_action(installed?)
+  new_resource.updated_by_last_action(installed)
 end
 
 private
