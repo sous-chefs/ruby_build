@@ -30,12 +30,14 @@ java_alternatives "force setting java alternatives" do
   action :set
 end
 
-# For precise (12.04), need a repo to get a high enough version of llvm to
-# build rbx
-apt_repository 'llvm' do
-  uri 'http://llvm.org/apt/precise'
-  distribution 'llvm-toolchain-precise-3.5'
-  components ['main']
+if platform?('ubuntu')
+  # For precise (12.04), need a repo to get a high enough version of llvm to
+  # build rbx
+  apt_repository 'llvm' do
+    uri 'http://llvm.org/apt/precise'
+    distribution 'llvm-toolchain-precise-3.5'
+    components ['main']
+  end
 end
 
 system_rubies.each do |rubie|
