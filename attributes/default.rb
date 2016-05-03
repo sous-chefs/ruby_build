@@ -35,10 +35,12 @@ when "redhat", "centos", "fedora", "amazon", "scientific"
   node.set['ruby_build']['install_git_pkgs'] = %w{ git }
   node.set['ruby_build']['install_pkgs_cruby'] =
     %w{ gcc-c++ patch readline readline-devel zlib zlib-devel
-        libffi-devel openssl-devel
+        libffi-devel openssl-devel libyaml-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
         subversion autoconf }
+  node.set['ruby_build']['install_pkgs_rbx'] =
+    %w{ ncurses-devel } + node['ruby_build']['install_pkgs_cruby']
   node.set['ruby_build']['install_pkgs_jruby'] = []
 
 when "debian", "ubuntu"
@@ -49,14 +51,20 @@ when "debian", "ubuntu"
         zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0
         libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf
         libc6-dev ssl-cert subversion }
+  node.set['ruby_build']['install_pkgs_rbx'] =
+    %w{ libncurses5-dev llvm-3.4 llvm-3.4-dev libeditline-dev libedit-dev
+      } + node['ruby_build']['install_pkgs_cruby']
+
   node.set['ruby_build']['install_pkgs_jruby'] = %w{ make g++ }
 
 when "suse"
   node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl }
   node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
   node.set['ruby_build']['install_pkgs_cruby'] =
-    %w{ gcc-c++ patch zlib zlib-devel libffi-devel
+    %w{ gcc-c++ patch zlib zlib-devel libffi-devel libyaml-devel
         sqlite3-devel libxml2-devel libxslt-devel subversion autoconf }
+  node.set['ruby_build']['install_pkgs_rbx'] =
+    %w{ ncurses-devel } + node['ruby_build']['install_pkgs_cruby']
   node.set['ruby_build']['install_pkgs_jruby'] = []
 
 when "mac_os_x"

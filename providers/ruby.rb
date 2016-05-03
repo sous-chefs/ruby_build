@@ -26,11 +26,13 @@ def load_current_resource
 end
 
 action :install do
-  perform_install
+  installed = perform_install
+  new_resource.updated_by_last_action(installed)
 end
 
 action :reinstall do
-  perform_install
+  installed = perform_install
+  new_resource.updated_by_last_action(installed)
 end
 
 private
@@ -39,6 +41,7 @@ def perform_install
   if ruby_installed?
     Chef::Log.debug(
       "ruby_build_ruby[#{@rubie}] is already installed, so skipping")
+    false
   else
     install_start = Time.now
 
@@ -60,7 +63,7 @@ def perform_install
 
     Chef::Log.info("ruby_build_ruby[#{@rubie}] build time was " +
       "#{(Time.now - install_start)/60.0} minutes")
-    new_resource.updated_by_last_action(true)
+    true
   end
 end
 
@@ -74,8 +77,10 @@ end
 
 def install_ruby_dependencies
   case ::File.basename(new_resource.definition)
-  when /^\d\.\d\.\d-/, /^rbx-/, /^ree-/
+  when /^\d\.\d\.\d/, /^ree-/
     pkgs = node['ruby_build']['install_pkgs_cruby']
+  when /^rbx-/
+    pkgs = node['ruby_build']['install_pkgs_rbx']
   when /^jruby-/
     pkgs = node['ruby_build']['install_pkgs_jruby']
   end

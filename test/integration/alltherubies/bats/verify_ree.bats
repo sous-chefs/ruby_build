@@ -9,9 +9,10 @@ load _verify_tests
   run_openssl_test
 }
 
-@test "ruby $def can install nokogiri gem" {
-  run_nokogiri_install_test
-}
+# pending - nokogiri only supports >= 1.9.2
+# @test "ruby $def can install nokogiri gem" {
+#   run_nokogiri_install_test
+# }
 
 # pending
 # @test "ruby $def can use nokogiri with openssl" {
