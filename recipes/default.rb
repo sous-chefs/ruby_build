@@ -34,8 +34,10 @@ if platform_family?('rhel')
 end
 
 unless mac_with_no_homebrew
-  Array(node['ruby_build']['install_pkgs']).each do |pkg|
-    package pkg
+  %w[pkgs git_pkgs pkgs_cruby pkgs_jruby].each do |package_path|
+    Array(node['ruby_build']["install_#{package_path}"]).each do |pkg|
+      package pkg
+    end
   end
 
   Array(node['ruby_build']['install_git_pkgs']).each do |pkg|
