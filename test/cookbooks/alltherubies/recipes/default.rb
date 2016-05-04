@@ -18,7 +18,7 @@
 #
 
 cores         = node['cpu']['total'].to_i
-system_rubies = %w{ 1.9.2-p320 1.9.3-p362 2.0.0-p647 2.2.3 jruby-1.7.1 }
+system_rubies = %w{ 2.1.9 2.2.5 2.3.1 jruby-9.0.5.0 }
 
 include_recipe "java"
 
@@ -63,11 +63,4 @@ end
 
 user_account "app" do
   home "/home/app"
-end
-
-ruby_build_ruby "1.8.7-p371" do
-  prefix_path "/home/app/.rubies/ruby-1.8.7-p371"
-  user        "app"
-  group       "app"
-  environment({ 'MAKE_OPTS' => "-j #{cores + 1}" })
 end

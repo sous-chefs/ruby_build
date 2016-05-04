@@ -27,6 +27,3 @@ suites:
   run_list:
   - recipe[ruby_build]
   - recipe[alltherubies]
-- name: installation
-  run_list:
-  - recipe[ruby_build]
