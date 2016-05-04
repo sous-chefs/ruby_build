@@ -38,7 +38,7 @@ when "redhat", "centos", "fedora", "amazon", "scientific"
         libffi-devel openssl-devel libyaml-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
-        subversion autoconf }
+        llvm-static llvm-devel subversion autoconf }
   node.set['ruby_build']['install_pkgs_rbx'] =
     %w{ ncurses-devel } + node['ruby_build']['install_pkgs_cruby']
   node.set['ruby_build']['install_pkgs_jruby'] = []
