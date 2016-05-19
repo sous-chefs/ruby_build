@@ -72,4 +72,18 @@ when "mac_os_x"
   node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
   node.set['ruby_build']['install_pkgs_cruby'] = []
   node.set['ruby_build']['install_pkgs_jruby'] = []
+
+when "freebsd"
+  node.set['ruby_build']['install_pkgs'] = []
+  node.set['ruby_build']['install_git_pkgs'] = %w{ git }
+  node.set['ruby_build']['install_pkgs_cruby'] =
+      %w{ autoconf autoconf-wrapper automake automake-wrapper indexinfo
+          libedit libffi libyaml m4 perl5 }
+  node.set['ruby_build']['install_pkgs_jruby'] =
+      %w{ alsa-lib bash dejavu expat fixesproto fontconfig freetype2
+          gettext-runtime giflib indexinfo inputproto java-zoneinfo
+          javavmwrapper kbproto libICE libSM libX11 libXau libXdmcp libXext
+          libXfixes libXi libXrender libXt libXtst libfontenc libpthread-stubs
+          libxcb libxml2 mkfontdir mkfontscale openjdk8 recordproto renderproto
+          xextproto xproto }
 end
