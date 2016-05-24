@@ -18,13 +18,17 @@
 #
 
 cores         = node['cpu']['total'].to_i
-system_rubies = %w{ 1.9.2-p320 1.9.3-p362 2.0.0-p647 2.2.3 jruby-1.7.1 }
+system_rubies = %w{ 2.1.5 2.2.3 2.3.1 jruby-9.0.5.0 }
 
+# need java 7 for modern versions of jruby
+node.set['java']['jdk_version'] = '8'
 include_recipe "java"
 
 if %{ubuntu debian}.include?(node['platform'])
   package "default-jre-headless"
 end
+
+package 'bash' if node['platform_family'] == 'freebsd'
 
 java_alternatives "force setting java alternatives" do
   action :set

@@ -21,6 +21,10 @@ platforms:
   driver_config:
     box: opscode-centos-6.7
     box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.7_chef-provisionerless.box
+- name: freebsd-10.3
+  driver_config:
+    box: opscode-freebsd-10.3
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_freebsd-10.3_chef-provisionerless.box
 
 suites:
 - name: alltherubies
