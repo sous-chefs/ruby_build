@@ -4,7 +4,7 @@ maintainer_email  "fnichol@nichol.ca"
 license           "Apache 2.0"
 description       "Manages the ruby-build framework and its installed rubies. A LWRP is also defined."
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "0.8.1"
+version           "0.8.2"
 
 supports "ubuntu"
 supports "debian"
