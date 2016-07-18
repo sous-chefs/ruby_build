@@ -24,7 +24,7 @@ class Chef
     module RecipeHelpers
       def build_upgrade_strategy(strategy)
         if strategy.nil? || strategy == false
-          "none"
+          'none'
         else
           strategy
         end
@@ -33,7 +33,7 @@ class Chef
       def mac_with_no_homebrew
         node['platform'] == 'mac_os_x' &&
           Chef::Platform.find_provider_for_node(node, :package) !=
-          Chef::Provider::Package::Homebrew
+            Chef::Provider::Package::Homebrew
       end
     end
   end
