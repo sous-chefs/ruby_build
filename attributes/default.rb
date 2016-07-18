@@ -71,7 +71,7 @@ when 'suse'
 when 'mac_os_x'
   default['ruby_build']['install_pkgs'] = []
   default['ruby_build']['install_git_pkgs'] = %w( git-core )
-  default['ruby_build']['install_pkgs_cruby'] = []
+  default['ruby_build']['install_pkgs_cruby'] = %w( openssl libyaml libffi )
   default['ruby_build']['install_pkgs_jruby'] = []
 
 when 'freebsd'
