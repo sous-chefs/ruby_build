@@ -30,7 +30,7 @@ default['ruby_build']['default_ruby_base_path'] = '/usr/local/ruby'
 default['ruby_build']['upgrade'] = 'none'
 
 case node['platform_family']
-when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+when 'rhel', 'fedora'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_git_pkgs'] = %w( git )
   default['ruby_build']['install_pkgs_cruby'] =
@@ -61,7 +61,7 @@ when 'suse'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] =
-    %w( gcc-c++ patch zlib-devel libffi48-devel libyaml-devel git make
+    %w( gcc-c++ patch zlib-devel libffi48-devel libyaml-devel make
         sqlite3-devel libxml2-devel libxslt-devel subversion autoconf
         libopenssl-devel )
   default['ruby_build']['install_pkgs_rbx'] =
