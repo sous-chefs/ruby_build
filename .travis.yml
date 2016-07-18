@@ -20,13 +20,13 @@ services: docker
 
 env:
   matrix:
-    - INSTANCE=system-ruby-centos-7
-    - INSTANCE=system-ruby-debian-7
-    - INSTANCE=system-ruby-debian-8
-    - INSTANCE=system-ruby-fedora-latest
-    - INSTANCE=system-ruby-ubuntu-1204
-    - INSTANCE=system-ruby-ubuntu-1404
-    - INSTANCE=system-ruby-ubuntu-1604
+    - INSTANCE=alltherubies-centos-7
+    - INSTANCE=alltherubies-debian-7
+    - INSTANCE=alltherubies-debian-8
+    - INSTANCE=alltherubies-fedora-latest
+    - INSTANCE=alltherubies-ubuntu-1204
+    - INSTANCE=alltherubies-ubuntu-1404
+    - INSTANCE=alltherubies-ubuntu-1604
 
   fast_finish: true
 

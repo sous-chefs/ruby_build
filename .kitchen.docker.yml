@@ -97,20 +97,7 @@ platforms:
       - RUN zypper --non-interactive install aaa_base perl-Getopt-Long-Descriptive
 
 suites:
-- name: system_ruby
+- name: alltherubies
   run_list:
   - recipe[ruby_build]
-  - recipe[ruby_rbenv::system]
-  attributes:
-    rbenv:
-      plugins:
-      - name: rbenv-vars
-        git_url: https://github.com/sstephenson/rbenv-vars.git
-      rubies:
-      - name: 2.1.6
-        environment:
-          CONFIGURE_OPTS: --disable-install-rdoc
-      - name: 2.2.2
-        environment:
-          CONFIGURE_OPTS: --disable-install-rdoc
-      global: 2.1.6
+  - recipe[alltherubies]
