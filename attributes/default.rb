@@ -79,7 +79,6 @@ when 'freebsd'
   default['ruby_build']['install_pkgs_cruby'] =
     %w( autoconf autoconf-wrapper automake automake-wrapper indexinfo
         libedit libffi libyaml m4 perl5 gmake )
-  default['ruby_build']['install_pkgs_rbx'] = %w( gcc49 )
   default['ruby_build']['install_pkgs_jruby'] =
     %w( alsa-lib bash dejavu expat fixesproto fontconfig freetype2
         gettext-runtime giflib indexinfo inputproto java-zoneinfo
