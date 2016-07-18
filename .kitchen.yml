@@ -1,33 +1,27 @@
----
 driver:
   name: vagrant
-  customize:
-    memory: 1024
 
 provisioner:
   name: chef_zero
-  
+
 platforms:
-- name: ubuntu-14.04
-  driver_config:
-    box: opscode-ubuntu-14.04
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
-  run_list:
-  - recipe[apt]
-- name: ubuntu-12.04
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
-  run_list:
-  - recipe[apt]
-- name: centos-6.7
-  driver_config:
-    box: opscode-centos-6.7
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.7_chef-provisionerless.box
-- name: freebsd-10.3
-  driver_config:
-    box: opscode-freebsd-10.3
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_freebsd-10.3_chef-provisionerless.box
+  - name: centos-5.11
+  - name: centos-6.7
+  - name: centos-7.2
+  - name: debian-7.10
+    run_list: apt::default
+  - name: debian-8.4
+    run_list: apt::default
+  - name: fedora-23
+    run_list: yum::dnf_yum_compat
+  - name: opensuse-13.2
+  - name: ubuntu-12.04
+    run_list: apt::default
+  - name: ubuntu-14.04
+    run_list: apt::default
+  - name: ubuntu-16.04
+    run_list: apt::default
+  - name: freebsd-10.3
 
 suites:
 - name: alltherubies
