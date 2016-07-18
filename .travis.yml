@@ -1,4 +1,44 @@
-language: ruby
-rvm:
-  - 1.9.3
-bundler_args: --without integration development
+sudo: required
+dist: trusty
+
+# install the pre-release chef-dk.  Use chef-stable-precise to install the stable release
+addons:
+  apt:
+    sources:
+      - chef-current-precise
+    packages:
+      - chefdk
+
+# Don't `bundle install` which takes about 1.5 mins
+install: echo "skip bundle install"
+
+branches:
+  only:
+  - master
+
+services: docker
+
+env:
+  matrix:
+    - INSTANCE=system-ruby-centos-7
+    - INSTANCE=system-ruby-debian-7
+    - INSTANCE=system-ruby-debian-8
+    - INSTANCE=system-ruby-fedora-latest
+    - INSTANCE=system-ruby-ubuntu-1204
+    - INSTANCE=system-ruby-ubuntu-1404
+    - INSTANCE=system-ruby-ubuntu-1604
+
+  fast_finish: true
+
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+
+script:
+  - /opt/chefdk/embedded/bin/chef --version
+  - /opt/chefdk/embedded/bin/cookstyle --version
+  - /opt/chefdk/embedded/bin/cookstyle
+  - /opt/chefdk/embedded/bin/foodcritic --version
+  - /opt/chefdk/embedded/bin/foodcritic . --exclude spec -f any -P
+  - /opt/chefdk/embedded/bin/rspec
+  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
