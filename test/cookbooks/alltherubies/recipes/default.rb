@@ -46,12 +46,15 @@ system_rubies.each do |rubie|
   end
 end
 
-rbx_opts = { 'MAKE_OPTS' => "-j #{cores + 1}" }
-if platform?('ubuntu')
-  rbx_opts['RUBY_CONFIGURE_OPTS'] = '--llvm-config=/usr/lib/llvm-3.4/bin/llvm-config'
-end
-ruby_build_ruby 'rbx-2.5.8' do
-  environment rbx_opts
+# rbx and FreeBSD are not friends
+unless platform?('freebsd')
+  rbx_opts = { 'MAKE_OPTS' => "-j #{cores + 1}" }
+  if platform?('ubuntu')
+    rbx_opts['RUBY_CONFIGURE_OPTS'] = '--llvm-config=/usr/lib/llvm-3.4/bin/llvm-config'
+  end
+  ruby_build_ruby 'rbx-3.33' do
+    environment rbx_opts
+  end
 end
 
 user_account 'app' do
