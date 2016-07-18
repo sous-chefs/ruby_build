@@ -30,7 +30,7 @@ the recipes and LWRPs run on these platforms without error:
 * debian
 * freebsd
 * redhat
-* centos (6.6)
+* centos (6.7)
 * fedora
 * amazon
 * scientific

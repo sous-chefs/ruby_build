@@ -18,13 +18,17 @@
 #
 
 cores         = node['cpu']['total'].to_i
-system_rubies = %w{ 1.9.2-p320 1.9.3-p362 2.0.0-p647 2.2.3 jruby-1.7.1 }
+system_rubies = %w{ 2.1.9 2.2.5 2.3.1 jruby-9.0.5.0 }
 
+# need java 7+ for modern versions of jruby
+node.set['java']['jdk_version'] = '8'
 include_recipe "java"
 
 if %{ubuntu debian}.include?(node['platform'])
   package "default-jre-headless"
 end
+
+package 'bash' if node['platform_family'] == 'freebsd'
 
 java_alternatives "force setting java alternatives" do
   action :set
@@ -46,28 +50,14 @@ system_rubies.each do |rubie|
   end
 end
 
-ruby_build_ruby "rbx-2.5.8" do
-  environment({ 'MAKE_OPTS' => "-j #{cores + 1}",
-                'RUBY_CONFIGURE_OPTS' => "--llvm-config=/usr/lib/llvm-3.4/bin/llvm-config" })
+rbx_opts = { 'MAKE_OPTS' => "-j #{cores + 1}" }
+if platform?('ubuntu')
+  rbx_opts['RUBY_CONFIGURE_OPTS'] = "--llvm-config=/usr/lib/llvm-3.4/bin/llvm-config"
 end
-
-# Woah, REE, crazy bananas! For more details see:
-# * https://github.com/sstephenson/rbenv/issues/297
-# * https://github.com/sstephenson/ruby-build/issues/186
-ruby_build_ruby "ree-1.8.7-2012.02" do
-  environment({
-    'MAKE_OPTS'       => "-j #{cores + 1}",
-    'CONFIGURE_OPTS'  => "--no-tcmalloc",
-  })
+ruby_build_ruby "rbx-2.5.8" do
+  environment rbx_opts
 end
 
 user_account "app" do
   home "/home/app"
-end
-
-ruby_build_ruby "1.8.7-p371" do
-  prefix_path "/home/app/.rubies/ruby-1.8.7-p371"
-  user        "app"
-  group       "app"
-  environment({ 'MAKE_OPTS' => "-j #{cores + 1}" })
 end
