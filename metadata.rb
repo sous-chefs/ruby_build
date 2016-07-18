@@ -1,6 +1,6 @@
 name              "ruby_build"
-maintainer        "Dane Hammer"
-maintainer_email  "dane.molotok@gmail.com"
+maintainer        "Fletcher Nichol"
+maintainer_email  "fnichol@nichol.ca"
 license           "Apache 2.0"
 description       "Manages the ruby-build framework and its installed rubies. A LWRP is also defined."
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
