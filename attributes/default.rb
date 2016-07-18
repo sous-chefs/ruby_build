@@ -62,7 +62,8 @@ when 'suse'
   default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] =
     %w( gcc-c++ patch zlib-devel libffi48-devel libyaml-devel git make
-        sqlite3-devel libxml2-devel libxslt-devel subversion autoconf )
+        sqlite3-devel libxml2-devel libxslt-devel subversion autoconf
+        libopenssl-devel )
   default['ruby_build']['install_pkgs_rbx'] =
     %w( ncurses-devel ) + node['ruby_build']['install_pkgs_cruby']
   default['ruby_build']['install_pkgs_jruby'] = []
