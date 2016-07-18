@@ -4,7 +4,7 @@
 #
 # Author:: Fletcher Nichol <fnichol@nichol.ca>
 #
-# Copyright 2011, Fletcher Nichol
+# Copyright 2011-2016, Fletcher Nichol
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,14 +20,10 @@
 #
 
 actions :install, :reinstall
+default_action :install
 
-attribute :definition,  :kind_of => String, :name_attribute => true
-attribute :prefix_path, :kind_of => String
-attribute :user,        :kind_of => String
-attribute :group,       :kind_of => String
-attribute :environment, :kind_of => Hash
-
-def initialize(*args)
-  super
-  @action = :install
-end
+attribute :definition,  kind_of: String, name_attribute: true
+attribute :prefix_path, kind_of: String
+attribute :user,        kind_of: String
+attribute :group,       kind_of: String
+attribute :environment, kind_of: Hash

@@ -2,7 +2,7 @@
 # Cookbook Name:: ruby_build
 # Recipe:: default
 #
-# Copyright 2011, Fletcher Nichol
+# Copyright 2011-2016, Fletcher Nichol
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,14 +24,12 @@ end
 
 git_url = node['ruby_build']['git_url']
 git_ref = node['ruby_build']['git_ref']
-upgrade_strategy  = build_upgrade_strategy(node['ruby_build']['upgrade'])
+upgrade_strategy = build_upgrade_strategy(node['ruby_build']['upgrade'])
 
 cache_path  = Chef::Config['file_cache_path']
 src_path    = "#{cache_path}/ruby-build"
 
-if platform_family?('rhel')
-  include_recipe 'yum-epel'
-end
+include_recipe 'yum-epel' if platform_family?('rhel')
 
 unless mac_with_no_homebrew
   Array(node['ruby_build']['install_pkgs']).each do |pkg|
@@ -40,34 +38,31 @@ unless mac_with_no_homebrew
 
   Array(node['ruby_build']['install_git_pkgs']).each do |pkg|
     package pkg do
-      not_if "git --version >/dev/null"
+      not_if 'git --version >/dev/null'
     end
   end
 end
 
-execute "Install ruby-build" do
+execute 'Install ruby-build' do
   cwd       src_path
-  command   %{./install.sh}
-
+  command   %(./install.sh)
   action    :nothing
-  not_if do
-    ::File.exists?("/usr/local/bin/ruby-build") && upgrade_strategy == "none"
-  end
+  not_if    { ::File.exist?('/usr/local/bin/ruby-build') && upgrade_strategy == 'none' }
 end
 
 directory ::File.dirname(src_path) do
   recursive true
 end
 
-git src_path do #~FC043 exception to support AWS OpsWorks using an older Chef
+git src_path do
   repository  git_url
   reference   git_ref
 
-  if upgrade_strategy == "none"
+  if upgrade_strategy == 'none'
     action    :checkout
   else
     action    :sync
   end
 
-  notifies :run, resources(:execute => "Install ruby-build"), :immediately
+  notifies :run, 'execute[Install ruby-build]', :immediately
 end

@@ -4,7 +4,7 @@
 #
 # Author:: Fletcher Nichol <fnichol@nichol.ca>
 #
-# Copyright 2011, Fletcher Nichol
+# Copyright 2011-2016, Fletcher Nichol
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,70 +20,71 @@
 #
 
 # git repository containing the ruby-build framework
-default['ruby_build']['git_url'] = "https://github.com/sstephenson/ruby-build.git"
-default['ruby_build']['git_ref'] = "master"
+default['ruby_build']['git_url'] = 'https://github.com/rbenv/ruby-build.git'
+default['ruby_build']['git_ref'] = 'master'
 
 # default base path for a system-wide installed Ruby
-default['ruby_build']['default_ruby_base_path'] = "/usr/local/ruby"
+default['ruby_build']['default_ruby_base_path'] = '/usr/local/ruby'
 
 # ruby-build upgrade action
-default['ruby_build']['upgrade'] = "none"
+default['ruby_build']['upgrade'] = 'none'
 
-case platform
-when "redhat", "centos", "fedora", "amazon", "scientific"
-  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl }
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git }
-  node.set['ruby_build']['install_pkgs_cruby'] =
-    %w{ gcc-c++ patch readline readline-devel zlib zlib-devel
+case node['platform_family']
+when 'rhel', 'fedora'
+  default['ruby_build']['install_pkgs'] = %w( tar bash curl )
+  default['ruby_build']['install_git_pkgs'] = %w( git )
+  default['ruby_build']['install_pkgs_cruby'] =
+    %w( gcc-c++ patch readline readline-devel zlib zlib-devel
         libffi-devel openssl-devel libyaml-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
-        llvm-static llvm-devel subversion autoconf }
-  node.set['ruby_build']['install_pkgs_rbx'] =
-    %w{ ncurses-devel } + node['ruby_build']['install_pkgs_cruby']
-  node.set['ruby_build']['install_pkgs_jruby'] = []
+        llvm-static llvm-devel subversion autoconf )
+  default['ruby_build']['install_pkgs_rbx'] =
+    %w( ncurses-devel ) + node['ruby_build']['install_pkgs_cruby']
+  default['ruby_build']['install_pkgs_jruby'] = []
 
-when "debian", "ubuntu"
-  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl }
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
-  node.set['ruby_build']['install_pkgs_cruby'] =
-    %w{ build-essential bison openssl libreadline6 libreadline6-dev
+when 'debian', 'ubuntu'
+  default['ruby_build']['install_pkgs'] = %w( tar bash curl )
+  default['ruby_build']['install_git_pkgs'] = %w( git-core )
+  default['ruby_build']['install_pkgs_cruby'] =
+    %w( build-essential bison openssl libreadline6 libreadline6-dev
         zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0
         libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf
-        libc6-dev ssl-cert subversion }
-  node.set['ruby_build']['install_pkgs_rbx'] =
-    %w{ libncurses5-dev llvm-3.4 llvm-3.4-dev libeditline-dev libedit-dev
-      } + node['ruby_build']['install_pkgs_cruby']
+        libc6-dev ssl-cert subversion )
+  default['ruby_build']['install_pkgs_rbx'] =
+    %w( libncurses5-dev llvm-3.4 llvm-3.4-dev libeditline-dev libedit-dev
+      ) + node['ruby_build']['install_pkgs_cruby']
 
-  node.set['ruby_build']['install_pkgs_jruby'] = %w{ make g++ }
+  default['ruby_build']['install_pkgs_jruby'] = %w( make g++ )
 
-when "suse"
-  node.set['ruby_build']['install_pkgs'] = %w{ tar bash curl }
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
-  node.set['ruby_build']['install_pkgs_cruby'] =
-    %w{ gcc-c++ patch zlib zlib-devel libffi-devel libyaml-devel
-        sqlite3-devel libxml2-devel libxslt-devel subversion autoconf }
-  node.set['ruby_build']['install_pkgs_rbx'] =
-    %w{ ncurses-devel } + node['ruby_build']['install_pkgs_cruby']
-  node.set['ruby_build']['install_pkgs_jruby'] = []
+when 'suse'
+  default['ruby_build']['install_pkgs'] = %w( tar bash curl )
+  default['ruby_build']['install_git_pkgs'] = %w( git-core )
+  default['ruby_build']['install_pkgs_cruby'] =
+    %w( gcc-c++ patch zlib-devel libffi48-devel libyaml-devel make
+        sqlite3-devel libxml2-devel libxslt-devel subversion autoconf
+        libopenssl-devel )
+  default['ruby_build']['install_pkgs_rbx'] =
+    %w( ncurses-devel ) + node['ruby_build']['install_pkgs_cruby']
+  default['ruby_build']['install_pkgs_jruby'] = []
 
-when "mac_os_x"
-  node.set['ruby_build']['install_pkgs'] = []
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git-core }
-  node.set['ruby_build']['install_pkgs_cruby'] = []
-  node.set['ruby_build']['install_pkgs_jruby'] = []
+when 'mac_os_x'
+  default['ruby_build']['install_pkgs'] = []
+  default['ruby_build']['install_git_pkgs'] = %w( git-core )
+  default['ruby_build']['install_pkgs_cruby'] = []
+  default['ruby_build']['install_pkgs_jruby'] = []
 
-when "freebsd"
-  node.set['ruby_build']['install_pkgs'] = []
-  node.set['ruby_build']['install_git_pkgs'] = %w{ git }
-  node.set['ruby_build']['install_pkgs_cruby'] =
-      %w{ autoconf autoconf-wrapper automake automake-wrapper indexinfo
-          libedit libffi libyaml m4 perl5 }
-  node.set['ruby_build']['install_pkgs_jruby'] =
-      %w{ alsa-lib bash dejavu expat fixesproto fontconfig freetype2
-          gettext-runtime giflib indexinfo inputproto java-zoneinfo
-          javavmwrapper kbproto libICE libSM libX11 libXau libXdmcp libXext
-          libXfixes libXi libXrender libXt libXtst libfontenc libpthread-stubs
-          libxcb libxml2 mkfontdir mkfontscale openjdk8 recordproto renderproto
-          xextproto xproto }
+when 'freebsd'
+  default['ruby_build']['install_pkgs'] = []
+  default['ruby_build']['install_git_pkgs'] = %w( git )
+  default['ruby_build']['install_pkgs_cruby'] =
+    %w( autoconf autoconf-wrapper automake automake-wrapper indexinfo
+        libedit libffi libyaml m4 perl5 )
+  default['ruby_build']['install_pkgs_jruby'] =
+    %w( alsa-lib bash dejavu expat fixesproto fontconfig freetype2
+        gettext-runtime giflib indexinfo inputproto java-zoneinfo
+        javavmwrapper kbproto libICE libSM libX11 libXau libXdmcp libXext
+        libXfixes libXi libXrender libXt libXtst libfontenc libpthread-stubs
+        libxcb libxml2 mkfontdir mkfontscale openjdk8 recordproto renderproto
+        xextproto xproto )
 end
