@@ -19,6 +19,8 @@
 # limitations under the License.
 #
 
+use_inline_resources
+
 def load_current_resource
   @rubie        = new_resource.definition
   @prefix_path  = new_resource.prefix_path ||
