@@ -17,24 +17,20 @@ the [Resources and Providers](#lwrps) section for more details.
 
 ### <a name="requirements-chef"></a> Chef
 
-Tested on 0.10.8 but newer and older version should work just
-fine. File an [issue][issues] if this isn't the case.
+ - Chef 11+
 
 ### <a name="requirements-platform"></a> Platform
 
 The following platforms have been tested with this cookbook, meaning that
 the recipes and LWRPs run on these platforms without error:
 
-* ubuntu (14.04, 12.04)
-* mac\_os\_x (10.7, 10.8)
-* debian
-* freebsd
-* redhat
-* centos (6.7)
+* ubuntu 12.04+
+* mac\_os\_x
+* debian 7+
+* freebsd 9+
+* rhel 6+
 * fedora
-* amazon
-* scientific
-* suse
+* suse 13+
 
 There might be more that work successfully as well, but the test-kitchen
 tests are currently running on the ubuntu and centos versions mentioned.
