@@ -69,5 +69,5 @@ git src_path do #~FC043 exception to support AWS OpsWorks using an older Chef
     action    :sync
   end
 
-  notifies :run, resources(:execute => "Install ruby-build"), :immediately
+  notifies :run, 'execute[Install ruby-build]', :immediately
 end
