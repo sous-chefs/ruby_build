@@ -47,10 +47,9 @@ when 'debian', 'ubuntu'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] =
-    %w( build-essential bison openssl libreadline6 libreadline6-dev
-        zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0
-        libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf
-        libc6-dev ssl-cert subversion )
+    %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
+        zlib1g-dev libsqlite3-dev libxml2-dev libxslt1-dev
+        libc6-dev libffi-dev libgdbm3 libgdbm-dev )
   default['ruby_build']['install_pkgs_rbx'] =
     %w( libncurses5-dev llvm-3.4 llvm-3.4-dev libeditline-dev libedit-dev
       ) + node['ruby_build']['install_pkgs_cruby']
