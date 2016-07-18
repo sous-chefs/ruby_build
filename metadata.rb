@@ -18,3 +18,8 @@ supports 'suse'
 supports 'mac_os_x'
 
 depends 'yum-epel'
+
+source_url 'https://github.com/chef-rbenv/ruby_build'
+issues_url 'https://github.com/chef-rbenv/ruby_build/issues'
+
+chef_version '>= 11.0' if respond_to?(:chef_version)
