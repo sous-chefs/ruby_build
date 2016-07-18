@@ -34,7 +34,7 @@ when 'rhel', 'fedora'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_git_pkgs'] = %w( git )
   default['ruby_build']['install_pkgs_cruby'] =
-    %w( gcc-c++ patch readline readline-devel zlib zlib-devel
+    %w( gcc-c++ patch readline-devel zlib-devel
         libffi-devel openssl-devel libyaml-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
