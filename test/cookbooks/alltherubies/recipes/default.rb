@@ -30,30 +30,9 @@ java_alternatives 'force setting java alternatives' do
   action :set
 end
 
-if platform?('ubuntu')
-  # For precise (12.04), need a repo to get a high enough version of llvm to
-  # build rbx
-  apt_repository 'llvm' do
-    uri 'http://llvm.org/apt/precise'
-    distribution 'llvm-toolchain-precise-3.5'
-    components ['main']
-  end
-end
-
 system_rubies.each do |rubie|
   ruby_build_ruby rubie do
     environment('MAKE_OPTS' => "-j #{cores + 1}")
-  end
-end
-
-# rbx and FreeBSD are not friends
-unless platform?('freebsd')
-  rbx_opts = { 'MAKE_OPTS' => "-j #{cores + 1}" }
-  if platform?('ubuntu')
-    rbx_opts['RUBY_CONFIGURE_OPTS'] = '--llvm-config=/usr/lib/llvm-3.4/bin/llvm-config'
-  end
-  ruby_build_ruby 'rbx-3.33' do
-    environment rbx_opts
   end
 end
 
