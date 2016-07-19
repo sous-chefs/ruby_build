@@ -80,68 +80,35 @@ cookbook 'ruby_build',
 END_OF_BERKSFILE
 ```
 
-### []() Using Librarian-Chef
+## Recipes
 
-[Librarian-Chef][librarian] is a bundler for your Chef cookbooks. To install Librarian-Chef:
-
-```
-cd chef-repo
-gem install librarian
-librarian-chef init
-```
-
-To use the Opscode platform version:
-
-```
-echo "cookbook 'ruby_build'" >> Cheffile
-librarian-chef install
-```
-
-Or to reference the Git version:
-
-```
-repo="fnichol/chef-ruby_build"
-latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
-| ruby -rjson -e '
-  j = JSON.parse(STDIN.read);
-  puts j.map { |t| t["ref"].split("/").last }.sort.last
-')
-cat >> Cheffile <<END_OF_CHEFFILE
-cookbook 'ruby_build',
-  :git => 'git://github.com/$repo.git', :ref => '$latest_release'
-END_OF_CHEFFILE
-librarian-chef install
-```
-
-## []() Recipes
-
-### []() default
+### default
 
 Installs the ruby-build codebase and initializes Chef to use the Lightweight Resources and Providers ([LWRPs][lwrp]).
 
-## []() Attributes
+## Attributes
 
-### []() git_url
+### git_url
 
 The Git URL which is used to install ruby-build.
 
-The default is `"git://github.com/sstephenson/ruby-build.git"`.
+The default is `"git://github.com/rbenv/ruby-build.git"`.
 
-### []() git_ref
+### git_ref
 
 A specific Git branch/tag/reference to use when installing ruby-build. For example, to pin ruby-build to a specific release:
 
-```
+```ruby
 node['ruby_build']['git_ref'] = "v20111030"
 ```
 
 The default is `"master"`.
 
-### []() default_ruby_base_path
+### default_ruby_base_path
 
 The default base path for a system-wide installed Ruby. For example, the following resource:
 
-```
+```ruby
 ruby_build_ruby "1.9.3-p0"
 ```
 
@@ -149,7 +116,7 @@ will be installed into `"#{node['ruby_build']['default_ruby_base_path']}/1.9.3-p
 
 The default is `"/usr/local/ruby"`.
 
-### []() upgrade
+### upgrade
 
 Determines how to handle installing updates to the ruby-build framework. There are currently 2 valid values:
 
@@ -183,7 +150,7 @@ environment | A Hash of [additional environment variables][rb_environment] such 
 
 ##### Install Ruby
 
-```
+```ruby
 # See: https://github.com/sstephenson/ruby-build/issues/186
 ruby_build_ruby "ree-1.8.7-2012.02" do
   environment({ 'CONFIGURE_OPTS' => '--no-tcmalloc' })
@@ -205,7 +172,7 @@ ruby_build_ruby "jruby-1.6.5"
 
 ##### Install A Ruby For A User
 
-```
+```ruby
 ruby_build_ruby "maglev-1.0.0" do
   prefix_path "/home/deploy/.rubies/maglev-1.0.0"
   user        "deploy"
@@ -215,7 +182,7 @@ end
 
 ##### Reinstall Ruby
 
-```
+```ruby
 ruby_build_ruby "rbx-1.2.4" do
   prefix_path "/opt/rbx-1.2.4"
 
