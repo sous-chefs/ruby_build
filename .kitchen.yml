@@ -4,6 +4,10 @@ driver:
 provisioner:
   name: chef_zero
 
+verifier:
+  name: inspec
+  format: doc
+
 platforms:
   - name: centos-6.7
   - name: centos-7.2

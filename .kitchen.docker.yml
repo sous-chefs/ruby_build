@@ -9,6 +9,10 @@ transport:
 provisioner:
   name: dokken
 
+verifier:
+  name: inspec
+  format: doc
+
 platforms:
 - name: debian-7
   driver:
