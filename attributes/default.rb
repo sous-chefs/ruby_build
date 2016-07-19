@@ -43,7 +43,7 @@ when 'rhel', 'fedora'
     %w( ncurses-devel llvm-static llvm-devel ) + node['ruby_build']['install_pkgs_cruby']
   default['ruby_build']['install_pkgs_jruby'] = []
 
-when 'debian', 'ubuntu'
+when 'debian'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] =
