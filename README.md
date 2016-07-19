@@ -14,7 +14,7 @@ Simply include `recipe[ruby_build]` in your run_list to have ruby-build installe
 
 ### Chef
 
-- Chef 11+
+- Chef 12+
 
 ### Platforms
 

@@ -32,13 +32,22 @@ src_path    = "#{cache_path}/ruby-build"
 include_recipe 'yum-epel' if platform_family?('rhel')
 
 unless mac_with_no_homebrew
-  Array(node['ruby_build']['install_pkgs']).each do |pkg|
-    package pkg
-  end
+  # use multipackage when available as it is much faster
+  if platform_family?('rhel', 'suse', 'debian', 'fedora')
+    package node['ruby_build']['install_pkgs']
 
-  Array(node['ruby_build']['install_git_pkgs']).each do |pkg|
-    package pkg do
+    package node['ruby_build']['install_git_pkgs'] do
       not_if 'git --version >/dev/null'
+    end
+  else
+    Array(node['ruby_build']['install_pkgs']).each do |pkg|
+      package pkg
+    end
+
+    Array(node['ruby_build']['install_git_pkgs']).each do |pkg|
+      package pkg do
+        not_if 'git --version >/dev/null'
+      end
     end
   end
 end
