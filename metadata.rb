@@ -15,6 +15,8 @@ supports 'fedora'
 supports 'amazon'
 supports 'scientific'
 supports 'suse'
+supports 'opensuse'
+supports 'opensuseleap'
 supports 'mac_os_x'
 
 depends 'yum-epel'
