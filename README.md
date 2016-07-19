@@ -1,348 +1,246 @@
-# <a name="title"></a> ruby-build Chef Cookbook
+# ruby-build Chef Cookbook
 
 [![Build Status](https://travis-ci.org/chef-rbenv/ruby_build.svg?branch=master)](https://travis-ci.org/chef-rbenv/ruby_build)
 
-## <a name="description"></a> Description
+## Description
 
-Manages the [ruby-build][rb_site] framework and its installed Rubies.
-A lightweight resources and providers ([LWRP][lwrp]) is also defined.
+Manages the [ruby-build][rb_site] framework and its installed Rubies. A lightweight resources and providers (lwrp) is also defined.
 
-## <a name="usage"></a> Usage
+## Usage
 
-Simply include `recipe[ruby_build]` in your run\_list to have ruby-build
-installed. You will also have access to the `ruby_build_ruby` resource. See
-the [Resources and Providers](#lwrps) section for more details.
+Simply include `recipe[ruby_build]` in your run_list to have ruby-build installed. You will also have access to the `ruby_build_ruby` resource. See the See Resources and Providers section for more details.
 
-## <a name="requirements"></a> Requirements
+## Requirements
 
-### <a name="requirements-chef"></a> Chef
+### Chef
 
- - Chef 11+
+- Chef 12+
 
-### <a name="requirements-platform"></a> Platform
+### Platforms
 
-The following platforms have been tested with this cookbook, meaning that
-the recipes and LWRPs run on these platforms without error:
+The following platforms have been tested with this cookbook, meaning that the recipes and LWRPs run on these platforms without error:
 
-* ubuntu 12.04+
-* mac\_os\_x
-* debian 7+
-* freebsd 9+
-* rhel 6+
-* fedora
-* suse 13+
+- ubuntu 12.04+
+- mac_os_x
+- debian 7+
+- freebsd 9+
+- rhel 6+
+- fedora
+- suse 13+
 
-There might be more that work successfully as well, but the test-kitchen
-tests are currently running on the ubuntu and centos versions mentioned.
+There might be more that work successfully as well, but those are not tested in test kitchen.
 
 Please [report][issues] any additional platforms so they can be added.
 
-### <a name="requirements-cookbooks"></a> Cookbooks
+### Cookbooks
 
-There are **no** external cookbook dependencies. However, if you are
-installing [JRuby][jruby] then a Java runtime will need to be installed.
-The Opscode [java cookbook][java_cb] can be used on supported platforms.
+There are **no** external cookbook dependencies. However, if you are installing [JRuby] then a Java runtime will need to be installed. The Opscode [java cookbook][java_cb] can be used on supported platforms.
 
-## <a name="installation"></a> Installation
+## Installation
 
-Depending on the situation and use case there are several ways to install
-this cookbook. All the methods listed below assume a tagged version release
-is the target, but omit the tags to get the head of development. A valid
-Chef repository structure like the [Opscode repo][chef_repo] is also assumed.
+Depending on the situation and use case there are several ways to install this cookbook. All the methods listed below assume a tagged version release is the target, but omit the tags to get the head of development.
 
-### <a name="installation-platform"></a> From the Opscode Community Platform
+### From Supermarket
 
-To install this cookbook from the Opscode platform, use the *knife* command:
+To install this cookbook from the Chef Supermarket, use the _knife_ command:
 
-    knife cookbook site install ruby_build
+```
+knife cookbook site install ruby_build
+```
 
-### <a name="installation-berkshelf"></a> Using Berkshelf
+### Using Berkshelf
 
-[Berkshelf][berkshelf] is a cookbook dependency manager and development
-workflow assistant. To install Berkshelf:
+[Berkshelf] is a cookbook dependency manager and development workflow assistant. To install Berkshelf:
 
-    cd chef-repo
-    gem install berkshelf
-    berks init
+```
+cd chef-repo
+gem install berkshelf
+berks init
+```
 
-To use the Community Site version:
+To use the Supermarket version:
 
-    echo "cookbook 'ruby_build'" >> Berksfile
-    berks install
-
-Or to reference the Git version:
-
-    repo="fnichol/chef-ruby_build"
-    latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
-    | ruby -rjson -e '
-      j = JSON.parse(STDIN.read);
-      puts j.map { |t| t["ref"].split("/").last }.sort.last
-    ')
-    cat >> Berksfile <<END_OF_BERKSFILE
-    cookbook 'ruby_build',
-      :git => 'git://github.com/$repo.git', :branch => '$latest_release'
-    END_OF_BERKSFILE
-
-### <a name="installation-librarian"></a> Using Librarian-Chef
-
-[Librarian-Chef][librarian] is a bundler for your Chef cookbooks.
-To install Librarian-Chef:
-
-    cd chef-repo
-    gem install librarian
-    librarian-chef init
-
-To use the Opscode platform version:
-
-    echo "cookbook 'ruby_build'" >> Cheffile
-    librarian-chef install
+```
+echo "cookbook 'ruby_build'" >> Berksfile
+berks install
+```
 
 Or to reference the Git version:
 
-    repo="fnichol/chef-ruby_build"
-    latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
-    | ruby -rjson -e '
-      j = JSON.parse(STDIN.read);
-      puts j.map { |t| t["ref"].split("/").last }.sort.last
-    ')
-    cat >> Cheffile <<END_OF_CHEFFILE
-    cookbook 'ruby_build',
-      :git => 'git://github.com/$repo.git', :ref => '$latest_release'
-    END_OF_CHEFFILE
-    librarian-chef install
+```
+repo="chef_rbenv/ruby_build"
+latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
+| ruby -rjson -e '
+  j = JSON.parse(STDIN.read);
+  puts j.map { |t| t["ref"].split("/").last }.sort.last
+')
+cat >> Berksfile <<END_OF_BERKSFILE
+cookbook 'ruby_build',
+  :git => 'git://github.com/$repo.git', :branch => '$latest_release'
+END_OF_BERKSFILE
+```
 
-## <a name="recipes"></a> Recipes
+## Recipes
 
-### <a name="recipes-default"></a> default
+### default
 
-Installs the ruby-build codebase and initializes Chef to use the Lightweight
-Resources and Providers ([LWRPs][lwrp]).
+Installs the ruby-build codebase and initializes Chef to use the Lightweight Resources and Providers ([LWRPs][lwrp]).
 
-## <a name="attributes"></a> Attributes
+## Attributes
 
-### <a name="attributes-git-url"></a> git_url
+### git_url
 
 The Git URL which is used to install ruby-build.
 
-The default is `"git://github.com/sstephenson/ruby-build.git"`.
+The default is `"git://github.com/rbenv/ruby-build.git"`.
 
-### <a name="attributes-git-ref"></a> git_ref
+### git_ref
 
-A specific Git branch/tag/reference to use when installing ruby-build. For
-example, to pin ruby-build to a specific release:
+A specific Git branch/tag/reference to use when installing ruby-build. For example, to pin ruby-build to a specific release:
 
-    node['ruby_build']['git_ref'] = "v20111030"
+```ruby
+node['ruby_build']['git_ref'] = "v20111030"
+```
 
 The default is `"master"`.
 
-### <a name="attributes-default-ruby-base-path"></a> default_ruby_base_path
+### default_ruby_base_path
 
-The default base path for a system-wide installed Ruby. For example, the
-following resource:
+The default base path for a system-wide installed Ruby. For example, the following resource:
 
-    ruby_build_ruby "1.9.3-p0"
+```ruby
+ruby_build_ruby "1.9.3-p0"
+```
 
-will be installed into
-`"#{node['ruby_build']['default_ruby_base_path']}/1.9.3-p0"` unless a
-`prefix_path` attribute is explicitly set.
+will be installed into `"#{node['ruby_build']['default_ruby_base_path']}/1.9.3-p0"` unless a `prefix_path` attribute is explicitly set.
 
 The default is `"/usr/local/ruby"`.
 
-### <a name="attributes-upgrade"></a> upgrade
+### upgrade
 
-Determines how to handle installing updates to the ruby-build framework.
-There are currently 2 valid values:
+Determines how to handle installing updates to the ruby-build framework. There are currently 2 valid values:
 
-* `"none"`, `false`, or `nil`: will not update ruby-build and leave it in its
-  current state.
-* `"sync"` or `true`: updates ruby-build to the version specified by the
-  `git_ref` attribute or the head of the master branch by default.
+- `"none"`, `false`, or `nil`: will not update ruby-build and leave it in its current state.
+- `"sync"` or `true`: updates ruby-build to the version specified by the `git_ref` attribute or the head of the master branch by default.
 
 The default is `"none"`.
 
-## <a name="lwrps"></a> Resources and Providers
+## Resources and Providers
 
-### <a name="lwrps-rbr"></a> ruby_build_ruby
+### ruby_build_ruby
 
-#### <a name="lwrps-rbr-actions"></a> Actions
+#### Actions
 
-<table>
-  <thead>
-    <tr>
-      <th>Action</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>install</td>
-      <td>
-        Build and install a Ruby from a definition file. See the ruby-build
-        readme<sup>(1)</sup> for more details.
-      </td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td>reinstall</td>
-      <td>
-        Force a recompiliation of the Ruby from source. The :install action
-        will skip a build if the target install directory already exists.
-      </td>
-      <td>&nbsp;</td>
-    </tr>
-  </tbody>
-</table>
+Action    | Description                                                                                                                           | Default
+--------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------
+install   | Build and install a Ruby from a definition file. See the [ruby-build readme][rb_readme] for more details.                             | Yes
+reinstall | Force a recompiliation of the Ruby from source. The :install action will skip a build if the target install directory already exists. |
 
-1. [ruby-build readme][rb_readme]
+#### Attributes
 
-#### <a name="lwrps-rbr-attributes"></a> Attributes
+Attribute   | Description                                                                                                                                                                            | Default Value
+----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------
+definition  | **Name attribute:** the name of a [built-in definition][rb_definitions] or the path to a ruby-build definition file.                                                                   | `nil`
+prefix_path | The path to which the Ruby will be installed.                                                                                                                                          | `nil`
+user        | A user which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the user must already exist.   | `nil`
+group       | A group which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the group must already exist. | `nil`
+environment | A Hash of [additional environment variables][rb_environment] such as `CONFIGURE_OPTS` or `RUBY_BUILD_MIRROR_URL`.                                                                      | `nil`
 
-<table>
-  <thead>
-    <tr>
-      <th>Attribute</th>
-      <th>Description</th>
-      <th>Default Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>definition</td>
-      <td>
-        <b>Name attribute:</b> the name of a built-in definition<sup>(1)</sup>
-        or the path to a ruby-build definition file.
-      </td>
-      <td><code>nil</code></td>
-    </tr>
-    <tr>
-      <td>prefix_path</td>
-      <td>The path to which the Ruby will be installed.</td>
-      <td><code>nil</code></td>
-    </tr>
-    <tr>
-      <td>user</td>
-      <td>
-        A user which will own the installed Ruby. The default value of
-        <code>nil</code> denotes a system-wide Ruby (root-owned) is being
-        targeted. <b>Note:</b> if specified, the user must already exist.
-      </td>
-      <td><code>nil</code></td>
-    </tr>
-    <tr>
-      <td>group</td>
-      <td>
-        A group which will own the installed Ruby. The default value of
-        <code>nil</code> denotes a system-wide Ruby (root-owned) is being
-        targeted. <b>Note:</b> if specified, the group must already exist.
-      </td>
-      <td><code>nil</code></td>
-    </tr>
-    <tr>
-      <td>environment</td>
-      <td>
-        A Hash of additional environment variables<sup>(2)</sup>, such as
-        <code>CONFIGURE_OPTS</code> or <code>RUBY_BUILD_MIRROR_URL</code>.
-      </td>
-      <td><code>nil</code></td>
-    </tr>
-  </tbody>
-</table>
-
-1. [built-in definition][rb_definitions]
-2. [special environment variables][rb_environment]
-
-#### <a name="lwrps-rbr-examples"></a> Examples
+#### Examples
 
 ##### Install Ruby
 
-    # See: https://github.com/sstephenson/ruby-build/issues/186
-    ruby_build_ruby "ree-1.8.7-2012.02" do
-      environment({ 'CONFIGURE_OPTS' => '--no-tcmalloc' })
-    end
+```ruby
+# See: https://github.com/sstephenson/ruby-build/issues/186
+ruby_build_ruby "ree-1.8.7-2012.02" do
+  environment({ 'CONFIGURE_OPTS' => '--no-tcmalloc' })
+end
 
-    ruby_build_ruby "1.9.3-p0" do
-      prefix_path "/usr/local/ruby/ruby-1.9.3-p0"
-      environment({
-        'RUBY_BUILD_MIRROR_URL' => 'http://local.example.com'
-      })
+ruby_build_ruby "1.9.3-p0" do
+  prefix_path "/usr/local/ruby/ruby-1.9.3-p0"
+  environment({
+    'RUBY_BUILD_MIRROR_URL' => 'http://local.example.com'
+  })
 
-      action      :install
-    end
+  action      :install
+end
 
-    ruby_build_ruby "jruby-1.6.5"
+ruby_build_ruby "jruby-1.6.5"
+```
 
 **Note:** the install action is default, so the second example is more common.
 
 ##### Install A Ruby For A User
 
-    ruby_build_ruby "maglev-1.0.0" do
-      prefix_path "/home/deploy/.rubies/maglev-1.0.0"
-      user        "deploy"
-      group       "deploy"
-    end
+```ruby
+ruby_build_ruby "maglev-1.0.0" do
+  prefix_path "/home/deploy/.rubies/maglev-1.0.0"
+  user        "deploy"
+  group       "deploy"
+end
+```
 
 ##### Reinstall Ruby
 
-    ruby_build_ruby "rbx-1.2.4" do
-      prefix_path "/opt/rbx-1.2.4"
+```ruby
+ruby_build_ruby "rbx-1.2.4" do
+  prefix_path "/opt/rbx-1.2.4"
 
-      action      :reinstall
-    end
+  action      :reinstall
+end
+```
 
-**Note:** the Ruby will be built whether or not the Ruby exists in the
-`prefix_path` directory.
+**Note:** the Ruby will be built whether or not the Ruby exists in the `prefix_path` directory.
 
 ## Known Issues
 
-Public work on this cookbook has resumed after a hiatus. Accordingly, some
-combinations of versions have issues that you have to work around.
+Public work on this cookbook has resumed after a hiatus. Accordingly, some combinations of versions have issues that you have to work around.
 
-1. Ubuntu 12.04 and rubinius
-  * Need an apt repo for LLVM as the build tools rely on LLVM version between 3.0 and 3.5
-  * See the `alltherubies` test cookbook for an example
+1. Ubuntu 12.04 and rubinius needs an apt repo for LLVM as the build tools rely on LLVM version between 3.0 and 3.5:
+
+  ```ruby
+  apt_repository 'llvm' do
+  uri 'http://llvm.org/apt/precise'
+  distribution 'llvm-toolchain-precise-3.5'
+  components ['main']
+  end
+  ```
+
 2. Ubuntu 14.04 and ruby 2.0.0 patch versions <457
-  * The readline and openssl extensions have an [issue](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741825) patched in 457
 
-## <a name="development"></a> Development
+  - The readline and openssl extensions have an [issue](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741825) patched in 457
 
-* Source hosted at [GitHub][repo]
-* Report issues/Questions/Feature requests on [GitHub Issues][issues]
+## Development
 
-Pull requests are very welcome! Make sure your patches are well tested.
-Ideally create a topic branch for every separate change you make.
+- Source hosted at [GitHub][repo]
+- Report issues/Questions/Feature requests on [GitHub Issues][issues]
 
-## <a name="license"></a> License and Author
+Pull requests are very welcome! Make sure your patches are well tested. Ideally create a topic branch for every separate change you make.
 
-Author:: [Fletcher Nichol][fnichol] (<fnichol@nichol.ca>) [![endorse](http://api.coderwall.com/fnichol/endorsecount.png)](http://coderwall.com/fnichol)
+## License and Author
 
-Copyright 2011, Fletcher Nichol
+Author:: [Fletcher Nichol][fnichol] ([fnichol@nichol.ca](mailto:fnichol@nichol.ca))
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+Copyright 2011-2016, Fletcher Nichol
 
-    http://www.apache.org/licenses/LICENSE-2.0
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+```
+http://www.apache.org/licenses/LICENSE-2.0
+```
 
-[berkshelf]:      http://berkshelf.com/
-[chef_repo]:      https://github.com/opscode/chef-repo
-[cheffile]:       https://github.com/applicationsonline/librarian/blob/master/lib/librarian/chef/templates/Cheffile
-[java_cb]:        http://community.opscode.com/cookbooks/java
-[jruby]:          http://jruby.org/
-[kgc]:            https://github.com/websterclay/knife-github-cookbooks#readme
-[librarian]:      https://github.com/applicationsonline/librarian#readme
-[lwrp]:           http://wiki.opscode.com/display/chef/Lightweight+Resources+and+Providers+%28LWRP%29
-[rb_readme]:      https://github.com/sstephenson/ruby-build#readme
-[rb_site]:        https://github.com/sstephenson/ruby-build
-[rb_environment]: https://github.com/sstephenson/ruby-build#special-environment-variables
-[rb_definitions]: https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-[fnichol]:      https://github.com/fnichol
-[repo]:         https://github.com/fnichol/chef-ruby_build
-[issues]:       https://github.com/fnichol/chef-ruby_build/issues
+[berkshelf]: http://berkshelf.com/
+[cheffile]: https://github.com/applicationsonline/librarian/blob/master/lib/librarian/chef/templates/Cheffile
+[fnichol]: https://github.com/fnichol
+[issues]: https://github.com/chef-rbenv/ruby_build/issues
+[java_cb]: https://supermarket.chef.io/cookbooks/java
+[jruby]: http://jruby.org/
+[kgc]: https://github.com/websterclay/knife-github-cookbooks#readme
+[librarian]: https://github.com/applicationsonline/librarian#readme
+[rb_definitions]: https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
+[rb_environment]: https://github.com/rbenv/ruby-build#special-environment-variables
+[rb_readme]: https://github.com/rbenv/ruby-build#readme
+[rb_site]: https://github.com/rbenv/ruby-build
+[repo]: https://github.com/chef-rbenv/ruby_build

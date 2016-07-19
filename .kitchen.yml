@@ -4,8 +4,11 @@ driver:
 provisioner:
   name: chef_zero
 
+verifier:
+  name: inspec
+  format: doc
+
 platforms:
-  - name: centos-5.11
   - name: centos-6.7
   - name: centos-7.2
   - name: debian-7.10
@@ -21,6 +24,7 @@ platforms:
     run_list: apt::default
   - name: ubuntu-16.04
     run_list: apt::default
+  - name: freebsd-9.3
   - name: freebsd-10.3
 
 suites:

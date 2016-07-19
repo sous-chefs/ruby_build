@@ -34,23 +34,22 @@ when 'rhel', 'fedora'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_git_pkgs'] = %w( git )
   default['ruby_build']['install_pkgs_cruby'] =
-    %w( gcc-c++ patch readline readline-devel zlib zlib-devel
+    %w( gcc-c++ patch readline-devel zlib-devel
         libffi-devel openssl-devel libyaml-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
-        llvm-static llvm-devel subversion autoconf )
+        autoconf gdbm-devel )
   default['ruby_build']['install_pkgs_rbx'] =
-    %w( ncurses-devel ) + node['ruby_build']['install_pkgs_cruby']
+    %w( ncurses-devel llvm-static llvm-devel ) + node['ruby_build']['install_pkgs_cruby']
   default['ruby_build']['install_pkgs_jruby'] = []
 
 when 'debian', 'ubuntu'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] =
-    %w( build-essential bison openssl libreadline6 libreadline6-dev
-        zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0
-        libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev autoconf
-        libc6-dev ssl-cert subversion )
+    %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
+        zlib1g-dev libsqlite3-dev libxml2-dev libxslt1-dev
+        libc6-dev libffi-dev libgdbm3 libgdbm-dev )
   default['ruby_build']['install_pkgs_rbx'] =
     %w( libncurses5-dev llvm-3.4 llvm-3.4-dev libeditline-dev libedit-dev
       ) + node['ruby_build']['install_pkgs_cruby']
@@ -61,9 +60,9 @@ when 'suse'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] =
-    %w( gcc-c++ patch zlib-devel libffi48-devel libyaml-devel make
-        sqlite3-devel libxml2-devel libxslt-devel subversion autoconf
-        libopenssl-devel )
+    %w( gcc-c++ automake patch zlib-devel libffi48-devel libyaml-devel
+        sqlite3-devel libxml2-devel libxslt-devel autoconf gdbm-devel
+        libopenssl-devel readline-devel libyaml-devel )
   default['ruby_build']['install_pkgs_rbx'] =
     %w( ncurses-devel ) + node['ruby_build']['install_pkgs_cruby']
   default['ruby_build']['install_pkgs_jruby'] = []
@@ -71,7 +70,7 @@ when 'suse'
 when 'mac_os_x'
   default['ruby_build']['install_pkgs'] = []
   default['ruby_build']['install_git_pkgs'] = %w( git-core )
-  default['ruby_build']['install_pkgs_cruby'] = []
+  default['ruby_build']['install_pkgs_cruby'] = %w( openssl libyaml libffi )
   default['ruby_build']['install_pkgs_jruby'] = []
 
 when 'freebsd'
@@ -79,7 +78,7 @@ when 'freebsd'
   default['ruby_build']['install_git_pkgs'] = %w( git )
   default['ruby_build']['install_pkgs_cruby'] =
     %w( autoconf autoconf-wrapper automake automake-wrapper indexinfo
-        libedit libffi libyaml m4 perl5 )
+        libedit libffi libyaml m4 perl5 gmake )
   default['ruby_build']['install_pkgs_jruby'] =
     %w( alsa-lib bash dejavu expat fixesproto fontconfig freetype2
         gettext-runtime giflib indexinfo inputproto java-zoneinfo

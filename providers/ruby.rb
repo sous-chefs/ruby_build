@@ -87,9 +87,16 @@ def install_ruby_dependencies
     pkgs = node['ruby_build']['install_pkgs_jruby']
   end
 
-  Array(pkgs).each do |pkg|
-    package pkg do
+  # use multi-package when available since it's much faster
+  if platform_family?('rhel', 'suse', 'debian', 'fedora')
+    package pkgs do
       action :nothing
     end.run_action(:install)
+  else
+    Array(pkgs).each do |pkg|
+      package pkg do
+        action :nothing
+      end.run_action(:install)
+    end
   end
 end
