@@ -40,14 +40,10 @@ unless mac_with_no_homebrew
       not_if 'git --version >/dev/null'
     end
   else
-    Array(node['ruby_build']['install_pkgs']).each do |pkg|
-      package pkg
-    end
+    package node['ruby_build']['install_pkgs']
 
-    Array(node['ruby_build']['install_git_pkgs']).each do |pkg|
-      package pkg do
-        not_if 'git --version >/dev/null'
-      end
+    package node['ruby_build']['install_git_pkgs'] do
+      not_if 'git --version >/dev/null'
     end
   end
 end
