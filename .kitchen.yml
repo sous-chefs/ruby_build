@@ -12,10 +12,9 @@ platforms:
   - name: centos-7.2
   - name: debian-7.11
     run_list: apt::default
-  - name: debian-8.5
+  - name: debian-8.6
     run_list: apt::default
-  - name: fedora-24
-    run_list: yum::dnf_yum_compat
+  - name: fedora-25
   - name: opensuse-13.2
   - name: opensuse-leap-42.1
   - name: ubuntu-12.04
