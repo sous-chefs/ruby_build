@@ -4,6 +4,7 @@ if defined?(ChefSpec)
   def install_ruby_build_ruby(name)
     ChefSpec::Matchers::ResourceMatcher.new(:ruby_build_ruby, :install, name)
   end
+
   def reinstall_ruby_build_ruby(name)
     ChefSpec::Matchers::ResourceMatcher.new(:ruby_build_ruby, :reinstall, name)
   end

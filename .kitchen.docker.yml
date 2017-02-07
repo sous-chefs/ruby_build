@@ -50,7 +50,7 @@ platforms:
     image: fedora:latest
     pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
-      - RUN dnf -y install yum which systemd-sysv initscripts wget net-tools
+      - RUN dnf -y install which systemd-sysv initscripts wget net-tools
 
 - name: ubuntu-12.04
   driver:
@@ -91,7 +91,6 @@ platforms:
       - RUN zypper --non-interactive install aaa_base perl-Getopt-Long-Descriptive which hostname
 
 suites:
-- name: alltherubies
+- name: default
   run_list:
-  - recipe[ruby_build]
-  - recipe[alltherubies]
+  - recipe[test]
