@@ -1,0 +1,5 @@
+# rubocop todo
+
+Style/IdenticalConditionalBranches:
+  Exclude:
+    - 'recipes/default.rb'

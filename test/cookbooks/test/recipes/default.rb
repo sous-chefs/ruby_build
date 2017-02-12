@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: alltherubies
+# Cookbook Name:: test
 # Recipe:: default
 #
 # Copyright 2012-2016, Fletcher Nichol
@@ -17,22 +17,20 @@
 # limitations under the License.
 #
 
-cores         = node['cpu']['total'].to_i
-system_rubies = %w( 2.1.9 2.2.5 2.3.1 jruby-9.0.5.0 )
+apt_update 'update'
 
 include_recipe 'java'
+include_recipe 'ruby_build'
 
 package 'default-jre-headless' if %(ubuntu debian).include?(node['platform'])
-
-package 'bash' if node['platform_family'] == 'freebsd'
 
 java_alternatives 'force setting java alternatives' do
   action :set
 end
 
-system_rubies.each do |rubie|
+%w( 2.1.9 2.2.6 2.3.3 2.4.0 jruby-9.1.7.0 ).each do |rubie|
   ruby_build_ruby rubie do
-    environment('MAKE_OPTS' => "-j #{cores + 1}")
+    environment('MAKE_OPTS' => "-j #{node['cpu']['total'].to_i + 1}")
   end
 end
 

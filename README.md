@@ -1,6 +1,6 @@
 # ruby-build Chef Cookbook
 
-[![Build Status](https://travis-ci.org/chef-rbenv/ruby_build.svg?branch=master)](https://travis-ci.org/chef-rbenv/ruby_build)
+[![Build Status](https://travis-ci.org/sous-chefs/ruby_build.svg?branch=master)](https://travis-ci.org/sous-chefs/ruby_build)
 
 ## Description
 

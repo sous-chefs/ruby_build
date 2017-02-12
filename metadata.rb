@@ -1,6 +1,6 @@
 name              'ruby_build'
-maintainer        'Fletcher Nichol'
-maintainer_email  'fnichol@nichol.ca'
+maintainer        'Sous Chefs'
+maintainer_email  'help@sous-chefs.org'
 license           'Apache 2.0'
 description       'Manages the ruby-build framework and its installed rubies. A LWRP is also defined.'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
@@ -21,6 +21,6 @@ supports 'mac_os_x'
 
 depends 'yum-epel'
 
-source_url 'https://github.com/chef-rbenv/ruby_build'
-issues_url 'https://github.com/chef-rbenv/ruby_build/issues'
+source_url "https://github.com/sous-chefs/#{name}"
+issues_url "https://github.com/sous-chefs/#{name}/issues"
 chef_version '>= 12.1' if respond_to?(:chef_version)

@@ -1,4 +1,4 @@
-rubies = %w( 2.1.9 2.2.5 2.3.1 jruby-9.0.5.0 )
+rubies = %w( 2.1.9 2.2.6 2.3.3 2.4.0 jruby-9.1.7.0 )
 
 rubies.each do |rubie|
   describe directory("/usr/local/ruby/#{rubie}") do
