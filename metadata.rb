@@ -20,6 +20,7 @@ supports 'opensuseleap'
 supports 'mac_os_x'
 
 depends 'yum-epel'
+depends 'git'
 
 source_url "https://github.com/sous-chefs/#{name}"
 issues_url "https://github.com/sous-chefs/#{name}/issues"
