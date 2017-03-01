@@ -37,7 +37,7 @@ when 'rhel', 'fedora'
         libffi-devel openssl-devel libyaml-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
-        autoconf gdbm-devel )
+        gdbm-devel )
   default['ruby_build']['install_pkgs_rbx'] =
     %w( ncurses-devel llvm-static llvm-devel ) + node['ruby_build']['install_pkgs_cruby']
   default['ruby_build']['install_pkgs_jruby'] = []
