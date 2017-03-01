@@ -30,21 +30,14 @@ cache_path  = Chef::Config['file_cache_path']
 src_path    = "#{cache_path}/ruby-build"
 
 include_recipe 'yum-epel' if platform_family?('rhel')
+include_recipe 'git'
 
-unless mac_with_no_homebrew
-  # use multipackage when available as it is much faster
-  if platform_family?('rhel', 'suse', 'debian', 'fedora')
-    package node['ruby_build']['install_pkgs']
-
-    package node['ruby_build']['install_git_pkgs'] do
-      not_if 'git --version >/dev/null'
-    end
-  else
-    package node['ruby_build']['install_pkgs']
-
-    package node['ruby_build']['install_git_pkgs'] do
-      not_if 'git --version >/dev/null'
-    end
+# use multipackage when available as it is much faster
+if platform_family?('rhel', 'suse', 'debian', 'fedora')
+  package node['ruby_build']['install_pkgs']
+else # mostly for os x / freebsd
+  node['ruby_build']['install_pkgs'].each do |pkg|
+    package pkg
   end
 end
 

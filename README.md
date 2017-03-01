@@ -210,13 +210,6 @@ Public work on this cookbook has resumed after a hiatus. Accordingly, some combi
 
   - The readline and openssl extensions have an [issue](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741825) patched in 457
 
-## Development
-
-- Source hosted at [GitHub][repo]
-- Report issues/Questions/Feature requests on [GitHub Issues][issues]
-
-Pull requests are very welcome! Make sure your patches are well tested. Ideally create a topic branch for every separate change you make.
-
 ## License and Author
 
 Author:: [Fletcher Nichol][fnichol] ([fnichol@nichol.ca](mailto:fnichol@nichol.ca))

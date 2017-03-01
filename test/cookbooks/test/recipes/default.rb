@@ -28,7 +28,7 @@ java_alternatives 'force setting java alternatives' do
   action :set
 end
 
-%w( 2.1.9 2.2.6 2.3.3 2.4.0 jruby-9.1.7.0 ).each do |rubie|
+%w( 2.2.6 2.3.3 2.4.0 jruby-9.1.7.0 ).each do |rubie|
   ruby_build_ruby rubie do
     environment('MAKE_OPTS' => "-j #{node['cpu']['total'].to_i + 1}")
   end

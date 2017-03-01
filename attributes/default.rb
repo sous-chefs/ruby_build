@@ -32,7 +32,6 @@ default['ruby_build']['upgrade'] = 'none'
 case node['platform_family']
 when 'rhel', 'fedora'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
-  default['ruby_build']['install_git_pkgs'] = %w( git )
   default['ruby_build']['install_pkgs_cruby'] =
     %w( gcc-c++ patch readline-devel zlib-devel
         libffi-devel openssl-devel libyaml-devel
@@ -45,7 +44,6 @@ when 'rhel', 'fedora'
 
 when 'debian'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
-  default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] =
     %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
         zlib1g-dev libsqlite3-dev libxml2-dev libxslt1-dev
@@ -58,7 +56,6 @@ when 'debian'
 
 when 'suse'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
-  default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] =
     %w( gcc-c++ automake patch zlib-devel libffi48-devel libyaml-devel
         sqlite3-devel libxml2-devel libxslt-devel autoconf gdbm-devel
@@ -69,13 +66,11 @@ when 'suse'
 
 when 'mac_os_x'
   default['ruby_build']['install_pkgs'] = []
-  default['ruby_build']['install_git_pkgs'] = %w( git-core )
   default['ruby_build']['install_pkgs_cruby'] = %w( openssl libyaml libffi )
   default['ruby_build']['install_pkgs_jruby'] = []
 
 when 'freebsd'
   default['ruby_build']['install_pkgs'] = []
-  default['ruby_build']['install_git_pkgs'] = %w( git )
   default['ruby_build']['install_pkgs_cruby'] =
     %w( autoconf autoconf-wrapper automake automake-wrapper indexinfo
         libedit libffi libyaml m4 perl5 gmake )
