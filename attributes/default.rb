@@ -1,10 +1,10 @@
 #
-# Cookbook Name:: ruby_build
+# Cookbook:: ruby_build
 # Attributes:: default
 #
 # Author:: Fletcher Nichol <fnichol@nichol.ca>
 #
-# Copyright 2011-2016, Fletcher Nichol
+# Copyright:: 2011-2016, Fletcher Nichol
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ when 'rhel', 'fedora'
         libffi-devel openssl-devel libyaml-devel
         make bzip2 autoconf automake libtool bison
         libxml2 libxml2-devel libxslt libxslt-devel
-        autoconf gdbm-devel )
+        gdbm-devel )
   default['ruby_build']['install_pkgs_rbx'] =
     %w( ncurses-devel llvm-static llvm-devel ) + node['ruby_build']['install_pkgs_cruby']
   default['ruby_build']['install_pkgs_jruby'] = []

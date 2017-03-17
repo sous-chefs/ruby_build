@@ -3,7 +3,7 @@ driver:
 
 provisioner:
   name: chef_zero
-  deprecations_as_errors: true
+  # deprecations_as_errors: true # not until we get a real chef 13 build out
 
 verifier:
   name: inspec
@@ -14,12 +14,11 @@ platforms:
   - name: debian-7.11
   - name: debian-8.6
   - name: fedora-25
-  - name: opensuse-13.2
   - name: opensuse-leap-42.2
   - name: ubuntu-14.04
   - name: ubuntu-16.04
-  - name: freebsd-9.3
   - name: freebsd-10.3
+  - name: freebsd-11.0
 
 suites:
 - name: default
