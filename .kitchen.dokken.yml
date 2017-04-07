@@ -8,7 +8,7 @@ transport:
 
 provisioner:
   name: dokken
-  # deprecations_as_errors: true # not until we get a real chef 13 build out
+  deprecations_as_errors: true
 
 verifier:
   name: inspec
