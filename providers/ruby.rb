@@ -88,7 +88,7 @@ def install_ruby_dependencies
   end
 
   # use multi-package when available since it's much faster
-  if platform_family?('rhel', 'suse', 'debian', 'fedora')
+  if platform_family?('rhel', 'suse', 'debian', 'fedora', 'amazon')
     package pkgs do
       action :nothing
     end.run_action(:install)
