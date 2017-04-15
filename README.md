@@ -168,7 +168,7 @@ end
 ruby_build_ruby "jruby-1.6.5"
 ```
 
-**Note:** the install action is default, so the second example is more common.
+**Note:** the install action is default, so the third example is more common.
 
 ##### Install A Ruby For A User
 
