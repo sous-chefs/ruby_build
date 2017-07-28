@@ -32,13 +32,20 @@ src_path    = "#{cache_path}/ruby-build"
 include_recipe 'yum-epel' if platform_family?('rhel')
 include_recipe 'git'
 
-# use multipackage when available as it is much faster
-if platform_family?('rhel', 'suse', 'debian', 'fedora')
-  package node['ruby_build']['install_pkgs']
-else # mostly for os x / freebsd
-  node['ruby_build']['install_pkgs'].each do |pkg|
-    package pkg
-  end
+# # use multipackage when available as it is much faster
+# if platform_family?('rhel', 'suse', 'debian', 'fedora')
+#   package node['ruby_build']['install_pkgs']
+# else # mostly for os x / freebsd
+#   node['ruby_build']['install_pkgs'].each do |pkg|
+#     package pkg
+#   end
+# end
+
+case node['platform_family']
+when 'mac_os_x', 'freebsd'
+  Chef::Log.info('No packages to install')
+else
+  packages %w( tar bash curl )
 end
 
 execute 'Install ruby-build' do
