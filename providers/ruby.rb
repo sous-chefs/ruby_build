@@ -77,17 +77,17 @@ def ruby_installed?
   end
 end
 
-# def install_ruby_dependencies
-#   case ::File.basename(new_resource.version)
-#   when /^jruby-/
-#     package jruby_package_deps
-#   when /^rbx-/
-#     package rbx_package_deps
-#   else
-#     package package_deps
-#   end
-#   # ensure_java_environment if new_resource.version =~ /^jruby-/
-# end
+def install_ruby_dependencies
+  case ::File.basename(new_resource.version)
+  when /^jruby-/
+    package jruby_package_deps
+  when /^rbx-/
+    package rbx_package_deps
+  else
+    package package_deps
+  end
+  # ensure_java_environment if new_resource.version =~ /^jruby-/
+end
 
 # def ensure_java_environment
 #   resource_collection.find('ruby_block[update-java-alternatives]').run_action(:create)
@@ -95,26 +95,26 @@ end
 #   Chef::Log.info 'The java cookbook does not appear to in the run_list.'
 # end
 
-def install_ruby_dependencies
-  case ::File.basename(new_resource.definition)
-  when /^\d\.\d\.\d/, /^ree-/
-    pkgs = node['ruby_build']['install_pkgs_cruby']
-  when /^rbx-/
-    pkgs = node['ruby_build']['install_pkgs_rbx']
-  when /^jruby-/
-    pkgs = node['ruby_build']['install_pkgs_jruby']
-  end
-
-  # use multi-package when available since it's much faster
-  if platform_family?('rhel', 'suse', 'debian', 'fedora', 'amazon')
-    package pkgs do
-      action :nothing
-    end.run_action(:install)
-  else
-    Array(pkgs).each do |pkg|
-      package pkg do
-        action :nothing
-      end.run_action(:install)
-    end
-  end
-end
+# def install_ruby_dependencies
+#   case ::File.basename(new_resource.definition)
+#   when /^\d\.\d\.\d/, /^ree-/
+#     pkgs = node['ruby_build']['install_pkgs_cruby']
+#   when /^rbx-/
+#     pkgs = node['ruby_build']['install_pkgs_rbx']
+#   when /^jruby-/
+#     pkgs = node['ruby_build']['install_pkgs_jruby']
+#   end
+#
+#   # use multi-package when available since it's much faster
+#   if platform_family?('rhel', 'suse', 'debian', 'fedora', 'amazon')
+#     package pkgs do
+#       action :nothing
+#     end.run_action(:install)
+#   else
+#     Array(pkgs).each do |pkg|
+#       package pkg do
+#         action :nothing
+#       end.run_action(:install)
+#     end
+#   end
+# end
