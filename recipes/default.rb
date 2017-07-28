@@ -45,7 +45,7 @@ case node['platform_family']
 when 'mac_os_x', 'freebsd'
   Chef::Log.info('No packages to install')
 else
-  packages %w( tar bash curl )
+  package %w( tar bash curl )
 end
 
 execute 'Install ruby-build' do
