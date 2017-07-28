@@ -77,6 +77,24 @@ def ruby_installed?
   end
 end
 
+# def install_ruby_dependencies
+#   case ::File.basename(new_resource.version)
+#   when /^jruby-/
+#     package jruby_package_deps
+#   when /^rbx-/
+#     package rbx_package_deps
+#   else
+#     package package_deps
+#   end
+#   # ensure_java_environment if new_resource.version =~ /^jruby-/
+# end
+
+# def ensure_java_environment
+#   resource_collection.find('ruby_block[update-java-alternatives]').run_action(:create)
+#   rescue Chef::Exceptions::ResourceNotFound
+#   Chef::Log.info 'The java cookbook does not appear to in the run_list.'
+# end
+
 def install_ruby_dependencies
   case ::File.basename(new_resource.definition)
   when /^\d\.\d\.\d/, /^ree-/
