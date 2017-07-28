@@ -78,7 +78,7 @@ def ruby_installed?
 end
 
 def install_ruby_dependencies
-  case ::File.basename(new_resource.version)
+  case ::File.basename(new_resource.definition)
   when /^jruby-/
     package jruby_package_deps
   when /^rbx-/
