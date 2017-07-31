@@ -30,7 +30,7 @@ default['ruby_build']['default_ruby_base_path'] = '/usr/local/ruby'
 default['ruby_build']['upgrade'] = 'none'
 
 case node['platform_family']
-when 'rhel', 'fedora'
+when 'rhel', 'fedora', 'amazon'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_pkgs_cruby'] =
     %w( gcc-c++ patch readline-devel zlib-devel
