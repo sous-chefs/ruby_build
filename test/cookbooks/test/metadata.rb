@@ -1,10 +1,5 @@
 name              'test'
-maintainer        'Sous Chefs'
-maintainer_email  'help@sous-chefs.org'
-license           'Apache 2.0'
-description       'Installs all-the-rubies via ruby_build cookbook'
 version           '1.0.0'
 
-depends 'ruby_build'
 depends 'java'
-depends 'user'
+depends 'ruby_build'

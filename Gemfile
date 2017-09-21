@@ -7,3 +7,9 @@
 source 'https://rubygems.org'
 
 gem 'stove'
+gem 'test-kitchen'
+gem 'kitchen-inspec'
+gem 'kitchen-dokken'
+gem 'inspec'
+gem 'chefspec'
+gem 'berkshelf'

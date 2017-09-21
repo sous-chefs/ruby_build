@@ -57,7 +57,7 @@ when 'debian'
 when 'suse'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_pkgs_cruby'] =
-    %w( gcc-c++ automake patch zlib-devel libffi48-devel libyaml-devel
+    %w( gcc-c++ make automake patch zlib-devel libffi48-devel libyaml-devel
         sqlite3-devel libxml2-devel libxslt-devel autoconf gdbm-devel
         libopenssl-devel readline-devel libyaml-devel )
   default['ruby_build']['install_pkgs_rbx'] =
