@@ -19,11 +19,91 @@
 # limitations under the License.
 #
 
-actions :install, :reinstall
-default_action :install
+property :definition,  String, name_property: true
+property :prefix_path, String, default: lazy { |r| "#{node['ruby_build']['default_ruby_base_path']}/#{r.definition}" }
+property :user,        String
+property :group,       String
+property :environment, Hash
 
-attribute :definition,  kind_of: String, name_attribute: true
-attribute :prefix_path, kind_of: String
-attribute :user,        kind_of: String
-attribute :group,       kind_of: String
-attribute :environment, kind_of: Hash
+action :install do
+  perform_install
+end
+
+action :reinstall do
+  perform_install
+end
+
+action_class do
+  def perform_install
+    if ruby_installed?
+      Chef::Log.debug(
+        "ruby_build_ruby[#{new_resource.definition}] is already installed, so skipping")
+    else
+      install_start = Time.now
+
+      install_ruby_dependencies
+
+      Chef::Log.info(
+        "Building ruby_build_ruby[#{new_resource.definition}], this could take a while...")
+
+      rubie       = new_resource.definition   # bypass block scoping issue
+      prefix_path = new_resource.prefix_path  # bypass block scoping issue
+      execute "ruby-build[#{rubie}]" do
+        command   %(/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}")
+        user        new_resource.user         if new_resource.user
+        group       new_resource.group        if new_resource.group
+        environment new_resource.environment  if new_resource.environment
+        action :run
+      end
+
+      Chef::Log.info("ruby_build_ruby[#{new_resource.definition}] build time was " \
+        "#{(Time.now - install_start) / 60.0} minutes")
+    end
+  end
+
+  def ruby_installed?
+    if Array(new_resource.action).include?(:reinstall)
+      false
+    else
+      ::File.exist?("#{new_resource.prefix_path}/bin/ruby")
+    end
+  end
+
+  # def install_ruby_dependencies
+  #   case ::File.basename(new_resource.version)
+  #   when /^jruby-/
+  #     package jruby_package_deps
+  #   when /^rbx-/
+  #     package rbx_package_deps
+  #   else
+  #     package package_deps
+  #   end
+  #   # ensure_java_environment if new_resource.version =~ /^jruby-/
+  # end
+
+  # def ensure_java_environment
+  #   resource_collection.find('ruby_block[update-java-alternatives]').run_action(:create)
+  #   rescue Chef::Exceptions::ResourceNotFound
+  #   Chef::Log.info 'The java cookbook does not appear to in the run_list.'
+  # end
+
+  def install_ruby_dependencies
+    case ::File.basename(new_resource.definition)
+    when /^\d\.\d\.\d/, /^ree-/
+      pkgs = node['ruby_build']['install_pkgs_cruby']
+    when /^rbx-/
+      pkgs = node['ruby_build']['install_pkgs_rbx']
+    when /^jruby-/
+      pkgs = node['ruby_build']['install_pkgs_jruby']
+    end
+
+    # use multi-package when available since it's much faster
+    if platform_family?('rhel', 'suse', 'debian', 'fedora', 'amazon')
+      package pkgs
+    else
+      Array(pkgs).each do |pkg|
+        package pkg
+      end
+    end
+  end
+end

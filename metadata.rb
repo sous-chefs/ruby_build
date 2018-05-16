@@ -24,4 +24,4 @@ depends 'git'
 
 source_url "https://github.com/sous-chefs/#{name}"
 issues_url "https://github.com/sous-chefs/#{name}/issues"
-chef_version '>= 12.1' if respond_to?(:chef_version)
+chef_version '>= 13.0' if respond_to?(:chef_version)
