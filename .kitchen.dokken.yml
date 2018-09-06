@@ -9,6 +9,10 @@ transport:
 provisioner:
   name: dokken
   deprecations_as_errors: true
+  client_rb:
+    silence_deprecation_warnings:
+      # there is not much we can do to appease this short of breaking 99% of users/consumers
+      - chef-25
 
 verifier:
   name: inspec
