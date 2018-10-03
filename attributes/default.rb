@@ -72,7 +72,7 @@ when 'mac_os_x'
 when 'freebsd'
   default['ruby_build']['install_pkgs'] = []
   default['ruby_build']['install_pkgs_cruby'] =
-    %w( autoconf autoconf-wrapper automake automake-wrapper indexinfo
+    %w( autoconf autoconf-wrapper automake indexinfo
         libedit libffi libyaml m4 perl5 gmake )
   default['ruby_build']['install_pkgs_jruby'] =
     %w( alsa-lib bash dejavu expat fixesproto fontconfig freetype2
