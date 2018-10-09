@@ -3,7 +3,12 @@ driver:
 
 provisioner:
   name: chef_zero
-  deprecations_as_errors: true
+  client_rb:
+    treat_deprecation_warnings_as_errors: true
+    silence_deprecation_warnings:
+    # There's a deprecation warning in the homebrew cookbook right now
+    # Might be gone with Chef 14.5
+    - chef-25
 
 verifier:
   name: inspec
