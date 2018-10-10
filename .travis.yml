@@ -26,6 +26,7 @@ env:
     - INSTANCE=default-fedora-latest
     - INSTANCE=default-ubuntu-1404
     - INSTANCE=default-ubuntu-1604
+    - INSTANCE=default-ubuntu-1804
     - INSTANCE=default-opensuse-leap
 
 before_script:
