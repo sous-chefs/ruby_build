@@ -75,6 +75,9 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
+  attributes:
+    java:
+      jdk_version: '11'
 
 - name: opensuse-leap
   driver:
