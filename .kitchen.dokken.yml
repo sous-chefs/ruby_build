@@ -77,7 +77,7 @@ platforms:
        - RUN /usr/bin/apt-get update
   attributes:
     java:
-      jdk_version: '11'
+      jdk_version: '8'
 
 - name: opensuse-leap
   driver:
