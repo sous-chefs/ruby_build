@@ -3,8 +3,11 @@ maintainer        'Sous Chefs'
 maintainer_email  'help@sous-chefs.org'
 license           'Apache-2.0'
 description       'Manages the ruby-build framework and its installed rubies. A LWRP is also defined.'
+source_url        'https://github.com/sous-chefs/ruby_build'
+issues_url        'https://github.com/sous-chefs/ruby_build/issues'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           '1.1.0'
+chef_version      '>= 13.0'
+version           '1.2.0'
 
 supports 'ubuntu'
 supports 'debian'
@@ -21,7 +24,3 @@ supports 'mac_os_x'
 
 depends 'yum-epel'
 depends 'git'
-
-source_url "https://github.com/sous-chefs/#{name}"
-issues_url "https://github.com/sous-chefs/#{name}/issues"
-chef_version '>= 13.0' if respond_to?(:chef_version)

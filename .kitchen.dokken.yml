@@ -1,7 +1,6 @@
 driver:
   name: dokken
   privileged: true
-  chef_version: current
 
 transport:
   name: dokken
@@ -9,10 +8,6 @@ transport:
 provisioner:
   name: dokken
   deprecations_as_errors: true
-  client_rb:
-    silence_deprecation_warnings:
-      # there is not much we can do to appease this short of breaking 99% of users/consumers
-      - chef-25
 
 verifier:
   name: inspec
@@ -24,6 +19,7 @@ platforms:
     pid_one_command: /sbin/init
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
+       - RUN /usr/bin/apt-get install sudo -y
 
 - name: debian-9
   driver:
@@ -31,9 +27,7 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
-  attributes:
-    java:
-      jdk_version: '8'
+       - RUN /usr/bin/apt-get install sudo -y
 
 - name: centos-6
   driver:
@@ -53,14 +47,8 @@ platforms:
   driver:
     image: dokken/fedora-latest
     pid_one_command: /usr/lib/systemd/systemd
-  attributes:
-    java:
-      jdk_version: '8'
-
-- name: ubuntu-14.04
-  driver:
-    image: dokken/ubuntu-14.04
-    pid_one_command: /sbin/init
+    intermediate_instructions:
+      - RUN dnf -y install sudo
 
 - name: ubuntu-16.04
   driver:
@@ -68,6 +56,7 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
+       - RUN /usr/bin/apt-get install sudo -y
 
 - name: ubuntu-18.04
   driver:
@@ -75,21 +64,4 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
-  attributes:
-    java:
-      jdk_version: '8'
-
-- name: opensuse-leap
-  driver:
-    image: dokken/opensuse-leap
-    pid_one_command: /bin/systemd
-  attributes:
-    java:
-      # java cookbook doesnt properly default for opensuse
-      # https://github.com/agileorbit-cookbooks/java/pull/446
-      openjdk_packages: ['java-1_7_0-openjdk']
-
-suites:
-- name: default
-  run_list:
-  - recipe[test]
+       - RUN /usr/bin/apt-get install sudo -y
