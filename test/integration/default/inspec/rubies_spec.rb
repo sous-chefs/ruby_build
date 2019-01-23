@@ -4,10 +4,6 @@ def gem_install_cmd(ruby_dir)
   "#{ruby_dir}/bin/gem install ffi --no-document"
 end
 
-def ssl_cmd(ruby_dir)
-  %{ #{ruby_dir}/bin/ruby -r net/http -e 'Net::HTTP.get(URI("https://letsencrypt.org"))' }
-end
-
 ruby_dir = File.join('/usr/local/ruby', 'jruby-9.1.13.0')
 
 describe directory(ruby_dir) do
@@ -15,10 +11,6 @@ describe directory(ruby_dir) do
 end
 
 describe command(gem_install_cmd(ruby_dir)) do
-  its('exit_status') { should eq 0 }
-end
-
-describe command(ssl_cmd(ruby_dir)) do
   its('exit_status') { should eq 0 }
 end
 
