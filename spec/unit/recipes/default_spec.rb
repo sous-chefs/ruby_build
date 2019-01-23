@@ -21,7 +21,7 @@ describe 'ruby_build_install' do
         jruby_deps true
       end
 
-      ruby_build_definition 'jruby-9.1.6.0'
+      ruby_build_definition 'jruby-9.1.13.0'
     end
 
     # Not possible to unit test as it includes another cookbook

@@ -8,7 +8,7 @@ def ssl_cmd(ruby_dir)
   %{ #{ruby_dir}/bin/ruby -r net/http -e 'Net::HTTP.get(URI("https://letsencrypt.org"))' }
 end
 
-%w(2.4.4 jruby-9.1.13.0).each do |rubie|
+%w(2.6.0 jruby-9.1.13.0).each do |rubie|
   ruby_dir = File.join('/usr/local/ruby', rubie)
 
   describe directory(ruby_dir) do
