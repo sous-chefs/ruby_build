@@ -18,7 +18,6 @@
 #
 
 class Chef::Recipe
-  # mix in recipe helpers
   include Chef::RubyBuild::RecipeHelpers
 end
 

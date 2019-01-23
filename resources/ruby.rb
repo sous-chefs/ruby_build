@@ -46,8 +46,8 @@ action_class do
       Chef::Log.info(
         "Building ruby_build_ruby[#{new_resource.definition}], this could take a while...")
 
-      rubie       = new_resource.definition   # bypass block scoping issue
-      prefix_path = new_resource.prefix_path  # bypass block scoping issue
+      rubie       = new_resource.definition
+      prefix_path = new_resource.prefix_path
       execute "ruby-build[#{rubie}]" do
         command   %(/usr/local/bin/ruby-build "#{rubie}" "#{prefix_path}")
         user        new_resource.user         if new_resource.user
