@@ -3,7 +3,7 @@ property :definition, String,
          description: 'Version of Ruby to install'
 
 property :prefix_path, String,
-         default: lazy { '/usr/local/ruby' },
+         default: '/usr/local/ruby',
          description: 'Location to install Ruby'
 
 property :environment, String,
@@ -17,9 +17,9 @@ property :group, String,
 
 action :install do
   if platform_family?('rhel', 'suse', 'debian', 'fedora', 'amazon')
-    package package_deps
+    package package_deps(new_resource.definition)
   else
-    Array(package_deps).each do |pkg|
+    Array(package_deps(new_resource.definition)).each do |pkg|
       package pkg
     end
   end

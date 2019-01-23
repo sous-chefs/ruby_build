@@ -7,6 +7,8 @@ class Chef
           %w( make g++ )
         when 'freebsd'
           %w( alsa-lib bash dejavu expat fixesproto fontconfig freetype2 gettext-runtime giflib indexinfo inputproto java-zoneinfo javavmwrapper kbproto libICE libSM libX11 libXau libXdmcp libXext libXfixes libXi libXrender libXt libXtst libfontenc libpthread-stubs libxcb libxml2 mkfontdir mkfontscale openjdk8 recordproto renderproto xextproto xproto )
+        else
+          %w( make gcc-c++ )
         end
       end
 
@@ -34,8 +36,8 @@ class Chef
         end
       end
 
-      def package_deps
-        case ::File.basename(new_resource.definition)
+      def package_deps(definition)
+        case ::File.basename(definition)
         when /^\d\.\d\.\d/, /^ree-/
           cruby_package_deps
         when /^rbx-/
