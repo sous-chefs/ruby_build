@@ -8,11 +8,11 @@ Installs ruby-build binary to `/usr/local/bin/ruby-build`
 
 | Property       | Ruby Type | Default             | Description                                                      |
 | -------------- | --------- | ------------------- | ---------------------------------------------------------------- |
-| `git_ref`      | `String`  | `master`            | Git refernce to download, set to a tag to get a specific version |
+| `git_ref`      | `String`  | `master`            | Git reference to download, set to a tag to get a specific version |
 | `java_version` | `String`  | `8` (7 on Debian 8) | JDK version to install                                           |
 | `jruby_deps`   | TrueClass | `Nil`               | Git refernce to download, set to a tag to get a specific version |
 
-## Exaple Usage
+## Example Usage
 
 Install JRuby 9.1.13.0
 

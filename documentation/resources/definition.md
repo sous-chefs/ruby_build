@@ -12,9 +12,9 @@ Install a Ruby Definition (Ruby version)
 | `user`        | String    | `Nil`             | User to install as                                    |
 | `group`       | String    | `Nil`             | Group to install as                                   |
 
-## Example Useage
+## Example Usage
 
-### Install Enterprise Ruby t
+### Install Enterprise Ruby
 
 ```ruby
 ruby_build_install ''
