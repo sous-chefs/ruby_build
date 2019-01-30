@@ -1,8 +1,7 @@
 # ruby-build Chef Cookbook
 
-[![Build Status](https://travis-ci.org/sous-chefs/ruby_build.svg?branch=master)](https://travis-ci.org/sous-chefs/ruby_build)
 [![Cookbook Version](https://img.shields.io/cookbook/v/ruby_build.svg)](https://supermarket.chef.io/cookbooks/ruby_build)
-
+[![Build Status](https://img.shields.io/circleci/project/github/sous-chefs/ruby_build/master.svg)](https://circleci.com/gh/sous-chefs/ruby_build)
 
 ## Description
 
