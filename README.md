@@ -2,6 +2,9 @@
 
 [![Cookbook Version](https://img.shields.io/cookbook/v/ruby_build.svg)](https://supermarket.chef.io/cookbooks/ruby_build)
 [![Build Status](https://img.shields.io/circleci/project/github/sous-chefs/ruby_build/master.svg)](https://circleci.com/gh/sous-chefs/ruby_build)
+[![OpenCollective](https://opencollective.com/sous-chefs/backers/badge.svg)](#backers)
+[![OpenCollective](https://opencollective.com/sous-chefs/sponsors/badge.svg)](#sponsors)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Description
 
@@ -45,7 +48,7 @@ Depending on the situation and use case there are several ways to install this c
 
 To install this cookbook from the Chef Supermarket, use the _knife_ command:
 
-```
+```shell
 knife cookbook site install ruby_build
 ```
 
@@ -53,7 +56,7 @@ knife cookbook site install ruby_build
 
 [Berkshelf] is a cookbook dependency manager and development workflow assistant. To install Berkshelf:
 
-```
+```shell
 cd chef-repo
 gem install berkshelf
 berks init
@@ -61,14 +64,14 @@ berks init
 
 To use the Supermarket version:
 
-```
+```ruby
 echo "cookbook 'ruby_build'" >> Berksfile
 berks install
 ```
 
 Or to reference the Git version:
 
-```
+```ruby
 repo="chef_rbenv/ruby_build"
 latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
 | ruby -rjson -e '
@@ -197,7 +200,7 @@ end
 
 Public work on this cookbook has resumed after a hiatus. Accordingly, some combinations of versions have issues that you have to work around.
 
-1. Ubuntu 12.04 and rubinius needs an apt repo for LLVM as the build tools rely on LLVM version between 3.0 and 3.5:
+- Ubuntu 12.04 and rubinius needs an apt repo for LLVM as the build tools rely on LLVM version between 3.0 and 3.5:
 
   ```ruby
   apt_repository 'llvm' do
@@ -207,59 +210,31 @@ Public work on this cookbook has resumed after a hiatus. Accordingly, some combi
   end
   ```
 
-2. Ubuntu 14.04 and ruby 2.0.0 patch versions <457
+- Ubuntu 14.04 and ruby 2.0.0 patch versions <457
 
   - The readline and openssl extensions have an [issue](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741825) patched in 457
 
 ## Contributors
 
-This project exists thanks to all the people who contribute.
-<img src="https://opencollective.com/sous-chefs/contributors.svg?width=890&button=false" /></a>
-
+This project exists thanks to all the people who [contribute.](https://opencollective.com/sous-chefs/contributors.svg?width=890&button=false)
 
 ### Backers
 
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/sous-chefs#backer)]
-<a href="https://opencollective.com/sous-chefs#backers" target="_blank"><img src="https://opencollective.com/sous-chefs/backers.svg?width=890"></a>
+Thank you to all our backers!
+
+![https://opencollective.com/sous-chefs#backers](https://opencollective.com/sous-chefs/backers.svg?width=600&avatarHeight=40)
 
 ### Sponsors
 
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/sous-chefs#sponsor)]
-<a href="https://opencollective.com/sous-chefs/sponsor/0/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/1/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/2/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/3/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/4/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/5/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/6/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/7/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/8/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/sous-chefs/sponsor/9/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/9/avatar.svg"></a>
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
 
-## License and Author
-
-Author:: [Fletcher Nichol][fnichol] ([fnichol@nichol.ca](mailto:fnichol@nichol.ca))
-
-Copyright 2011-2016, Fletcher Nichol
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-```
-http://www.apache.org/licenses/LICENSE-2.0
-```
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-[berkshelf]: http://berkshelf.com/
-[cheffile]: https://github.com/applicationsonline/librarian/blob/master/lib/librarian/chef/templates/Cheffile
-[fnichol]: https://github.com/fnichol
-[issues]: https://github.com/chef-rbenv/ruby_build/issues
-[java_cb]: https://supermarket.chef.io/cookbooks/java
-[jruby]: http://jruby.org/
-[kgc]: https://github.com/websterclay/knife-github-cookbooks#readme
-[librarian]: https://github.com/applicationsonline/librarian#readme
-[rb_definitions]: https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-[rb_environment]: https://github.com/rbenv/ruby-build#special-environment-variables
-[rb_readme]: https://github.com/rbenv/ruby-build#readme
-[rb_site]: https://github.com/rbenv/ruby-build
-[repo]: https://github.com/chef-rbenv/ruby_build
+![https://opencollective.com/sous-chefs/sponsor/0/website](https://opencollective.com/sous-chefs/sponsor/0/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/1/website](https://opencollective.com/sous-chefs/sponsor/1/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/2/website](https://opencollective.com/sous-chefs/sponsor/2/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/3/website](https://opencollective.com/sous-chefs/sponsor/3/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/4/website](https://opencollective.com/sous-chefs/sponsor/4/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/5/website](https://opencollective.com/sous-chefs/sponsor/5/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/6/website](https://opencollective.com/sous-chefs/sponsor/6/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/7/website](https://opencollective.com/sous-chefs/sponsor/7/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/8/website](https://opencollective.com/sous-chefs/sponsor/8/avatar.svg?avatarHeight=100)
+![https://opencollective.com/sous-chefs/sponsor/9/website](https://opencollective.com/sous-chefs/sponsor/9/avatar.svg?avatarHeight=100)
