@@ -10,6 +10,10 @@
 
 Manages the [ruby-build][rb_site] framework and its installed Rubies. A lightweight resources and providers (lwrp) is also defined.
 
+## Maintainers
+
+This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of Chef cookbook maintainers working together to maintain important cookbooks. If you’d like to know more please visit [sous-chefs.org](https://sous-chefs.org/) or come chat with us on the Chef Community Slack in [#sous-chefs](https://chefcommunity.slack.com/messages/C2V7B88SF).
+
 ## Usage
 
 Simply include `recipe[ruby_build]` in your run_list to have ruby-build installed. You will also have access to the `ruby_build_ruby` resource. See the See Resources and Providers section for more details.
