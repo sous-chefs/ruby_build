@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the ruby_build cookbook.
 
+## unreleased
+
+- get tests working
+
 ## 1.2.0 (2019-23-01)
 
 - Convert to a custom resource
