@@ -1,43 +1,50 @@
-version: 2.1
+---
+lint_and_unit: &lint_and_unit
+  - delivery
+  - danger
+  - lint-yaml
+  - lint-markdown
 
+version: 2.1
 orbs:
-  kitchen: sous-chefs/kitchen@1.0.0
+  kitchen: sous-chefs/kitchen@2
 
 workflows:
   kitchen:
     jobs:
+      # Lint and Unit Test
+      - kitchen/yamllint:
+          name: lint-yaml
+      - kitchen/mdlint:
+          name: lint-markdown
       - kitchen/danger:
           name: danger
           context: Danger
-      - kitchen/lint:
-          name: lint
+      - kitchen/delivery:
+          name: delivery
+
       - kitchen/dokken-single:
-          suite: default
-          name: CentOS 6
-          platform: centos-6
-          requires: [lint, danger]
+          name: default-ubuntu-1804
+          suite: default-ubuntu-1804
+          requires:
+            *lint_and_unit
       - kitchen/dokken-single:
-          suite: default
-          name: CentOS 7
-          platform: centos-7
-          requires: [lint, danger]
+          name: default-ubuntu-1604
+          suite: default-ubuntu-1604
+          requires:
+            *lint_and_unit
       - kitchen/dokken-single:
-          suite: default
-          name: Debian 8
-          platform: debian-8
-          requires: [lint, danger]
+          name: default-debian-9
+          suite: default-debian-9
+          requires:
+            *lint_and_unit
       - kitchen/dokken-single:
-          suite: default
-          name: Debian 9
-          platform: debian-9
-          requires: [lint, danger]
+          name: default-centos-7
+          suite: default-centos-7
+          requires:
+            *lint_and_unit
       - kitchen/dokken-single:
-          suite: default
-          name: Ubuntu 16.04
-          platform: ubuntu-1604
-          requires: [lint, danger]
-      - kitchen/dokken-single:
-          suite: default
-          name: Ubuntu 18.04
-          platform: ubuntu-1804
-          requires: [lint, danger]
+          name: default-centos-6
+          suite: default-centos-6
+          requires:
+            *lint_and_unit

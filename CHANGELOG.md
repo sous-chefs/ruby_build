@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the ruby_build cookbook.
 
+## unreleased
+
+- Fix CircleCI testing, bring it up to Sous-Chefs standards
+- Fix Markdown
+- Fix YAML
+
 ## 1.2.0 (2019-23-01)
 
 - Convert to a custom resource
