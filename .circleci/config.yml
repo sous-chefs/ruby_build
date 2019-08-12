@@ -24,13 +24,13 @@ workflows:
           name: delivery
 
       - kitchen/dokken-single:
-          name: default-ubuntu-18.04
-          suite: default-ubuntu-18.04
+          name: default-ubuntu-1804
+          suite: default-ubuntu-1804
           requires:
             *lint_and_unit
       - kitchen/dokken-single:
-          name: default-ubuntu-16.04
-          suite: default-ubuntu-16.04
+          name: default-ubuntu-1604
+          suite: default-ubuntu-1604
           requires:
             *lint_and_unit
       - kitchen/dokken-single:
