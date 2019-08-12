@@ -24,7 +24,27 @@ workflows:
           name: delivery
 
       - kitchen/dokken-single:
-          name: default
-          suite: default
+          name: default-ubuntu-18.04
+          suite: default-ubuntu-18.04
+          requires:
+            *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-ubuntu-16.04
+          suite: default-ubuntu-16.04
+          requires:
+            *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-debian-9
+          suite: default-debian-9
+          requires:
+            *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-centos-7
+          suite: default-centos-7
+          requires:
+            *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-centos-6
+          suite: default-centos-6
           requires:
             *lint_and_unit
