@@ -2,11 +2,13 @@
 
 This file is used to list changes made in each version of the ruby_build cookbook.
 
-## unreleased
+## UNRELEASED
 
 - Fix CircleCI testing, bring it up to Sous-Chefs standards
 - Fix Markdown
 - Fix YAML
+- Use platform? helper in the attributes file
+- Remove the unnecessary long_description field in metadata.rb
 
 ## 1.2.0 (2019-23-01)
 
