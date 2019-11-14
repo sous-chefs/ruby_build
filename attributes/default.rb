@@ -52,7 +52,7 @@ when 'debian'
     elsif node['platform_version'].to_i >= 10
       %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
           zlib1g-dev libsqlite3-dev libxml2-dev libxslt1-dev
-          libc6-dev libffi-dev libgdbm5 libgdbm-dev )
+          libc6-dev libffi-dev libgdbm6 libgdbm-dev )
     else
       %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
           zlib1g-dev libsqlite3-dev libxml2-dev libxslt1-dev
