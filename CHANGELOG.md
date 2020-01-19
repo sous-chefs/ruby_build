@@ -11,6 +11,7 @@ This file is used to list changes made in each version of the ruby_build cookboo
 - Remove the unnecessary long_description field in metadata.rb
 - Fix libgdbm package name in attributes for debian 10
 - Add debian-10 platform to test kitchen configurations
+- Migrate to github actions
 
 ## 1.2.0 (2019-23-01)
 
