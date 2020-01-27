@@ -8,7 +8,7 @@
 
 ## Description
 
-Manages the [ruby-build][rb_site] framework and its installed Rubies. A lightweight resources and providers (lwrp) is also defined.
+Manages the [ruby-build][rb_site] framework and its installed Rubies, through custom resources.
 
 ## Maintainers
 
@@ -16,20 +16,30 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
 ## Usage
 
-Simply include `recipe[ruby_build]` in your run_list to have ruby-build installed. You will also have access to the `ruby_build_ruby` resource. See the See Resources and Providers section for more details.
+```ruby
+# metadata.rb
+require 'ruby_build'
+```
+
+```ruby
+# default.rb
+ruby_build_install ''
+
+ruby_build_definition '2.6.0'
+```
 
 ## Requirements
 
 ### Chef
 
-- Chef 12.1+
+- Chef 13.10+
 
 ### Platforms
 
 The following platforms have been tested with this cookbook, meaning that the recipes and LWRPs run on these platforms without error:
 
 - ubuntu 12.04+
-- mac_os_x
+- MacOS
 - debian 7+
 - freebsd 9+
 - rhel 6+
@@ -128,8 +138,8 @@ The default is `"/usr/local/ruby"`.
 
 Determines how to handle installing updates to the ruby-build framework. There are currently 2 valid values:
 
-- `"none"`, `false`, or `nil`: will not update ruby-build and leave it in its current state.
-- `"sync"` or `true`: updates ruby-build to the version specified by the `git_ref` attribute or the head of the master branch by default.
+- `"none"`: will not update ruby-build and leave it in its current state.
+- `"sync"`: updates ruby-build to the version specified by the `git_ref` attribute or the head of the master branch by default.
 
 The default is `"none"`.
 
@@ -139,20 +149,20 @@ The default is `"none"`.
 
 #### Actions
 
-Action    | Description                                                                                                                           | Default
---------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------
-install   | Build and install a Ruby from a definition file. See the [ruby-build readme][rb_readme] for more details.                             | Yes
-reinstall | Force a recompiliation of the Ruby from source. The :install action will skip a build if the target install directory already exists. |
+| Action    | Description                                                                                                                           | Default |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| install   | Build and install a Ruby from a definition file. See the [ruby-build readme][rb_readme] for more details.                             | Yes     |
+| reinstall | Force a recompiliation of the Ruby from source. The :install action will skip a build if the target install directory already exists. |
 
 #### Attributes
 
-Attribute   | Description                                                                                                                                                                            | Default Value
------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------
-definition  | **Name attribute:** the name of a [built-in definition][rb_definitions] or the path to a ruby-build definition file.                                                                   | `nil`
-prefix_path | The path to which the Ruby will be installed.                                                                                                                                          | `nil`
-user        | A user which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the user must already exist.   | `nil`
-group       | A group which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the group must already exist. | `nil`
-environment | A Hash of [additional environment variables][rb_environment] such as `CONFIGURE_OPTS` or `RUBY_BUILD_MIRROR_URL`.                                                                      | `nil`
+| Attribute   | Description                                                                                                                                                                            | Default Value |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| definition  | **Name attribute:** the name of a [built-in definition][rb_definitions] or the path to a ruby-build definition file.                                                                   | `nil`         |
+| prefix_path | The path to which the Ruby will be installed.                                                                                                                                          | `nil`         |
+| user        | A user which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the user must already exist.   | `nil`         |
+| group       | A group which will own the installed Ruby. The default value of `nil` denotes a system-wide Ruby (root-owned) is being targeted. **Note:** if specified, the group must already exist. | `nil`         |
+| environment | A Hash of [additional environment variables][rb_environment] such as `CONFIGURE_OPTS` or `RUBY_BUILD_MIRROR_URL`.                                                                      | `nil`         |
 
 #### Examples
 

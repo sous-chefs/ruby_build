@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- Convert to a custom resource
+- Move test from bats to Inspec
+- Add support for Amazon Linux
+- Add support for Ubuntu 18.04
+
 ## [1.3.0] - 2020-03-05
 
 ### Added
@@ -23,11 +30,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix libgdbm package name in attributes for Ubuntu 19
 
 ## [1.2.0] - 2019-01-23
-
-- Convert to a custom resource
-- Move test from bats to Inspec
-- Add support for Amazon Linux
-- Add support for Ubuntu 18.04
+- Add debian-10 platform to test kitchen configurations
+- Migrate to github actions
+- Remove recipes
+- Add ruby_build_install resource
+  It is now possible to specify `jruby_deps` and have jruby dependencies installed.
+- Add ruby_build_definition resource
+- Add unit testing
 
 ## [1.1.0] - 2017-04-07
 
