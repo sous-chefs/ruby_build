@@ -1,7 +1,9 @@
-property :upgrade_strategy, equal_to: %w(checkout sync), default: 'checkout'
-property :git_ref, String, default: 'master'
+property :git_ref, String, default: 'master',
+                           description: 'Git refernce to download, set to a tag to get a specific version'
+
 property :java_version, String,
-         default: lazy { platform_family?('debian') && node['platform_version'].to_f < 9 ? '7' : '8' }
+         default: lazy { platform_family?('debian') && node['platform_version'].to_f < 9 ? '7' : '8' },
+         description: 'JDK version to install'
 
 property :jruby_deps, TrueClass,
          description: 'Set to true to install jruby dependencies'

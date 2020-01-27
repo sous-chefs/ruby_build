@@ -10,10 +10,10 @@ property :environment, String,
          description: 'Environment to pass to the ruby-build install process'
 
 property :user, String,
-         deescription: 'User to install as'
+         description: 'User to install as'
 
 property :group, String,
-         deescription: 'Group to install as'
+         description: 'Group to install as'
 
 action :install do
   if platform_family?('rhel', 'suse', 'debian', 'fedora', 'amazon')
