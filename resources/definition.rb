@@ -29,7 +29,7 @@ action :install do
     user        new_resource.user         if new_resource.user
     group       new_resource.group        if new_resource.group
     environment new_resource.environment  if new_resource.environment
-    not_if      { ::File.exist?("#{new_resource.prefix_path}/new_resource.definition/bin/ruby") }
+    not_if      { ::File.exist?("#{new_resource.prefix_path}/#{new_resource.definition}/bin/ruby") }
     live_stream true
     action :run
   end
