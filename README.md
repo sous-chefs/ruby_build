@@ -15,6 +15,7 @@ Manages the [ruby-build][rb_site] framework and its installed Rubies, through cu
 This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of Chef cookbook maintainers working together to maintain important cookbooks. If you’d like to know more please visit [sous-chefs.org](https://sous-chefs.org/) or come chat with us on the Chef Community Slack in [#sous-chefs](https://chefcommunity.slack.com/messages/C2V7B88SF).
 
 ## Usage
+
 It is for use in standalone mode. If you wish to use ruby-build with rbenv, please use the [rbenv cookbook][rbenv-cookbook].
 
 ## Requirements
@@ -38,70 +39,6 @@ It is for use in standalone mode. If you wish to use ruby-build with rbenv, plea
 
 ## Usage
 
-<<<<<<<
-Depending on the situation and use case there are several ways to install this cookbook. All the methods listed below assume a tagged version release is the target, but omit the tags to get the head of development.
-
-### From Supermarket
-
-To install this cookbook from the Chef Supermarket, use the _knife_ command:
-
-```shell
-knife cookbook site install ruby_build
-```
-
-### Using Berkshelf
-
-[Berkshelf] is a cookbook dependency manager and development workflow assistant. To install Berkshelf:
-
-```shell
-cd chef-repo
-gem install berkshelf
-berks init
-```
-
-To use the Supermarket version:
-
-```ruby
-echo "cookbook 'ruby_build'" >> Berksfile
-berks install
-```
-
-Or to reference the Git version:
-
-```ruby
-repo="chef_rbenv/ruby_build"
-latest_release=$(curl -s https://api.github.com/repos/$repo/git/refs/tags \
-| ruby -rjson -e '
-  j = JSON.parse(STDIN.read);
-  puts j.map { |t| t["ref"].split("/").last }.sort.last
-')
-cat >> Berksfile <<END_OF_BERKSFILE
-cookbook 'ruby_build',
-  :git => 'git://github.com/$repo.git', :branch => '$latest_release'
-END_OF_BERKSFILE
-```
-
-## Recipes
-
-### default
-
-Installs the ruby-build codebase and initializes Chef to use the Lightweight Resources and Providers ([LWRPs][lwrp]).
-
-## Attributes
-
-### git_url
-
-The Git URL which is used to install ruby-build.
-
-The default is `"git://github.com/rbenv/ruby-build.git"`.
-
-### git_ref
-
-A specific Git branch/tag/reference to use when installing ruby-build. For example, to pin ruby-build to a specific release:
-
-=======
-
->>>>>>>
 ```ruby
 # metadata.rb
 require 'ruby_build'
