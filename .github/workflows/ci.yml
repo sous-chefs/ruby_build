@@ -45,6 +45,7 @@ jobs:
           - 'centos-7'
           - 'ubuntu-1604'
           - 'ubuntu-1804'
+          - 'ubuntu-1910'
         suite:
           - 'default'
       fail-fast: false

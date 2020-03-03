@@ -10,6 +10,7 @@ This file is used to list changes made in each version of the ruby_build cookboo
 - Use platform? helper in the attributes file
 - Remove the unnecessary long_description field in metadata.rb
 - Fix libgdbm package name in attributes for debian 10
+- Fix libgdbm package name in attributes for Ubuntu 19
 - Add debian-10 platform to test kitchen configurations
 - Migrate to github actions
 
