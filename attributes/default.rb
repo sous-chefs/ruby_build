@@ -45,7 +45,11 @@ when 'rhel', 'fedora', 'amazon'
 when 'debian'
   default['ruby_build']['install_pkgs'] = %w( tar bash curl )
   default['ruby_build']['install_pkgs_cruby'] =
-    if platform?('ubuntu') && node['platform_version'] == '16.04'
+    if platform?('ubuntu') && node['platform_version'].to_i >= 19
+      %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
+          zlib1g-dev libsqlite3-dev libxml2-dev libxslt1-dev
+          libc6-dev libffi-dev libgdbm6 libgdbm-dev )
+    elsif platform?('ubuntu') && node['platform_version'] == '16.04'
       %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
           zlib1g-dev libsqlite3-dev libxml2-dev libxslt1-dev
           libc6-dev libffi-dev libgdbm3 libgdbm-dev )
