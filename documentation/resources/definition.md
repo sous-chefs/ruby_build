@@ -6,11 +6,11 @@ Install a Ruby Definition (Ruby version)
 
 | Property      | Ruby Type | Default           | Description                                           |
 | ------------- | --------- | ----------------- | ----------------------------------------------------- |
-| `definition`  | String    | `n/a`             | Version of Ruby to install                            |
+| `definition`  | String    |                   | Version of Ruby to install                            |
 | `prefix_path` | String    | `/usr/local/ruby` | Location to install Ruby                              |
-| `environment` | String    | `Nil`             | Environment to pass to the ruby-build install process |
-| `user`        | String    | `Nil`             | User to install as                                    |
-| `group`       | String    | `Nil`             | Group to install as                                   |
+| `environment` | String    |                   | Environment to pass to the ruby-build install process |
+| `user`        | String    |                   | User to install as                                    |
+| `group`       | String    |                   | Group to install as                                   |
 
 ## Example Usage
 

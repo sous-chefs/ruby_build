@@ -22,7 +22,7 @@ It is for use in standalone mode. If you wish to use ruby-build with rbenv, plea
 
 ### Chef
 
-- Chef 13.10+
+- Chef 15+
 
 ### Supported Platforms
 
@@ -31,11 +31,6 @@ It is for use in standalone mode. If you wish to use ruby-build with rbenv, plea
 - debian 8+
 - FreeBSD 9+
 - RedHat 6+
-
-### Cookbooks
-
-- Java
-  The java cookbook is included to make JRuby install convenient.
 
 ## Usage
 
@@ -51,10 +46,10 @@ ruby_build_install ''
 ruby_build_definition '2.6.0'
 ```
 
-## Custom Resources
+## Resources
 
-- [ruby_build_install](documentation/resources/install.md)
-- [ruby_build_definition](documentation/resources/definition.md)
+- [ruby_build_install](https://github.com/sous-chefs/ruby_build/blob/master/documentation/resources/install.md)
+- [ruby_build_definition](https://github.com/sous-chefs/ruby_build/blob/master/documentation/resources/definition.md)
 
 ## License and Author
 

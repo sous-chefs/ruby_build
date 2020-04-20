@@ -1,21 +1,23 @@
 property :definition, String,
-         name_property: true,
-         description: 'Version of Ruby to install'
+  name_property: true,
+  description: 'Version of Ruby to install'
 
 property :prefix_path, String,
-         default: '/usr/local/ruby',
-         description: 'Location to install Ruby'
+  default: '/usr/local/ruby',
+  description: 'Location to install Ruby'
 
 property :environment, String,
-         description: 'Environment to pass to the ruby-build install process'
+  description: 'Environment to pass to the ruby-build install process'
 
 property :user, String,
-         description: 'User to install as'
+  description: 'User to install as'
 
 property :group, String,
-         description: 'Group to install as'
+  description: 'Group to install as'
 
 action :install do
+  Chef::Log.fatal 'JRuby is not a supported definition' if new_resource.definition.include? 'jruby'
+
   if platform_family?('rhel', 'suse', 'debian', 'fedora', 'amazon')
     package package_deps(new_resource.definition)
   else
