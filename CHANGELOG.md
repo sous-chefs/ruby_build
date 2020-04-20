@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix libgdbm package name in attributes for Ubuntu 19
 
 ## [1.2.0] - 2019-01-23
+
 - Add debian-10 platform to test kitchen configurations
 - Migrate to github actions
 - Remove recipes

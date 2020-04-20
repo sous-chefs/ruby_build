@@ -28,8 +28,5 @@ action :install do
     notifies :run, 'execute[Install ruby-build]', :immediately
   end
 
-  if new_resource.jruby_deps
-    node.default['java']['jdk_version'] = new_resource.java_version
-    include_recipe 'java'
-  end
+  openjdk_install new_resource.java_version if new_resource.jruby_deps
 end
