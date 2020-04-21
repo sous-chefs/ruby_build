@@ -17,7 +17,6 @@ action :install do
   execute 'Install ruby-build' do
     cwd       src_path
     command   %(./install.sh)
-    action    :nothing
     not_if    { ::File.exist?('/usr/local/bin/ruby-build') }
   end
 end

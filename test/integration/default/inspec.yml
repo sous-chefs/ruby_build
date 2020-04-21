@@ -1,0 +1,7 @@
+---
+name: ruby_build
+title: Ruby -uild tests
+license: Public domain
+copyright: None
+summary: Verify installation of ruby-build
+version: 0.0.1
