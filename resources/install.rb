@@ -6,9 +6,11 @@ action :install do
   src_path = "#{Chef::Config['file_cache_path']}/ruby-build"
 
   if platform_family?('rhel')
-    node.default['yum']['powertools']['enabled'] = true # if node['platform_version'] == '8'
+    if node['platform_version'] == '8'
+      node.default['yum']['powertools']['enabled'] = true
+      include_recipe 'yum-centos'
+    end
     include_recipe 'yum-epel'
-    include_recipe 'yum-centos'
   end
 
   package %w( tar bash curl git ) unless platform_family?('mac_os_x', 'freebsd')
