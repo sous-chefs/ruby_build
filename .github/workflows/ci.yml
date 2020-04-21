@@ -4,8 +4,7 @@ name: ci
 'on':
   pull_request:
   push:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   delivery:
@@ -40,12 +39,12 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'debian-10'
-          - 'debian-9'
           - 'centos-7'
-          - 'ubuntu-1604'
+          - 'centos-8'
+          - 'debian-9'
+          - 'debian-10'
           - 'ubuntu-1804'
-          - 'ubuntu-1910'
+          - 'ubuntu-2004'
         suite:
           - 'default'
       fail-fast: false
