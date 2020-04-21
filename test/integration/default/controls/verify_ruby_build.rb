@@ -18,15 +18,16 @@ control 'ruby-build binary should work' do
   end
 end
 
+def gem_install_cmd(_ruby_dir)
+  # Install a popular gem with native extensions that doesnt take so long that
+  # builds timeout (as is the case with nokogiri).
+  '/usr/local/ruby/2.6.0/bin/gem install ffi --no-document'
+end
+
 control 'Install a Ruby gem' do
   impact 1.0
   title 'Verify gem install works'
   desc 'Verify gem install works, and the gem works after installation'
-  def gem_install_cmd(_ruby_dir)
-    # Install a popular gem with native extensions that doesnt take so long that
-    # builds timeout (as is the case with nokogiri).
-    '/usr/local/ruby/2.6.0/bin/gem install ffi --no-document'
-  end
 
   describe directory(ruby_dir) do
     it { should be_directory }
