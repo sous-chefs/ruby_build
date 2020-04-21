@@ -18,7 +18,7 @@ control 'ruby-build binary should work' do
   end
 end
 
-def gem_install_cmd(_ruby_dir)
+def gem_install_cmd
   # Install a popular gem with native extensions that doesnt take so long that
   # builds timeout (as is the case with nokogiri).
   '/usr/local/ruby/2.6.0/bin/gem install ffi --no-document'
@@ -29,11 +29,7 @@ control 'Install a Ruby gem' do
   title 'Verify gem install works'
   desc 'Verify gem install works, and the gem works after installation'
 
-  describe directory(ruby_dir) do
-    it { should be_directory }
-  end
-
-  describe command(gem_install_cmd(ruby_dir)) do
+  describe command(gem_install_cmd) do
     its('exit_status') { should eq 0 }
   end
 end
