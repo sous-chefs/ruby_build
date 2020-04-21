@@ -6,10 +6,9 @@ action :install do
   src_path = "#{Chef::Config['file_cache_path']}/ruby-build"
 
   if platform_family?('rhel')
-    if node['platform_version'] == '8'
-      node.default['yum']['powertools']['enabled'] = true
-      include_recipe 'yum-centos'
-    end
+    node.override['yum']['powertools']['enabled'] = true
+    node.override['yum']['powertools']['managed'] = true
+    include_recipe 'yum-centos'
     include_recipe 'yum-epel'
   end
 
