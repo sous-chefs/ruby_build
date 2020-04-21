@@ -5,8 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.4.0 (2020-04-XXXXXXX)
+## 1.4.0 (2020-04-21)
 
+- Remove support for JRuby, it requires an out of support Java version
 - Convert to a custom resource
 - Move test from bats to Inspec
 - Add support for Amazon Linux

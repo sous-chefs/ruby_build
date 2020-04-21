@@ -1,17 +1,6 @@
 class Chef
   module Rbenv
     module PackageDeps
-      def jruby_package_deps
-        case node['platform_family']
-        when 'debian'
-          %w( make g++ )
-        when 'freebsd'
-          %w( alsa-lib bash dejavu expat fixesproto fontconfig freetype2 gettext-runtime giflib indexinfo inputproto java-zoneinfo javavmwrapper kbproto libICE libSM libX11 libXau libXdmcp libXext libXfixes libXi libXrender libXt libXtst libfontenc libpthread-stubs libxcb libxml2 mkfontdir mkfontscale openjdk8 recordproto renderproto xextproto xproto )
-        else
-          %w( make gcc-c++ )
-        end
-      end
-
       def cruby_package_deps
         case node['platform_family']
         when 'rhel', 'fedora', 'amazon'
@@ -38,24 +27,8 @@ class Chef
         end
       end
 
-      def rbx_package_deps
-        case node['platform_family']
-        when 'rhel', 'fedora', 'amazon'
-          %w( ncurses-devel llvm-static llvm-devel ) + cruby_package_deps
-        when 'suse'
-          %w( ncurses-devel ) + cruby_package_deps
-        end
-      end
-
-      def package_deps(definition)
-        case ::File.basename(definition)
-        when /^\d\.\d\.\d/, /^ree-/
-          cruby_package_deps
-        when /^rbx-/
-          rbx_package_deps
-        when /^jruby-/
-          jruby_package_deps
-        end
+      def package_deps
+        cruby_package_deps
       end
     end
   end

@@ -6,7 +6,7 @@ description       'Manages the ruby-build framework and its installed rubies. A 
 source_url        'https://github.com/sous-chefs/ruby_build'
 issues_url        'https://github.com/sous-chefs/ruby_build/issues'
 chef_version      '>= 15.0'
-version           '1.3.0'
+version           '1.4.0'
 
 supports 'ubuntu'
 supports 'debian'
@@ -23,4 +23,3 @@ supports 'mac_os_x'
 
 depends 'yum-epel'
 depends 'yum-centos'
-depends 'java', '> 7'
