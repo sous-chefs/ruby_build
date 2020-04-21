@@ -22,4 +22,5 @@ supports 'opensuseleap'
 supports 'mac_os_x'
 
 depends 'yum-epel'
+depends 'yum-centos'
 depends 'java', '> 7'

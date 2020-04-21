@@ -5,7 +5,11 @@ property :git_ref, String,
 action :install do
   src_path = "#{Chef::Config['file_cache_path']}/ruby-build"
 
-  include_recipe 'yum-epel' if platform_family?('rhel')
+  if platform_family?('rhel')
+    node.default['yum']['powertools']['enabled'] = true # if node['platform_version'] == '8'
+    include_recipe 'yum-epel'
+    include_recipe 'yum-centos'
+  end
 
   package %w( tar bash curl git ) unless platform_family?('mac_os_x', 'freebsd')
 
