@@ -1,5 +1,10 @@
 class Chef
   module Rbenv
+    module MacOs
+      def openssl_prefix
+        `/usr/local/bin/brew --prefix openssl`.strip!
+      end
+    end
     module PackageDeps
       def cruby_package_deps
         case node['platform_family']
@@ -24,6 +29,8 @@ class Chef
           end
         when 'suse'
           %w( gcc make automake gdbm-devel libyaml-devel ncurses-devel readline-devel zlib-devel libopenssl-devel )
+        when 'mac_os_x'
+          %w( openssl readline )
         end
       end
 

@@ -1,3 +1,5 @@
+include Chef::Rbenv::MacOs
+
 property :definition, String,
   name_property: true,
   description: 'Version of Ruby to install'
@@ -15,8 +17,13 @@ property :user, String,
 property :group, String,
   description: 'Group to install as'
 
+unified_mode true
+
 action :install do
   Chef::Log.fatal 'JRuby is not a supported definition' if new_resource.definition.include? 'jruby'
+
+  apt_update ''
+  homebrew_update ''
 
   if platform_family?('mac_os_x') && Chef::VERSION < '16'
     Array(package_deps).each do |pkg|
@@ -28,10 +35,11 @@ action :install do
 
   bash "ruby-build [#{new_resource.definition}]" do
     code %(/usr/local/bin/ruby-build "#{new_resource.definition}" "#{new_resource.prefix_path}/#{new_resource.definition}")
-    user        new_resource.user         if new_resource.user
-    group       new_resource.group        if new_resource.group
-    environment new_resource.environment  if new_resource.environment
-    not_if      { ::File.exist?("#{new_resource.prefix_path}/#{new_resource.definition}/bin/ruby") }
+    environment RUBY_CONFIGURE_OPTS: "--with-openssl-dir=#{openssl_prefix}"
+    user new_resource.user
+    group new_resource.group
+    environment new_resource.environment
+    not_if { ::File.exist?("#{new_resource.prefix_path}/#{new_resource.definition}/bin/ruby") }
     live_stream true
     action :run
   end
@@ -39,4 +47,5 @@ end
 
 action_class do
   include Chef::Rbenv::PackageDeps
+  include Chef::Rbenv::MacOs
 end

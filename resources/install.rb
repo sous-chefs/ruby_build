@@ -2,6 +2,8 @@ property :git_ref, String,
   default: 'master',
   description: 'Git reference to download, set to a tag to get a specific version'
 
+unified_mode true
+
 action :install do
   src_path = "#{Chef::Config['file_cache_path']}/ruby-build"
 

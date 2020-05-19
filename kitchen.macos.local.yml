@@ -1,7 +1,7 @@
 ---
 provisioner:
   name: chef_zero
-  install_strategy: always
+  install_strategy: once
   channel: current
   sudo: true
 

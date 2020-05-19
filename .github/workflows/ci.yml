@@ -80,7 +80,7 @@ jobs:
         with:
           suite: default
           os: macos
-          action: verify
+          action: test
 
   final:
     needs: [dokken, macos]
