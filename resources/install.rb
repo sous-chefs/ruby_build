@@ -15,13 +15,13 @@ action :install do
   package %w( tar bash curl git ) unless platform_family?('mac_os_x', 'freebsd')
 
   git src_path do
-    repository  'https://github.com/rbenv/ruby-build.git'
-    reference   new_resource.git_ref
+    repository 'https://github.com/rbenv/ruby-build.git'
+    revision new_resource.git_ref unless new_resource.git_ref == 'master'
   end
 
   execute 'Install ruby-build' do
-    cwd       src_path
-    command   %(./install.sh)
-    not_if    { ::File.exist?('/usr/local/bin/ruby-build') }
+    cwd src_path
+    command %(./install.sh)
+    not_if { ::File.exist?('/usr/local/bin/ruby-build') }
   end
 end

@@ -18,12 +18,12 @@ property :group, String,
 action :install do
   Chef::Log.fatal 'JRuby is not a supported definition' if new_resource.definition.include? 'jruby'
 
-  if platform_family?('rhel', 'suse', 'debian', 'fedora', 'amazon')
-    package package_deps(new_resource.definition)
-  else
-    Array(package_deps(new_resource.definition)).each do |pkg|
+  if platform_family?('mac_os_x') && Chef::VERSION < '16'
+    Array(package_deps).each do |pkg|
       package pkg
     end
+  else
+    package package_deps
   end
 
   bash "ruby-build [#{new_resource.definition}]" do

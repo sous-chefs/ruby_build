@@ -26,4 +26,8 @@ control 'Install a Ruby gem' do
   describe command('/usr/local/ruby/2.6.0/bin/gem install ffi --no-document') do
     its('exit_status') { should eq 0 }
   end
+  
+  describe command('/usr/local/ruby/2.6.0/bin/gem env') do
+    its('exit_status') { should eq 0 }
+  end
 end
