@@ -5,7 +5,7 @@ provides :homebrew_update
 description "Use the **homebrew_update** resource to manage Homebrew repository updates on MacOS."
 introduced "16.2"
 examples <<~DOC
-  **Update the Apt repository at a specified interval**:
+  **Update the hombrew repository data at a specified interval**:
   ```ruby
   homebrew_update 'all platforms' do
     frequency 86400
