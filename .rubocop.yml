@@ -2,3 +2,5 @@
 AllCops:
   Exclude:
     - 'Dangerfile'
+    - 'resources/homebrew_update.rb'
+    # This will be moved into Chef Infra Core so I want to preserve the quotes

@@ -18,12 +18,24 @@ control 'ruby-build binary should work' do
   end
 end
 
+gem_cmd = if os.darwin?
+            'sudo /usr/local/ruby/2.6.0/bin/gem install ffi --no-document'
+          else
+            '/usr/local/ruby/2.6.0/bin/gem install ffi --no-document'
+          end
+
 control 'Install a Ruby gem' do
   impact 1.0
   title 'Verify gem install works'
   desc 'Verify gem install works, and the gem works after installation'
 
-  describe command('/usr/local/ruby/2.6.0/bin/gem install ffi --no-document') do
+  describe command(gem_cmd) do
     its('exit_status') { should eq 0 }
+    its('stdout') { should match /Successfully installed ffi/ }
+  end
+
+  describe command('/usr/local/ruby/2.6.0/bin/gem env') do
+    its('exit_status') { should eq 0 }
+    its('stdout') { should match %r{gems/2.6.0} }
   end
 end
