@@ -1,6 +1,6 @@
 unified_mode true
 
-provides(:homebrew_update) { true }
+provides :homebrew_update
 
 description "Use the **homebrew_update** resource to manage Homebrew repository updates on MacOS."
 introduced "16.2"
@@ -29,26 +29,24 @@ default_action :periodic
 allowed_actions :update, :periodic
 
 action_class do
-  BREW_CONF_DIR = "/etc/brew/brew.conf.d".freeze
-  STAMP_DIR = "/var/lib/homebrew/periodic".freeze
+  BREW_STAMP_DIR = "/var/lib/homebrew/periodic".freeze
+  BREW_STAMP = "#{BREW_STAMP_DIR}/update-success-stamp".freeze
 
   # Determines whether we need to run `homebrew update`
   #
   # @return [Boolean]
   def brew_up_to_date?
-    ::File.exist?("#{STAMP_DIR}/update-success-stamp") &&
-      ::File.mtime("#{STAMP_DIR}/update-success-stamp") > Time.now - new_resource.frequency
+    ::File.exist?("#{BREW_STAMP}") &&
+      ::File.mtime("#{BREW_STAMP}") > Time.now - new_resource.frequency
   end
 
   def do_update
-    [STAMP_DIR, BREW_CONF_DIR].each do |d|
-      directory d do
-        recursive true
-      end
+    directory BREW_STAMP_DIR do
+      recursive true
     end
 
-    file "#{BREW_CONF_DIR}/15update-stamp" do
-      content "BREW::Update::Post-Invoke-Success {\"touch #{STAMP_DIR}/update-success-stamp 2>/dev/null || true\";};\n"
+    file "#{BREW_STAMP}" do
+      content "BREW::Update::Post-Invoke-Success\n"
       action :create_if_missing
     end
 
@@ -56,6 +54,7 @@ action_class do
       command [ "brew", "update" ]
       default_env true
       user Homebrew.owner
+      notifies :touch, "file[#{BREW_STAMP}]", :immediately
     end
   end
 end

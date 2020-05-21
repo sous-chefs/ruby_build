@@ -1,3 +1,5 @@
+property :name, String, default: ''
+
 property :git_ref, String,
   default: 'master',
   description: 'Git reference to download, set to a tag to get a specific version'
