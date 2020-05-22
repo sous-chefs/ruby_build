@@ -54,7 +54,7 @@ action_class do
       command [ "brew", "update" ]
       default_env true
       user Homebrew.owner
-      notifies :touch, "file[BREW_STAMP]", :immediately
+      notifies :touch, "file[#{BREW_STAMP}]", :immediately
     end
   end
 end
