@@ -19,7 +19,7 @@ Install a Ruby Definition (Ruby version)
 ```ruby
 ruby_build_install ''
 
-ruby_build_ruby "ree-1.8.7-2012.02" do
+ruby_build_definition "ree-1.8.7-2012.02" do
   environment({ 'CONFIGURE_OPTS' => '--no-tcmalloc' })
 end
 ```
@@ -27,7 +27,7 @@ end
 ### Install A Ruby For A User
 
 ```ruby
-ruby_build_ruby "maglev-1.0.0" do
+ruby_build_definition "maglev-1.0.0" do
   prefix_path "/home/deploy/.rubies/maglev-1.0.0"
   user        "deploy"
   group       "deploy"
