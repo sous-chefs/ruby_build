@@ -22,7 +22,6 @@ property :version_prefix, [true, false],
   description: 'add Ruby version to the installation prefix'
 
 property :patch, [String, nil],
-  default: nil,
   description: 'path to a Ruby patch file for ruby-build to use'
 
 property :environment, Hash,
