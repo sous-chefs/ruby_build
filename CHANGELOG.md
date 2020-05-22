@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix switching to master when we're already on master
 - Add MacOS testing
 
+## 2.0.1 (2020-05-21)
+
+- fix broken environment property (needs a Hash, was set to String)
+- update documentation pages with new custom resource name ruby_build_definition
+- make the automatic addition of the Ruby version to the prefix an option
+- allow users to use the old ruby_build_ruby resource name, for compatibility
+- do not assume that users are running Chef 15.3.x and can use unified_mode
+- add requested feature: patch
+
 ## 2.0.0 (2020-04-21)
 
 - Remove support for JRuby, it requires an out of support Java version

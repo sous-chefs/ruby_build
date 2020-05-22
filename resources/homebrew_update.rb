@@ -1,4 +1,4 @@
-unified_mode true
+unified_mode true if respond_to? :unified_mode
 
 provides :homebrew_update
 
@@ -36,8 +36,8 @@ action_class do
   #
   # @return [Boolean]
   def brew_up_to_date?
-    ::File.exist?("#{BREW_STAMP}") &&
-      ::File.mtime("#{BREW_STAMP}") > Time.now - new_resource.frequency
+    ::File.exist?(BREW_STAMP) &&
+      ::File.mtime(BREW_STAMP) > Time.now - new_resource.frequency
   end
 
   def do_update
@@ -45,7 +45,7 @@ action_class do
       recursive true
     end
 
-    file "#{BREW_STAMP}" do
+    file BREW_STAMP do
       content "BREW::Update::Post-Invoke-Success\n"
       action :create_if_missing
     end
@@ -54,7 +54,7 @@ action_class do
       command [ "brew", "update" ]
       default_env true
       user Homebrew.owner
-      notifies :touch, "file[#{BREW_STAMP}]", :immediately
+      notifies :touch, "file[BREW_STAMP]", :immediately
     end
   end
 end

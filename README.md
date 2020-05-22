@@ -1,4 +1,4 @@
-# ruby-build Chef Cookbook
+e ruby-build Chef Cookbook
 
 [![Cookbook Version](https://img.shields.io/cookbook/v/ruby_build.svg)](https://supermarket.chef.io/cookbooks/ruby_build)
 [![Build Status](https://img.shields.io/circleci/project/github/sous-chefs/ruby_build/master.svg)](https://circleci.com/gh/sous-chefs/ruby_build)
@@ -36,7 +36,7 @@ It is for use in standalone mode. If you wish to use ruby-build with rbenv, plea
 
 ```ruby
 # metadata.rb
-require 'ruby_build'
+depends 'ruby_build'
 ```
 
 ```ruby
@@ -44,6 +44,12 @@ require 'ruby_build'
 ruby_build_install ''
 
 ruby_build_definition '2.6.0'
+
+# build 2.6.0 with a patch that lives in your cookbook's files/default dir
+ruby_build_definition '2.6.0' do
+  patch 'foobar.patch'
+end
+
 ```
 
 ## Resources
