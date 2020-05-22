@@ -73,7 +73,7 @@ action :install do
 
     cookbook_file patch_path do
       source new_resource.patch
-    end.run_action(:create)
+    end
   end
 
   bash "ruby-build #{new_resource.definition}" do
