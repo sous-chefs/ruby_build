@@ -8,7 +8,7 @@ class Chef
     module PackageDeps
       def cruby_package_deps
         case node['platform_family']
-        when 'rhel', 'fedora', 'amazon', 'oracle'
+        when 'rhel', 'fedora', 'amazon'
           %w( gcc bzip2 openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel make patch )
         when 'debian'
           case node['platform']
