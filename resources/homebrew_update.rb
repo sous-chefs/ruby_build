@@ -2,8 +2,8 @@ unified_mode true if respond_to? :unified_mode
 
 provides :homebrew_update
 
-description "Use the **homebrew_update** resource to manage Homebrew repository updates on MacOS."
-introduced "16.2"
+description 'Use the **homebrew_update** resource to manage Homebrew repository updates on MacOS.'
+introduced '16.2'
 examples <<~DOC
   **Update the hombrew repository data at a specified interval**:
   ```ruby
@@ -19,17 +19,16 @@ examples <<~DOC
 DOC
 
 # allow bare homebrew_update with no name
-property :name, String, default: ""
+property :name, String, default: ''
 
 property :frequency, Integer,
-  description: "Determines how frequently (in seconds) Homebrew updates are made. Use this property when the `:periodic` action is specified.",
+  description: 'Determines how frequently (in seconds) Homebrew updates are made. Use this property when the `:periodic` action is specified.',
   default: 86_400
 
 default_action :periodic
-allowed_actions :update, :periodic
 
 action_class do
-  BREW_STAMP_DIR = "/var/lib/homebrew/periodic".freeze
+  BREW_STAMP_DIR = '/var/lib/homebrew/periodic'.freeze
   BREW_STAMP = "#{BREW_STAMP_DIR}/update-success-stamp".freeze
 
   # Determines whether we need to run `homebrew update`
@@ -50,8 +49,8 @@ action_class do
       action :create_if_missing
     end
 
-    execute "brew update" do
-      command [ "brew", "update" ]
+    execute 'brew update' do
+      command %w(brew update)
       default_env true
       user Homebrew.owner
       notifies :touch, "file[#{BREW_STAMP}]", :immediately
@@ -63,7 +62,7 @@ action :periodic do
   return unless mac_os_x?
 
   unless brew_up_to_date?
-    converge_by "update new lists of packages" do
+    converge_by 'update new lists of packages' do
       do_update
     end
   end
@@ -72,7 +71,7 @@ end
 action :update do
   return unless mac_os_x?
 
-  converge_by "force update new lists of packages" do
+  converge_by 'force update new lists of packages' do
     do_update
   end
 end
