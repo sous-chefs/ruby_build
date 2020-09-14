@@ -3,7 +3,7 @@ require 'spec_helper'
 describe '#cruby_package_deps' do
   context 'CentOS' do
     recipe do
-      Chef::Recipe.include(Chef::Rbenv::PackageDeps)
+      Chef::DSL::Recipe.include(Chef::Rbenv::PackageDeps)
 
       log cruby_package_deps
     end
