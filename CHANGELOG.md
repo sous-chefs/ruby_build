@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- resolved cookstyle error: spec/libraries/cruby_spec.rb:6:7 refactor: `ChefCorrectness/IncorrectLibraryInjection`
 - Cookstyle Bot Auto Corrections with Cookstyle 6.16.8
 
 ## 2.1.0 (2020-06-17)
