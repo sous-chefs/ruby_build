@@ -5,6 +5,7 @@ class Chef
         `/usr/local/bin/brew --prefix openssl`.strip!
       end
     end
+
     module PackageDeps
       def cruby_package_deps
         case node['platform_family']
