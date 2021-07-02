@@ -81,7 +81,7 @@ action :install do
     environment env
     user new_resource.user
     group new_resource.group
-    not_if { ::File.exist?(installation_path) }
+    not_if { ::File.exist?("#{installation_path}/bin") }
     live_stream true
     action :run
   end
