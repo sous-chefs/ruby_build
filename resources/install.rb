@@ -21,6 +21,8 @@ action :install do
   git src_path do
     repository 'https://github.com/rbenv/ruby-build.git'
     revision new_resource.git_ref unless new_resource.git_ref == 'master'
+    retries 5
+    retry_delay 5
   end
 
   execute 'Install ruby-build' do
