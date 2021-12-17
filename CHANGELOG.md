@@ -10,7 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - support Chef temporary directory being located on a volume mounted `noexec`
 - support Ruby installation directory being created ahead of time
 
+## 2.1.5 - *2021-11-22*
+
+- Retry when cloning the ruby-build code repository
+
+## 2.1.4 - *2021-08-30*
+
+- Standardise files with files in sous-chefs/repo-management
+
 ## 2.1.3 - *2021-06-01*
+
+- Standardise files with files in sous-chefs/repo-management
 
 ## 2.1.2 - *2020-12-02*
 
