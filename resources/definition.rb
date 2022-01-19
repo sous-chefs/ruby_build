@@ -1,9 +1,8 @@
 include Chef::Rbenv::MacOs
+unified_mode true
 
-# for compatibility with earlier incarnations
-# of this resource
-#
 provides :ruby_build_ruby
+provides :ruby_build_definition
 
 property :definition, String,
   name_property: true,
@@ -33,8 +32,6 @@ property :user, String,
 
 property :group, String,
   description: 'Group to install as'
-
-unified_mode true if respond_to? :unified_mode
 
 action :install do
   Chef::Log.fatal('JRuby is not a supported definition') \
