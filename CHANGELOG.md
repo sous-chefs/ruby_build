@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- Require Chef 15.3+
+  - Require unified_mode is always enabled for Chef 17 support
+  - Remove the homebrew resource
+
 ## 2.2.0 - *2021-12-27*
 
 - support Chef temporary directory being located on a volume mounted `noexec`
