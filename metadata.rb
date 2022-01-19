@@ -5,7 +5,7 @@ license           'Apache-2.0'
 description       'Manages the ruby-build framework and its installed rubies. A LWRP is also defined.'
 source_url        'https://github.com/sous-chefs/ruby_build'
 issues_url        'https://github.com/sous-chefs/ruby_build/issues'
-chef_version      '>= 15.0'
+chef_version      '>= 15.3'
 version           '2.2.0'
 
 supports 'ubuntu'
@@ -23,4 +23,3 @@ supports 'mac_os_x'
 
 depends 'yum-epel'
 depends 'yum-centos'
-depends 'homebrew'
