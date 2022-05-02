@@ -20,6 +20,7 @@ platforms:
   - name: debian-10
   - name: ubuntu-18.04
   - name: ubuntu-20.04
+  - name: ubuntu-22.04
 
 suites:
   - name: default

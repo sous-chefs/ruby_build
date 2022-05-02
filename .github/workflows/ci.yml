@@ -22,6 +22,7 @@ jobs:
           - 'debian-10'
           - 'ubuntu-1804'
           - 'ubuntu-2004'
+          - 'ubuntu-2204'
         suite:
           - 'default'
       fail-fast: false
