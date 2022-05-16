@@ -9,10 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add `verbose` option
 - Remove Delivery and move to calling RSpec directly via a reusable workflow
+- Use reusable workflows
 
 ## 2.2.3 - *2022-05-16*
 
-Standardise files with files in sous-chefs/repo-management
+- Standardise files with files in sous-chefs/repo-management
 
 ## 2.2.2 - *2022-02-10*
 
