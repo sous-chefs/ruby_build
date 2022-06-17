@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- Add `verbose` option
+
 ## 2.2.3 - *2022-05-16*
 
 Standardise files with files in sous-chefs/repo-management
