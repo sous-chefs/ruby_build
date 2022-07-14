@@ -7,10 +7,11 @@ Install a Ruby Definition (Ruby version)
 | Property      | Ruby Type | Default           | Description                                           |
 | ------------- | --------- | ----------------- | ----------------------------------------------------- |
 | `definition`  | String    |                   | Version of Ruby to install                            |
-| `prefix_path` | String    | `/usr/local/ruby` | Location to install Ruby                              |
 | `environment` | String    |                   | Environment to pass to the ruby-build install process |
-| `user`        | String    |                   | User to install as                                    |
 | `group`       | String    |                   | Group to install as                                   |
+| `prefix_path` | String    | `/usr/local/ruby` | Location to install Ruby                              |
+| `user`        | String    |                   | User to install as                                    |
+| `verbose`     | Boolean   | `false`           | Print compilation status to stdout                    |
 
 ## Example Usage
 

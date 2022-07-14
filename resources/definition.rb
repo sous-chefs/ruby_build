@@ -13,6 +13,10 @@ property :prefix_path, String,
   default: '/usr/local/ruby',
   description: 'Location to install Ruby'
 
+property :verbose, [true, false],
+  default: false,
+  description: 'print compilation status to stdout'
+
 # NOTE: adding the Ruby version to the installation prefix
 # by default is unexpected and will likely lead to user
 # problems. Now defaults to false.
@@ -66,6 +70,8 @@ action :install do
     new_resource.definition,
     installation_path,
   ].join(' ')
+
+  ruby_build_cmd += ' --verbose' if new_resource.verbose
 
   if new_resource.patch
     patch_path = "#{Chef::Config[:file_cache_path]}/#{new_resource.patch}"
