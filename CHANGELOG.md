@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `verbose` option
 - Remove Delivery and move to calling RSpec directly via a reusable workflow
 - Use reusable workflows
+- Update test build to use Ruby 3.0.4
+- Add Alma Linux & Rocky Linux / Replace CentOS 8 with CentOS Stream 8
+- Standardize kitchen.dokken.yml
+- Add support for Ubuntu 22.04
+- Remove use of yum-centos and replace with use of yum-config-manager to make it easier to work with Alma/Rocky
 
 ## 2.2.3 - *2022-05-16*
 

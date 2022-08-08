@@ -22,12 +22,15 @@ jobs:
     strategy:
       matrix:
         os:
+          - 'almalinux-8'
           - 'centos-7'
-          - 'centos-8'
-          - 'debian-9'
+          - 'centos-stream-8'
           - 'debian-10'
+          - 'debian-11'
+          - 'rockylinux-8'
           - 'ubuntu-1804'
           - 'ubuntu-2004'
+          - 'ubuntu-2204'
         suite:
           - 'default'
       fail-fast: false
