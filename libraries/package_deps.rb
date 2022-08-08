@@ -2,7 +2,7 @@ class Chef
   module Rbenv
     module MacOs
       def openssl_prefix
-        `/usr/local/bin/brew --prefix openssl`.strip!
+        `/usr/local/bin/brew --prefix openssl@1.1`.strip!
       end
     end
 
@@ -33,7 +33,7 @@ class Chef
         when 'suse'
           %w( gcc make automake gdbm-devel libyaml-devel ncurses-devel readline-devel zlib-devel libopenssl-devel patch )
         when 'mac_os_x'
-          %w( openssl readline )
+          %w( openssl@1.1 readline )
         end
       end
 
