@@ -3,23 +3,26 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_infra
   product_name: chef
-  enforce_idempotency: true
+  chef_license: accept-no-persist
   multiple_converge: 2
-  solo_rb:
-    treat_deprecation_warnings_as_errors: true
+  enforce_idempotency: true
+  deprecations_as_errors: true
 
 verifier:
   name: inspec
 
 platforms:
+  - name: almalinux-8
   - name: centos-7
-  - name: centos-8
-  - name: debian-9
+  - name: centos-stream-8
   - name: debian-10
+  - name: debian-11
+  - name: rockylinux-8
   - name: ubuntu-18.04
   - name: ubuntu-20.04
+  - name: ubuntu-22.04
 
 suites:
   - name: default
