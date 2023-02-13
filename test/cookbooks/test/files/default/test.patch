@@ -1,11 +1,10 @@
-diff -ur ruby-2.6.6.orig/NEWS ruby-2.6.6/NEWS
---- a/NEWS	2020-03-31 04:23:13.000000000 -0700
-+++ b/NEWS	2020-05-21 18:05:23.000000000 -0700
+diff -ur a/NEWS.md b/NEWS.md
+--- a/NEWS.md	2022-04-12 04:48:55.000000000 -0700
++++ b/NEWS.md	2022-08-07 19:19:49.013462652 -0700
 @@ -1,5 +1,7 @@
- # -*- rdoc -*-
-
-+= FOO BAR BAZ
+ # NEWS for Ruby 3.0.0
+ 
++# FOO BAR BAZ
 +
- = NEWS for Ruby 2.6.0
-
- This document is a list of user visible feature changes made between
+ This document is a list of user visible feature changes
+ since the **2.7.0** release, except for bug fixes.

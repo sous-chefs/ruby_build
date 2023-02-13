@@ -11,6 +11,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Require unified_mode is always enabled for Chef 17 support
   - Remove the homebrew resource
 
+## 2.3.4 - *2023-02-13*
+
+## 2.3.3 - *2023-02-13*
+
+## 2.3.2 - *2023-02-13*
+
+## 2.3.1 - *2022-12-06*
+
+Standardise files with files in sous-chefs/repo-management
+
+## 2.3.0 - *2022-08-08*
+
+- Add `verbose` option
+- Remove Delivery and move to calling RSpec directly via a reusable workflow
+- Use reusable workflows
+- Update test build to use Ruby 3.0.4
+- Add Alma Linux & Rocky Linux / Replace CentOS 8 with CentOS Stream 8
+- Standardize kitchen.dokken.yml
+- Add support for Ubuntu 22.04
+- Remove use of yum-centos and replace with use of yum-config-manager to make it easier to work with Alma/Rocky
+- Install openssl@1.1 on MacOS
+
+## 2.2.3 - *2022-05-16*
+
+- Standardise files with files in sous-chefs/repo-management
+
+## 2.2.2 - *2022-02-10*
+
+- Standardise files with files in sous-chefs/repo-management
+
+## 2.2.1 - *2022-02-08*
+
+- Remove delivery folder
+
 ## 2.2.0 - *2021-12-27*
 
 - support Chef temporary directory being located on a volume mounted `noexec`

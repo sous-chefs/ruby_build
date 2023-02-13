@@ -10,13 +10,18 @@ action :install do
   src_path = "#{Chef::Config['file_cache_path']}/ruby-build"
 
   if platform_family?('rhel')
-    node.override['yum']['powertools']['enabled'] = true
-    node.override['yum']['powertools']['managed'] = true
-    include_recipe 'yum-centos'
+    if node['platform_version'].to_i >= 8
+      package 'yum-utils'
+
+      execute 'yum-config-manager --enable powertools' do
+        not_if 'yum-config-manager --dump powertools | grep -q "enabled = 1"'
+      end
+    end
+
     include_recipe 'yum-epel'
   end
 
-  package %w( tar bash curl git ) unless platform_family?('mac_os_x', 'freebsd')
+  package %w(tar bash curl git) unless platform_family?('mac_os_x', 'freebsd')
 
   git src_path do
     repository 'https://github.com/rbenv/ruby-build.git'
