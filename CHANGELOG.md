@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- Ubuntu 18 now uses 'libssl-dev' instead of 'libssl1.0-dev'
+
 ## 2.3.15 - *2023-05-15*
 
 ## 2.3.14 - *2023-04-17*
