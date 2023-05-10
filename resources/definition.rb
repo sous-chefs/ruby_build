@@ -87,7 +87,10 @@ action :install do
     environment env
     user new_resource.user
     group new_resource.group
-    not_if { ::File.exist?("#{installation_path}/bin") }
+    not_if do
+      ::Dir.exist?("#{installation_path}/bin") &&
+        new_resource.definition == `#{installation_path}/bin/ruby -e 'print RUBY_VERSION'`
+    end
     live_stream true
     action :run
   end
