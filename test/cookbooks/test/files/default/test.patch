@@ -3,7 +3,7 @@ diff -ur a/NEWS.md b/NEWS.md
 +++ b/NEWS.md	2022-08-07 19:19:49.013462652 -0700
 @@ -1,5 +1,7 @@
  # NEWS for Ruby 3.0.0
- 
+
 +# FOO BAR BAZ
 +
  This document is a list of user visible feature changes
