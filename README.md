@@ -1,8 +1,6 @@
 # ruby-build Chef Cookbook
 
 [![Cookbook Version](https://img.shields.io/cookbook/v/ruby_build.svg)](https://supermarket.chef.io/cookbooks/ruby_build)
-[![Build Status](https://img.shields.io/circleci/project/github/sous-chefs/ruby_build/master.svg)](https://circleci.com/gh/sous-chefs/ruby_build)
-[![OpenCollective](https://opencollective.com/sous-chefs/backers/badge.svg)](#backers)
 [![OpenCollective](https://opencollective.com/sous-chefs/sponsors/badge.svg)](#sponsors)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -49,7 +47,6 @@ ruby_build_definition '2.6.0'
 ruby_build_definition '2.6.0' do
   patch 'foobar.patch'
 end
-
 ```
 
 ## Resources
@@ -69,7 +66,6 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 [rb_site]: https://github.com/rbenv/ruby-build
 [rbenv-cookbook]: https://github.com/sous-chefs/ruby_rbenv
-[repo]: https://github.com/chef-rbenv/ruby_build
 
 ![https://opencollective.com/sous-chefs/sponsor/0/website](https://opencollective.com/sous-chefs/sponsor/0/avatar.svg?avatarHeight=100)
 ![https://opencollective.com/sous-chefs/sponsor/1/website](https://opencollective.com/sous-chefs/sponsor/1/avatar.svg?avatarHeight=100)
