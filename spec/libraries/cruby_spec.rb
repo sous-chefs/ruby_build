@@ -35,7 +35,7 @@ describe '#cruby_package_deps' do
 
     context 'Ubuntu 18.04' do
       platform 'ubuntu', '18.04'
-      it { is_expected.to write_log('gcc, autoconf, bison, build-essential, libssl1.0-dev, libyaml-dev, libreadline6-dev, zlib1g-dev, libncurses5-dev, libffi-dev, libgdbm5, libgdbm-dev, make, patch') }
+      it { is_expected.to write_log('gcc, autoconf, bison, build-essential, libssl-dev, libyaml-dev, libreadline6-dev, zlib1g-dev, libncurses5-dev, libffi-dev, libgdbm5, libgdbm-dev, make, patch') }
     end
 
     context 'Ubuntu 20.04' do
