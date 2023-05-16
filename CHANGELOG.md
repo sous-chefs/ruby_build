@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.5.0 - *2023-05-16*
+
+- Allow ruby-build to recognize when it needs to be upgraded.
+- Allow ruby-build to reinstall Ruby if the version changes.
+
 ## 2.4.1 - *2023-05-16*
 
 ## 2.4.0 - *2023-05-16*
