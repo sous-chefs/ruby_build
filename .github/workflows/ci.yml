@@ -72,7 +72,7 @@ jobs:
     if: ${{ always() }}
     runs-on: ubuntu-latest
     name: Final Results
-    needs: integration
+    needs: [integration, integration-macos]
     steps:
       - run: |
           result="${{ needs.integration.result }}"
