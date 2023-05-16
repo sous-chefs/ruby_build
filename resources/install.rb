@@ -33,6 +33,9 @@ action :install do
   execute 'Install ruby-build' do
     cwd src_path
     command %(sh ./install.sh)
-    not_if { ::File.exist?('/usr/local/bin/ruby-build') }
+    not_if do
+      ::File.exist?('/usr/local/bin/ruby-build') &&
+        `#{src_path}/bin/ruby-build --version` == `/usr/local/bin/ruby-build --version`
+    end
   end
 end
