@@ -1,7 +1,7 @@
 ---
 name: ci
 
-'on':
+"on":
   pull_request:
   push:
     branches: [master]
@@ -22,17 +22,17 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'almalinux-8'
-          - 'centos-7'
-          - 'centos-stream-8'
-          - 'debian-10'
-          - 'debian-11'
-          - 'rockylinux-8'
-          - 'ubuntu-1804'
-          - 'ubuntu-2004'
-          - 'ubuntu-2204'
+          - "almalinux-8"
+          - "centos-7"
+          - "centos-stream-8"
+          - "debian-10"
+          - "debian-11"
+          - "rockylinux-8"
+          - "ubuntu-1804"
+          - "ubuntu-2004"
+          - "ubuntu-2204"
         suite:
-          - 'default'
+          - "default"
       fail-fast: false
 
     steps:
@@ -67,3 +67,17 @@ jobs:
           suite: default
           os: macos
           action: test
+
+  results:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    name: Final Results
+    needs: integration
+    steps:
+      - run: |
+          result="${{ needs.integration.result }}"
+          if [[ $result == "success" || $result == "skipped" ]]; then
+            exit 0
+          else
+            exit 1
+          fi
