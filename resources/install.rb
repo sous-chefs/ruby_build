@@ -10,7 +10,13 @@ action :install do
   src_path = "#{Chef::Config['file_cache_path']}/ruby-build"
 
   if platform_family?('rhel')
-    if node['platform_version'].to_i >= 8
+    if node['platform_version'].to_i == 9
+      package 'yum-utils'
+
+      execute 'yum-config-manager --enable crb' do
+        not_if 'yum-config-manager --dump crb | grep -q "enabled = 1"'
+      end
+    elsif node['platform_version'].to_i == 8
       package 'yum-utils'
 
       execute 'yum-config-manager --enable powertools' do

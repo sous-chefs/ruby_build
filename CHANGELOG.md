@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- CentOS Stream 9 uses 'crb' instead of the 'powertools' repo.
+
 ## 2.5.5 - *2023-10-26*
 
 ## 2.5.4 - *2023-09-29*
