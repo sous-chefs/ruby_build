@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Standardise files with files in sous-chefs/repo-management
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 2.5.11 - *2025-09-04*
 
 Standardise files with files in sous-chefs/repo-management
