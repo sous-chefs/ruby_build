@@ -2,7 +2,7 @@ class Chef
   module Rbenv
     module MacOs
       def openssl_prefix
-        `/usr/local/bin/brew --prefix openssl@3`.strip!
+        `brew --prefix openssl@3`.strip!
       end
     end
 
