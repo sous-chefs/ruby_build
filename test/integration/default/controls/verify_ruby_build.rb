@@ -1,10 +1,13 @@
+ruby_version = os.darwin? ? '3.3.10' : '3.0.4'
+ruby_api_version = ruby_version.sub(/\.\d+$/, '.0')
+
 control 'Check definitions' do
   impact 1.0
   title 'Verify we can return a list of definitions'
   desc 'Verify we can get a list of Ruby definitions'
   describe command('/usr/local/bin/ruby-build --definitions') do
     its('exit_status') { should eq 0 }
-    its('stdout') { should match /3.0.4/ }
+    its('stdout') { should match /#{Regexp.escape(ruby_version)}/ }
   end
 end
 
@@ -19,9 +22,9 @@ control 'ruby-build binary should work' do
 end
 
 gem_cmd = if os.darwin?
-            'sudo /usr/local/ruby/3.0.4/bin/gem install ffi --no-document'
+            "sudo /usr/local/ruby/#{ruby_version}/bin/gem install ffi --no-document"
           else
-            '/usr/local/ruby/3.0.4/bin/gem install ffi --no-document'
+            "/usr/local/ruby/#{ruby_version}/bin/gem install ffi --no-document"
           end
 
 control 'Install a Ruby gem' do
@@ -34,8 +37,8 @@ control 'Install a Ruby gem' do
     its('stdout') { should match /Successfully installed ffi/ }
   end
 
-  describe command('/usr/local/ruby/3.0.4/bin/gem env') do
+  describe command("/usr/local/ruby/#{ruby_version}/bin/gem env") do
     its('exit_status') { should eq 0 }
-    its('stdout') { should match %r{gems/3.0.0} }
+    its('stdout') { should match %r{gems/#{Regexp.escape(ruby_api_version)}} }
   end
 end

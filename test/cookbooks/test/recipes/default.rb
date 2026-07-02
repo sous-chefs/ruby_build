@@ -3,7 +3,9 @@ homebrew_update
 
 ruby_build_install
 
-ruby_build_definition '3.0.4' do
+ruby_version = platform_family?('mac_os_x') ? '3.3.10' : '3.0.4'
+
+ruby_build_definition ruby_version do
   version_prefix true
-  patch 'test.patch'
+  patch 'test.patch' unless platform_family?('mac_os_x')
 end
