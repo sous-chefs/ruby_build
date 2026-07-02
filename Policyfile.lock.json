@@ -1,5 +1,5 @@
 {
-  "revision_id": "3f6451ca3509ae9f5a9e7bb9cff16932b351d2aacd100cab2bfe17c274d03712",
+  "revision_id": "6acbaa01bc76e4e522f3971c561c32a551273ea043e58f425c907f0bf41eeec1",
   "name": "ruby_build",
   "run_list": [
     "recipe[test::default]"
@@ -27,14 +27,14 @@
     },
     "ruby_build": {
       "version": "2.5.12",
-      "identifier": "06ed00751d9164e8c3c1fcdca5724685fd294825",
-      "dotted_decimal_identifier": "1949436080918884.65517432535295346.77541291935781",
+      "identifier": "4d69fe0305af8d17f1deb92aa104860274568a83",
+      "dotted_decimal_identifier": "21790112900034445.6739863355957508.147345099885187",
       "source": ".",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
         "remote": "https://github.com/sous-chefs/ruby_build.git",
-        "revision": "3f076609f1766a27193c5edf4d93ec1a4320ca61",
+        "revision": "07335944f462e81987610455906fc2f2591ea67c",
         "working_tree_clean": false,
         "published": true,
         "synchronized_remote_branches": [
@@ -47,14 +47,14 @@
     },
     "test": {
       "version": "1.0.0",
-      "identifier": "8d6d7c70e209ff1d701c07390ca34eb4096d656c",
-      "dotted_decimal_identifier": "39808352953436671.8286040007183523.86535159244140",
+      "identifier": "5e812c6fbd7fd07e16cfe87849d7bf64cf448377",
+      "dotted_decimal_identifier": "26600675664035792.35490929279781335.210439695008631",
       "source": "test/cookbooks/test",
       "cache_key": null,
       "scm_info": {
         "scm": "git",
         "remote": "https://github.com/sous-chefs/ruby_build.git",
-        "revision": "3f076609f1766a27193c5edf4d93ec1a4320ca61",
+        "revision": "07335944f462e81987610455906fc2f2591ea67c",
         "working_tree_clean": false,
         "published": true,
         "synchronized_remote_branches": [
