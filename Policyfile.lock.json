@@ -1,0 +1,131 @@
+{
+  "revision_id": "6acbaa01bc76e4e522f3971c561c32a551273ea043e58f425c907f0bf41eeec1",
+  "name": "ruby_build",
+  "run_list": [
+    "recipe[test::default]"
+  ],
+  "named_run_lists": {
+    "default": [
+      "recipe[test::default]"
+    ]
+  },
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "homebrew": {
+      "version": "7.0.0",
+      "identifier": "456d1e381e87f21073968b4477cfdf06a4c42c57",
+      "dotted_decimal_identifier": "19541749951006706.4630690046179279.245219627117655",
+      "cache_key": "homebrew-f4a84d4e2e8bc6f17d7d4c5c439be4d29fbc34db",
+      "origin": "https://github.com/sous-chefs/homebrew.git",
+      "source_options": {
+        "git": "https://github.com/sous-chefs/homebrew.git",
+        "revision": "f4a84d4e2e8bc6f17d7d4c5c439be4d29fbc34db",
+        "branch": "main"
+      }
+    },
+    "ruby_build": {
+      "version": "2.5.12",
+      "identifier": "4d69fe0305af8d17f1deb92aa104860274568a83",
+      "dotted_decimal_identifier": "21790112900034445.6739863355957508.147345099885187",
+      "source": ".",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": "https://github.com/sous-chefs/ruby_build.git",
+        "revision": "07335944f462e81987610455906fc2f2591ea67c",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/chore/migrate-to-policyfile"
+        ]
+      },
+      "source_options": {
+        "path": "."
+      }
+    },
+    "test": {
+      "version": "1.0.0",
+      "identifier": "5e812c6fbd7fd07e16cfe87849d7bf64cf448377",
+      "dotted_decimal_identifier": "26600675664035792.35490929279781335.210439695008631",
+      "source": "test/cookbooks/test",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": "https://github.com/sous-chefs/ruby_build.git",
+        "revision": "07335944f462e81987610455906fc2f2591ea67c",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/chore/migrate-to-policyfile"
+        ]
+      },
+      "source_options": {
+        "path": "test/cookbooks/test"
+      }
+    },
+    "yum-epel": {
+      "version": "5.0.10",
+      "identifier": "3ffd59317825177023566a99bf5940e29163cfd4",
+      "dotted_decimal_identifier": "18011483056645399.31564051454213977.71341846024148",
+      "cache_key": "yum-epel-0ae39de8b609c2904012f4da4cf261b6e3361f74",
+      "origin": "https://github.com/sous-chefs/yum-epel.git",
+      "source_options": {
+        "git": "https://github.com/sous-chefs/yum-epel.git",
+        "revision": "0ae39de8b609c2904012f4da4cf261b6e3361f74",
+        "branch": "main"
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "homebrew",
+        ">= 0.0.0"
+      ],
+      [
+        "ruby_build",
+        ">= 0.0.0"
+      ],
+      [
+        "test",
+        ">= 0.0.0"
+      ],
+      [
+        "yum-epel",
+        ">= 0.0.0"
+      ]
+    ],
+    "dependencies": {
+      "homebrew (7.0.0)": [
+
+      ],
+      "ruby_build (2.5.12)": [
+        [
+          "yum-epel",
+          ">= 0.0.0"
+        ],
+        [
+          "homebrew",
+          ">= 0.0.0"
+        ]
+      ],
+      "test (1.0.0)": [
+        [
+          "ruby_build",
+          ">= 0.0.0"
+        ]
+      ],
+      "yum-epel (5.0.10)": [
+
+      ]
+    }
+  }
+}

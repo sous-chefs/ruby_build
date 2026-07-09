@@ -1,5 +1,5 @@
 require 'chefspec'
-require 'chefspec/berkshelf'
+require 'chefspec/policyfile'
 require_relative '../libraries/package_deps'
 
 RSpec.configure do |config|

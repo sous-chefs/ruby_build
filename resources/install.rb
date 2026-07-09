@@ -24,7 +24,7 @@ action :install do
       end
     end
 
-    include_recipe 'yum-epel'
+    yum_epel 'default'
   end
 
   package %w(tar bash curl git) unless platform_family?('mac_os_x', 'freebsd')
