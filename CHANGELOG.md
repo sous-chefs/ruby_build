@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## [2.5.13](https://github.com/sous-chefs/ruby_build/compare/v2.5.12...v2.5.13) (2026-08-16)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#187](https://github.com/sous-chefs/ruby_build/issues/187)) ([a6113b1](https://github.com/sous-chefs/ruby_build/commit/a6113b1209c610b488c3456ff17bf81df5bc92ce))
+* migrate to Policyfile ([#195](https://github.com/sous-chefs/ruby_build/issues/195)) ([f5cce67](https://github.com/sous-chefs/ruby_build/commit/f5cce67a959a518ff3689965c4f6273b9ec9b2ff))
+
 ## [2.5.12](https://github.com/sous-chefs/ruby_build/compare/2.5.11...v2.5.12) (2025-10-16)
 
 
